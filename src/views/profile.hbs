@@ -1,0 +1,364 @@
+{{!-- <div class="row">
+<div class ="col-4">
+{{>sidebar}}
+</div>
+<div class="col-7">
+<div class="container p-4">
+  <div class="row">
+    <div class="col-md-4 mx-auto">
+      <div class="card text-center">
+        <div class="card-body">
+          <h3>Welcome {{user.fullname}}</h3>
+          <h4>{{user.username}}</h4>
+          <a href="/links" class="btn btn-primary m-4">
+            Agregar Clientes
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+ --}}
+
+<div class="col-auto mt-2 justify-content-center">
+  {{! Boton de Recordatorios }}
+  <div class="col-auto text-center">
+    <div class="btn-group">
+      <button
+        type="button"
+        class="btn btn-secondary dropdown-toggle"
+        data-bs-toggle="dropdown"
+        data-bs-display="static"
+        aria-expanded="false"
+      >
+        Recordatorios
+      </button>
+      <ul class="dropdown-menu dropdown-menu-lg-end">
+        <li><button class="dropdown-item" type="button">Hoy</button></li>
+        <li><button class="dropdown-item" type="button">Semanal</button></li>
+        <li><button class="dropdown-item" type="button">Mensual</button></li>
+      </ul>
+    </div>
+  </div>
+  {{! Termina Boton de Recordatorios }}
+
+  {{! Tabla de recordatorios }}
+  <div class="container mt-lg-6 mt-5">
+    <div class="row">
+      <div
+        class="bg-hover-white-smoke w-100 pointer"
+        onclick="location.href('https://raw.githubusercontent.com/solodev/clickable-bootstrap-rows/master/images/image-1.jpg')"
+      >
+        <div class="container">
+          <div class="row py-2 align-items-center border-top clickable-row">
+            <div class="col-md-5">
+              <h3 class="h4 m-0">
+                <a
+                  target="_blank"
+                  href="https://raw.githubusercontent.com/solodev/clickable-bootstrap-rows/master/images/image-1.jpg"
+                >Cliente 1
+                </a>
+              </h3>
+            </div>
+            <div class="col-md-2">
+              <p class="m-0 text-pink text-uppercase">DNI Cliente 1</p>
+            </div>
+            <div class="col-md-2">
+              <p class="m-0 text-pink text-uppercase">Motivo Contacto</p>
+            </div>
+            <div class="col-md-2">
+              <p class="m-0 text-pink text-uppercase">Fecha de Contacto</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div
+        class="bg-hover-white-smoke w-100 pointer"
+        onclick="location.href('https://raw.githubusercontent.com/solodev/clickable-bootstrap-rows/master/images/image-1.jpg')"
+      >
+        <div class="container">
+          <div class="row py-2 align-items-center border-top clickable-row">
+            <div class="col-md-5">
+              <h3 class="h4 m-0">
+                <a
+                  target="_blank"
+                  href="https://raw.githubusercontent.com/solodev/clickable-bootstrap-rows/master/images/image-1.jpg"
+                >Cliente 1
+                </a>
+              </h3>
+            </div>
+            <div class="col-md-2">
+              <p class="m-0 text-pink text-uppercase">DNI Cliente 1</p>
+            </div>
+            <div class="col-md-2">
+              <p class="m-0 text-pink text-uppercase">Motivo Contacto</p>
+            </div>
+            <div class="col-md-2">
+              <p class="m-0 text-pink text-uppercase">Fecha de Contacto</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div
+        class="bg-hover-white-smoke w-100 pointer"
+        onclick="location.href('https://raw.githubusercontent.com/solodev/clickable-bootstrap-rows/master/images/image-1.jpg')"
+      >
+        <div class="container">
+          <div class="row py-2 align-items-center border-top clickable-row">
+            <div class="col-md-5">
+              <h3 class="h4 m-0">
+                <a
+                  target="_blank"
+                  href="https://raw.githubusercontent.com/solodev/clickable-bootstrap-rows/master/images/image-1.jpg"
+                >Cliente 1
+                </a>
+              </h3>
+            </div>
+            <div class="col-md-2">
+              <p class="m-0 text-pink text-uppercase">DNI Cliente 1</p>
+            </div>
+            <div class="col-md-2">
+              <p class="m-0 text-pink text-uppercase">Motivo Contacto</p>
+            </div>
+            <div class="col-md-2">
+              <p class="m-0 text-pink text-uppercase">Fecha de Contacto</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div
+        class="bg-hover-white-smoke w-100 pointer"
+        onclick="location.href('https://raw.githubusercontent.com/solodev/clickable-bootstrap-rows/master/images/image-1.jpg')"
+      >
+        <div class="container">
+          <div class="row py-2 align-items-center border-top clickable-row">
+            <div class="col-md-5">
+              <h3 class="h4 m-0">
+                <a
+                  target="_blank"
+                  href="https://raw.githubusercontent.com/solodev/clickable-bootstrap-rows/master/images/image-1.jpg"
+                >Cliente 1
+                </a>
+              </h3>
+            </div>
+            <div class="col-md-2">
+              <p class="m-0 text-pink text-uppercase">DNI Cliente 1</p>
+            </div>
+            <div class="col-md-2">
+              <p class="m-0 text-pink text-uppercase">Motivo Contacto</p>
+            </div>
+            <div class="col-md-2">
+              <p class="m-0 text-pink text-uppercase">Fecha de Contacto</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{! Termina Tabla de recordatorios }}
+
+  {{! Contenedor de Botones }}
+  <div class="d-flex justify-content-evenly">
+
+    {{! Boton de Buscar empleados }}
+    <div>
+      <div
+        class="modal fade"
+        id="exampleModalToggle"
+        aria-hidden="true"
+        aria-labelledby="exampleModalToggleLabel"
+        tabindex="-1"
+      >
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalToggleLabel">Buscar
+                Cliente</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form class="" role="search">
+                <div class="row">
+                  <input
+                    class="form-control me-2"
+                    type="search"
+                    placeholder="Search"
+                    aria-label="Search"
+                  />
+                </div>
+                <div class="row">
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="flexRadioDefault"
+                      id="flexRadioDefault2"
+                      checked
+                    />
+                    <label class="form-check-label" for="flexRadioDefault2">
+                      Nombre
+                    </label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="flexRadioDefault"
+                      id="flexRadioDefault1"
+                    />
+                    <label class="form-check-label" for="flexRadioDefault1">
+                      DNI
+                    </label>
+                  </div>
+                </div>
+                <div class="row">
+                  <button
+                    class="btn btn-outline-success"
+                    type="submit"
+                  >Buscar</button>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                class="btn btn-primary"
+                data-bs-target="#exampleModalToggle2"
+                data-bs-toggle="modal"
+              >Siguiente</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="modal fade"
+        id="exampleModalToggle2"
+        aria-hidden="true"
+        aria-labelledby="exampleModalToggleLabel2"
+        tabindex="-1"
+      >
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalToggleLabel2">Seleccionar
+                Cliente</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                {{! XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX }}
+                {{#each links}}
+                  <div class="col-md-3 p-2">
+                    <div class="card text-center bg-dark text-light">
+                      <div class="card-body">
+                        <a href="{{url}}" target="_blank" class="text-light">
+                          <h3 class="card-title text-uppercase">
+                            {{title}}
+                          </h3>
+                        </a>
+                        <p class="m-2">{{description}}</p>
+                        <p class="text-muted">
+                          {{timeago created_at}}
+                        </p>
+                        <a class="btn btn-danger" href="/links/delete/{{id}}">
+                          Delete Link
+                        </a>
+                        <a class="btn btn-secondary" href="/links/edit/{{id}}">
+                          Edit
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                {{else}}
+                  <div class="col-md-4 mx-auto">
+                    <div class="card card-body text-center bg-dark text-light">
+                      <p>There are not Links saved yet.</p>
+                      <a href="/links/add" class="text-success">Create One!</a>
+                    </div>
+                  </div>
+                {{/each}}
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                class="btn btn-primary"
+                data-bs-target="#exampleModalToggle"
+                data-bs-toggle="modal"
+              >Back to first</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        href="#exampleModalToggle"
+        role="button"
+      >Open first modal</a>
+    </div>
+    {{! Termina Boton de Buscar empleados }}
+
+    {{! Boton de Opciones Generales }}
+    <div>
+      <button
+        class="btn btn-primary"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasWithBothOptions"
+        aria-controls="offcanvasWithBothOptions"
+      >Opciones Generales</button>
+      <div
+        class="offcanvas offcanvas-start"
+        data-bs-scroll="true"
+        tabindex="-1"
+        id="offcanvasWithBothOptions"
+        aria-labelledby="offcanvasWithBothOptionsLabel"
+      >
+        <div class="offcanvas-header">
+          <h5
+            class="offcanvas-title"
+            id="offcanvasWithBothOptionsLabel"
+          >Backdrop with scrolling</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="offcanvas-body">
+          <p>Try scrolling the rest of the page to see this option in action.</p>
+        </div>
+      </div>
+    </div>
+
+    {{! Boton para futuras Opciones }}
+    <div>
+      <button type="button" class="btn btn-primary">Otras Opciones</button>
+    </div>
+    {{! Termina Boton para futuras Opciones }}
+
+    {{! Termina Boton de Opciones Generales }}
+  </div>
+
+  {{! Termina Contenedor de Botones }}
+
+</div>
+{{! Termina div general }}

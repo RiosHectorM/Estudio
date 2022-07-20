@@ -67,8 +67,8 @@
   <a href="/" class="navbar-brand d-flex d-lg-none me-4">
     <h2 class="text-primary mb-0"><i class="fa-solid fa-scale-balanced"></i></h2>
   </a>
-  <a href="#" class="sidebar-toggler flex-shrink-0">
-    <i class="fa fa-bars"></i>
+  <a href="#" class="sidebar-toggler flex-shrink-0 h2">
+    <i class="fa-solid fa-gavel"></i>
   </a>
  
   <div class="navbar-nav align-items-center ms-auto">
@@ -110,15 +110,15 @@
           alt=""
           style="width: 40px; height: 40px;"
         />
-        <span class="d-none d-lg-inline-flex">Administrador</span>
+        <span class="d-none d-lg-inline-flex">{{user.username}}</span>
       </a>
       <div
         class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
-        <a href="#" class="dropdown-item">
-          <h6 class="fw-normal mb-0">Mi Perfil</h6>
+        <a class="dropdown-item" href="/profile">
+          <h6 class="fw-normal mb-0" >Mi Perfil</h6>
         </a>
-                <a href="#" class="dropdown-item">
-          <h6 class="fw-normal mb-0">Log Out</h6>
+                <a class="dropdown-item" href="/logout">
+          <h6 class="fw-normal mb-0" >Salir</h6>
         </a>
 
       </div>

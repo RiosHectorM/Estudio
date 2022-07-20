@@ -1,5 +1,5 @@
 body {
-  background: #919ec6a7;
+  background: white;
   font-family: 'Secular One', sans-serif;
   height: 100vh;
 }
@@ -10,7 +10,7 @@ body {
 }
 
 .navbar {
-  background: rgb(12, 12, 69) !important;
+  background: rgb(0, 0, 0) !important;
 }
 
 .nav-link {
@@ -47,8 +47,6 @@ body {
   }
 }
 
-/* inicio datetime */
 .input-group-append {
   cursor: pointer;
 }
-/* fin datetime */

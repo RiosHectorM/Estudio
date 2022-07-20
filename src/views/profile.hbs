@@ -1,834 +1,212 @@
-{{!-- <div class="row">
-<div class ="col-4">
-{{>sidebar}}
-</div>
-<div class="col-7">
-<div class="container p-4">
-  <div class="row">
-    <div class="col-md-4 mx-auto">
-      <div class="card text-center">
-        <div class="card-body">
-          <h3>Welcome {{user.fullname}}</h3>
-          <h4>{{user.username}}</h4>
-          <a href="/links" class="btn btn-primary m-4">
-            Agregar Clientes
+<div class="container-fluid overflow-hidden">
+  <div class="row vh-100 overflow-auto">
+    <div
+      class="col-12 col-sm-3 col-xl-2 px-sm-2 px-0 bg-dark d-flex sticky-top"
+    >
+      <div
+        class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-3 pt-2 text-white"
+      >
+        <a
+          href="/"
+          class="d-flex align-items-center pb-sm-3 mb-md-0 me-md-auto text-white text-decoration-none"
+        >
+          <span class="fs-5"><i class="fa-solid fa-scale-balanced"></i><span
+              class="d-none d-sm-inline"
+            > Centeno Novillo App</span></span>
+        </a>
+        <ul
+          class="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 mb-sm-auto mb-0 justify-content-center align-items-center align-items-sm-start"
+          id="menu"
+        >
+          <li class="nav-item">
+            <a href="/profile" class="nav-link px-sm-0 px-2">
+              <i class="fa-solid fa-house"></i></i><span
+                class="ms-1 d-none d-sm-inline"
+              >Inicio</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#submenu1"
+              data-bs-toggle="collapse"
+              class="nav-link px-sm-0 px-2"
+            >
+              <i class="fa-solid fa-bell"></i><span
+                class="ms-1 d-none d-sm-inline"
+              >Alertas</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link px-sm-0 px-2">
+              <i class="fa-solid fa-calendar-days"></i><span
+                class="ms-1 d-none d-sm-inline"
+              >Calendario</span></a>
+          </li>
+          <li class="dropdown">
+            <a
+              href="#"
+              class="nav-link dropdown-toggle px-sm-0 px-2"
+              id="dropdown"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <i class="fa-solid fa-people-group"></i><span
+                class="ms-1 d-none d-sm-inline"
+              >Clientes</span>
+            </a>
+            <ul
+              class="dropdown-menu dropdown-menu-dark text-small shadow"
+              aria-labelledby="dropdown"
+            >
+              <li><a class="dropdown-item" href="/links/add">Nuevo Cliente</a></li>
+              <li><a class="dropdown-item" href="/links">Buscar Clientes</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" class="nav-link px-sm-0 px-2">
+              <i class="fa-solid fa-book"></i><span
+                class="ms-1 d-none d-sm-inline"
+              >Informes</span>
+            </a>
+          </li>
+        </ul>
+        <div class="dropdown py-sm-4 mt-sm-auto ms-auto ms-sm-0 flex-shrink-1">
+          <a
+            href="#"
+            class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+            id="dropdownUser1"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <img
+              src="/img/logo.jpg"
+              alt="hugenerd"
+              width="28"
+              height="28"
+              class="rounded-circle"
+            />
+            <span class="d-none d-sm-inline mx-1">{{user.username}}</span>
           </a>
+          <ul
+            class="dropdown-menu dropdown-menu-dark text-small shadow"
+            aria-labelledby="dropdownUser1"
+          >
+            <li><a class="dropdown-item" href="#">Perfil</a></li>
+            <li><a class="dropdown-item" href="#">Configuracion</a></li>
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
+            <li><a class="dropdown-item" href="/logout">Salir</a></li>
+          </ul>
         </div>
       </div>
+    </div>
+    <div class="col d-flex flex-column h-100">
+      <main class="row">
+
+{{!-- CONTENIDO PRINCIPAL --}}
+
+<div id="booking" class="section">
+		<div class="section-center">
+			<div class="container">
+				<div class="row">
+					<div class="booking-form">
+						<form>
+							<div class="form-group">
+								<div class="form-checkbox">
+									<label for="roundtrip">
+										<input type="radio" id="roundtrip" name="flight-type">
+										<span></span>Roundtrip
+									</label>
+									<label for="one-way">
+										<input type="radio" id="one-way" name="flight-type">
+										<span></span>One way
+									</label>
+									<label for="multi-city">
+										<input type="radio" id="multi-city" name="flight-type">
+										<span></span>Multi-City
+									</label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<span class="form-label">Flying from</span>
+										<input class="form-control" type="text" placeholder="City or airport">
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<span class="form-label">Flyning to</span>
+										<input class="form-control" type="text" placeholder="City or airport">
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-3">
+									<div class="form-group">
+										<span class="form-label">Departing</span>
+										<input class="form-control" type="date" required>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<span class="form-label">Returning</span>
+										<input class="form-control" type="date" required>
+									</div>
+								</div>
+								<div class="col-md-2">
+									<div class="form-group">
+										<span class="form-label">Adults (18+)</span>
+										<select class="form-control">
+											<option>1</option>
+											<option>2</option>
+											<option>3</option>
+										</select>
+										<span class="select-arrow"></span>
+									</div>
+								</div>
+								<div class="col-md-2">
+									<div class="form-group">
+										<span class="form-label">Children (0-17)</span>
+										<select class="form-control">
+											<option>0</option>
+											<option>1</option>
+											<option>2</option>
+										</select>
+										<span class="select-arrow"></span>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-3">
+									<div class="form-group">
+										<span class="form-label">Travel class</span>
+										<select class="form-control">
+											<option>Economy class</option>
+											<option>Business class</option>
+											<option>First class</option>
+										</select>
+										<span class="select-arrow"></span>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-btn">
+										<button class="submit-btn">Show flights</button>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+      </main>
+      <footer class="row bg-light py-4 mt-auto">
+        <div class="col"> Bottom footer content here... </div>
+      </footer>
     </div>
   </div>
 </div>
-</div>
-</div>
- --}}
-{{!-- 
-<div class="col-auto mt-2 justify-content-center">
-  {{! Boton de Recordatorios }}
-  <div class="col-auto text-center">
-    <div class="btn-group">
-      <button
-        type="button"
-        class="btn btn-secondary dropdown-toggle"
-        data-bs-toggle="dropdown"
-        data-bs-display="static"
-        aria-expanded="false"
-      >
-        Recordatorios
-      </button>
-      <ul class="dropdown-menu dropdown-menu-lg-end">
-        <li><button class="dropdown-item" type="button">Hoy</button></li>
-        <li><button class="dropdown-item" type="button">Semanal</button></li>
-        <li><button class="dropdown-item" type="button">Mensual</button></li>
-      </ul>
-    </div>
-  </div>
-  {{! Termina Boton de Recordatorios }}
-
-  {{! Tabla de recordatorios }}
-  <div class="container mt-lg-6 mt-5">
-    <div class="row">
-      <div
-        class="bg-hover-white-smoke w-100 pointer"
-        onclick="location.href('https://raw.githubusercontent.com/solodev/clickable-bootstrap-rows/master/images/image-1.jpg')"
-      >
-        <div class="container">
-          <div class="row py-2 align-items-center border-top clickable-row">
-            <div class="col-md-5">
-              <h3 class="h4 m-0">
-                <a
-                  target="_blank"
-                  href="https://raw.githubusercontent.com/solodev/clickable-bootstrap-rows/master/images/image-1.jpg"
-                >Cliente 1
-                </a>
-              </h3>
-            </div>
-            <div class="col-md-2">
-              <p class="m-0 text-pink text-uppercase">DNI Cliente 1</p>
-            </div>
-            <div class="col-md-2">
-              <p class="m-0 text-pink text-uppercase">Motivo Contacto</p>
-            </div>
-            <div class="col-md-2">
-              <p class="m-0 text-pink text-uppercase">Fecha de Contacto</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div
-        class="bg-hover-white-smoke w-100 pointer"
-        onclick="location.href('https://raw.githubusercontent.com/solodev/clickable-bootstrap-rows/master/images/image-1.jpg')"
-      >
-        <div class="container">
-          <div class="row py-2 align-items-center border-top clickable-row">
-            <div class="col-md-5">
-              <h3 class="h4 m-0">
-                <a
-                  target="_blank"
-                  href="https://raw.githubusercontent.com/solodev/clickable-bootstrap-rows/master/images/image-1.jpg"
-                >Cliente 1
-                </a>
-              </h3>
-            </div>
-            <div class="col-md-2">
-              <p class="m-0 text-pink text-uppercase">DNI Cliente 1</p>
-            </div>
-            <div class="col-md-2">
-              <p class="m-0 text-pink text-uppercase">Motivo Contacto</p>
-            </div>
-            <div class="col-md-2">
-              <p class="m-0 text-pink text-uppercase">Fecha de Contacto</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div
-        class="bg-hover-white-smoke w-100 pointer"
-        onclick="location.href('https://raw.githubusercontent.com/solodev/clickable-bootstrap-rows/master/images/image-1.jpg')"
-      >
-        <div class="container">
-          <div class="row py-2 align-items-center border-top clickable-row">
-            <div class="col-md-5">
-              <h3 class="h4 m-0">
-                <a
-                  target="_blank"
-                  href="https://raw.githubusercontent.com/solodev/clickable-bootstrap-rows/master/images/image-1.jpg"
-                >Cliente 1
-                </a>
-              </h3>
-            </div>
-            <div class="col-md-2">
-              <p class="m-0 text-pink text-uppercase">DNI Cliente 1</p>
-            </div>
-            <div class="col-md-2">
-              <p class="m-0 text-pink text-uppercase">Motivo Contacto</p>
-            </div>
-            <div class="col-md-2">
-              <p class="m-0 text-pink text-uppercase">Fecha de Contacto</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div
-        class="bg-hover-white-smoke w-100 pointer"
-        onclick="location.href('https://raw.githubusercontent.com/solodev/clickable-bootstrap-rows/master/images/image-1.jpg')"
-      >
-        <div class="container">
-          <div class="row py-2 align-items-center border-top clickable-row">
-            <div class="col-md-5">
-              <h3 class="h4 m-0">
-                <a
-                  target="_blank"
-                  href="https://raw.githubusercontent.com/solodev/clickable-bootstrap-rows/master/images/image-1.jpg"
-                >Cliente 1
-                </a>
-              </h3>
-            </div>
-            <div class="col-md-2">
-              <p class="m-0 text-pink text-uppercase">DNI Cliente 1</p>
-            </div>
-            <div class="col-md-2">
-              <p class="m-0 text-pink text-uppercase">Motivo Contacto</p>
-            </div>
-            <div class="col-md-2">
-              <p class="m-0 text-pink text-uppercase">Fecha de Contacto</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  {{! Termina Tabla de recordatorios }}
-
-  {{! Contenedor de Botones }}
-  <div class="d-flex justify-content-evenly">
-
-    {{! Boton de Buscar empleados }}
-    <div>
-      <div
-        class="modal fade"
-        id="exampleModalToggle"
-        aria-hidden="true"
-        aria-labelledby="exampleModalToggleLabel"
-        tabindex="-1"
-      >
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalToggleLabel">Buscar
-                Cliente</h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">
-              <form class="" role="search">
-                <div class="row">
-                  <input
-                    class="form-control me-2"
-                    type="search"
-                    placeholder="Search"
-                    aria-label="Search"
-                  />
-                </div>
-                <div class="row">
-                  <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="flexRadioDefault"
-                      id="flexRadioDefault2"
-                      checked
-                    />
-                    <label class="form-check-label" for="flexRadioDefault2">
-                      Nombre
-                    </label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="flexRadioDefault"
-                      id="flexRadioDefault1"
-                    />
-                    <label class="form-check-label" for="flexRadioDefault1">
-                      DNI
-                    </label>
-                  </div>
-                </div>
-                <div class="row">
-                  <button
-                    class="btn btn-outline-success"
-                    type="submit"
-                  >Buscar</button>
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button
-                class="btn btn-primary"
-                data-bs-target="#exampleModalToggle2"
-                data-bs-toggle="modal"
-              >Siguiente</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        class="modal fade"
-        id="exampleModalToggle2"
-        aria-hidden="true"
-        aria-labelledby="exampleModalToggleLabel2"
-        tabindex="-1"
-      >
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalToggleLabel2">Seleccionar
-                Cliente</h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">
-              <div class="row">
-                {{! XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX }}
-                {{#each links}}
-                  <div class="col-md-3 p-2">
-                    <div class="card text-center bg-dark text-light">
-                      <div class="card-body">
-                        <a href="{{url}}" target="_blank" class="text-light">
-                          <h3 class="card-title text-uppercase">
-                            {{title}}
-                          </h3>
-                        </a>
-                        <p class="m-2">{{description}}</p>
-                        <p class="text-muted">
-                          {{timeago created_at}}
-                        </p>
-                        <a class="btn btn-danger" href="/links/delete/{{id}}">
-                          Delete Link
-                        </a>
-                        <a class="btn btn-secondary" href="/links/edit/{{id}}">
-                          Edit
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                {{else}}
-                  <div class="col-md-4 mx-auto">
-                    <div class="card card-body text-center bg-dark text-light">
-                      <p>There are not Links saved yet.</p>
-                      <a href="/links/add" class="text-success">Create One!</a>
-                    </div>
-                  </div>
-                {{/each}}
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button
-                class="btn btn-primary"
-                data-bs-target="#exampleModalToggle"
-                data-bs-toggle="modal"
-              >Back to first</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <a
-        class="btn btn-primary"
-        data-bs-toggle="modal"
-        href="#exampleModalToggle"
-        role="button"
-      >Open first modal</a>
-    </div>
-    {{! Termina Boton de Buscar empleados }}
-
-    {{! Boton de Opciones Generales }}
-    <div>
-      <button
-        class="btn btn-primary"
-        type="button"
-        data-bs-toggle="offcanvas"
-        data-bs-target="#offcanvasWithBothOptions"
-        aria-controls="offcanvasWithBothOptions"
-      >Opciones Generales</button>
-      <div
-        class="offcanvas offcanvas-start"
-        data-bs-scroll="true"
-        tabindex="-1"
-        id="offcanvasWithBothOptions"
-        aria-labelledby="offcanvasWithBothOptionsLabel"
-      >
-        <div class="offcanvas-header">
-          <h5
-            class="offcanvas-title"
-            id="offcanvasWithBothOptionsLabel"
-          >Backdrop with scrolling</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="offcanvas"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="offcanvas-body">
-          <p>Try scrolling the rest of the page to see this option in action.</p>
-        </div>
-      </div>
-    </div>
-
-    {{! Boton para futuras Opciones }}
-    <div>
-      <button type="button" class="btn btn-primary">Otras Opciones</button>
-    </div>
-    {{! Termina Boton para futuras Opciones }}
-
-    {{! Termina Boton de Opciones Generales }}
-  </div>
-
-  {{! Termina Contenedor de Botones }}
-
-</div>
-{{! Termina div general }} --}}
-
-{{!-- OTRO CODIGO 2 --}}
-
-{{!-- <div class="container-fluid position-relative d-flex p-0">
-
-  <!-- Sidebar Start -->
-  <div class="sidebar pe-4 pb-3">
-    <nav class="navbar bg-secondary navbar-dark">
-      <a href="index.html" class="navbar-brand mx-4 mb-3">
-        <h3 class="text-primary"><i
-            class="fa fa-user-edit me-2"
-          ></i>DarkPan</h3>
-      </a>
-
-
-      <div class="navbar-nav w-100">
-        <a href="index.html" class="nav-item nav-link active"><i
-            class="fa fa-tachometer-alt me-2"
-          ></i>Dashboard</a>
-        <div class="nav-item dropdown">
-          <a
-            href="#"
-            class="nav-link dropdown-toggle"
-            data-bs-toggle="dropdown"
-          ><i class="fa fa-laptop me-2"></i>Elements</a>
-          <div class="dropdown-menu bg-transparent border-0">
-            <a href="button.html" class="dropdown-item">Buttons</a>
-            <a href="typography.html" class="dropdown-item">Typography</a>
-            <a href="element.html" class="dropdown-item">Other Elements</a>
-          </div>
-        </div>
-        <a href="widget.html" class="nav-item nav-link"><i
-            class="fa fa-th me-2"
-          ></i>Widgets</a>
-        <a href="form.html" class="nav-item nav-link"><i
-            class="fa fa-keyboard me-2"
-          ></i>Forms</a>
-        <a href="table.html" class="nav-item nav-link"><i
-            class="fa fa-table me-2"
-          ></i>Tables</a>
-        <a href="chart.html" class="nav-item nav-link"><i
-            class="fa fa-chart-bar me-2"
-          ></i>Charts</a>
-        <div class="nav-item dropdown">
-          <a
-            href="#"
-            class="nav-link dropdown-toggle"
-            data-bs-toggle="dropdown"
-          ><i class="far fa-file-alt me-2"></i>Pages</a>
-          <div class="dropdown-menu bg-transparent border-0">
-            <a href="signin.html" class="dropdown-item">Sign In</a>
-            <a href="signup.html" class="dropdown-item">Sign Up</a>
-            <a href="404.html" class="dropdown-item">404 Error</a>
-            <a href="blank.html" class="dropdown-item">Blank Page</a>
-          </div>
-        </div>
-      </div>
-    </nav>
-  </div>
-  <!-- Sidebar End -->
-
-  <!-- Content Start -->
-  <div class="content">
-    {{>navigation}}
-
-
-    <!-- Sale & Revenue Start -->
-    <div class="container-fluid pt-4 px-4">
-      <div class="row g-4">
-        <div class="col-sm-6 col-xl-3">
-          <div
-            class="bg-secondary rounded d-flex align-items-center justify-content-between p-4"
-          >
-            <i class="fa fa-chart-line fa-3x text-primary"></i>
-            <div class="ms-3">
-              <p class="mb-2">Today Sale</p>
-              <h6 class="mb-0">$1234</h6>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-xl-3">
-          <div
-            class="bg-secondary rounded d-flex align-items-center justify-content-between p-4"
-          >
-            <i class="fa fa-chart-bar fa-3x text-primary"></i>
-            <div class="ms-3">
-              <p class="mb-2">Total Sale</p>
-              <h6 class="mb-0">$1234</h6>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-xl-3">
-          <div
-            class="bg-secondary rounded d-flex align-items-center justify-content-between p-4"
-          >
-            <i class="fa fa-chart-area fa-3x text-primary"></i>
-            <div class="ms-3">
-              <p class="mb-2">Today Revenue</p>
-              <h6 class="mb-0">$1234</h6>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-xl-3">
-          <div
-            class="bg-secondary rounded d-flex align-items-center justify-content-between p-4"
-          >
-            <i class="fa fa-chart-pie fa-3x text-primary"></i>
-            <div class="ms-3">
-              <p class="mb-2">Total Revenue</p>
-              <h6 class="mb-0">$1234</h6>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Sale & Revenue End -->
-
-    <!-- Sales Chart Start -->
-    <div class="container-fluid pt-4 px-4">
-      <div class="row g-4">
-        <div class="col-sm-12 col-xl-6">
-          <div class="bg-secondary text-center rounded p-4">
-            <div class="d-flex align-items-center justify-content-between mb-4">
-              <h6 class="mb-0">Worldwide Sales</h6>
-              <a href="">Show All</a>
-            </div>
-            <canvas id="worldwide-sales"></canvas>
-          </div>
-        </div>
-        <div class="col-sm-12 col-xl-6">
-          <div class="bg-secondary text-center rounded p-4">
-            <div class="d-flex align-items-center justify-content-between mb-4">
-              <h6 class="mb-0">Salse & Revenue</h6>
-              <a href="">Show All</a>
-            </div>
-            <canvas id="salse-revenue"></canvas>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Sales Chart End -->
-
-    <!-- Recent Sales Start -->
-    <div class="container-fluid pt-4 px-4">
-      <div class="bg-secondary text-center rounded p-4">
-        <div class="d-flex align-items-center justify-content-between mb-4">
-          <h6 class="mb-0">Recent Salse</h6>
-          <a href="">Show All</a>
-        </div>
-        <div class="table-responsive">
-          <table
-            class="table text-start align-middle table-bordered table-hover mb-0"
-          >
-            <thead>
-              <tr class="text-white">
-                <th scope="col"><input
-                    class="form-check-input"
-                    type="checkbox"
-                  /></th>
-                <th scope="col">Date</th>
-                <th scope="col">Invoice</th>
-                <th scope="col">Customer</th>
-                <th scope="col">Amount</th>
-                <th scope="col">Status</th>
-                <th scope="col">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><input class="form-check-input" type="checkbox" /></td>
-                <td>01 Jan 2045</td>
-                <td>INV-0123</td>
-                <td>Jhon Doe</td>
-                <td>$123</td>
-                <td>Paid</td>
-                <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-              </tr>
-              <tr>
-                <td><input class="form-check-input" type="checkbox" /></td>
-                <td>01 Jan 2045</td>
-                <td>INV-0123</td>
-                <td>Jhon Doe</td>
-                <td>$123</td>
-                <td>Paid</td>
-                <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-              </tr>
-              <tr>
-                <td><input class="form-check-input" type="checkbox" /></td>
-                <td>01 Jan 2045</td>
-                <td>INV-0123</td>
-                <td>Jhon Doe</td>
-                <td>$123</td>
-                <td>Paid</td>
-                <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-              </tr>
-              <tr>
-                <td><input class="form-check-input" type="checkbox" /></td>
-                <td>01 Jan 2045</td>
-                <td>INV-0123</td>
-                <td>Jhon Doe</td>
-                <td>$123</td>
-                <td>Paid</td>
-                <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-              </tr>
-              <tr>
-                <td><input class="form-check-input" type="checkbox" /></td>
-                <td>01 Jan 2045</td>
-                <td>INV-0123</td>
-                <td>Jhon Doe</td>
-                <td>$123</td>
-                <td>Paid</td>
-                <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-    <!-- Recent Sales End -->
-
-    <!-- Widgets Start -->
-    <div class="container-fluid pt-4 px-4">
-      <div class="row g-4">
-        <div class="col-sm-12 col-md-6 col-xl-4">
-          <div class="h-100 bg-secondary rounded p-4">
-            <div class="d-flex align-items-center justify-content-between mb-2">
-              <h6 class="mb-0">Messages</h6>
-              <a href="">Show All</a>
-            </div>
-            <div class="d-flex align-items-center border-bottom py-3">
-              <img
-                class="rounded-circle flex-shrink-0"
-                src="img/user.jpg"
-                alt=""
-                style="width: 40px; height: 40px;"
-              />
-              <div class="w-100 ms-3">
-                <div class="d-flex w-100 justify-content-between">
-                  <h6 class="mb-0">Jhon Doe</h6>
-                  <small>15 minutes ago</small>
-                </div>
-                <span>Short message goes here...</span>
-              </div>
-            </div>
-            <div class="d-flex align-items-center border-bottom py-3">
-              <img
-                class="rounded-circle flex-shrink-0"
-                src="img/user.jpg"
-                alt=""
-                style="width: 40px; height: 40px;"
-              />
-              <div class="w-100 ms-3">
-                <div class="d-flex w-100 justify-content-between">
-                  <h6 class="mb-0">Jhon Doe</h6>
-                  <small>15 minutes ago</small>
-                </div>
-                <span>Short message goes here...</span>
-              </div>
-            </div>
-            <div class="d-flex align-items-center border-bottom py-3">
-              <img
-                class="rounded-circle flex-shrink-0"
-                src="img/user.jpg"
-                alt=""
-                style="width: 40px; height: 40px;"
-              />
-              <div class="w-100 ms-3">
-                <div class="d-flex w-100 justify-content-between">
-                  <h6 class="mb-0">Jhon Doe</h6>
-                  <small>15 minutes ago</small>
-                </div>
-                <span>Short message goes here...</span>
-              </div>
-            </div>
-            <div class="d-flex align-items-center pt-3">
-              <img
-                class="rounded-circle flex-shrink-0"
-                src="img/user.jpg"
-                alt=""
-                style="width: 40px; height: 40px;"
-              />
-              <div class="w-100 ms-3">
-                <div class="d-flex w-100 justify-content-between">
-                  <h6 class="mb-0">Jhon Doe</h6>
-                  <small>15 minutes ago</small>
-                </div>
-                <span>Short message goes here...</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-12 col-md-6 col-xl-4">
-          <div class="h-100 bg-secondary rounded p-4">
-            <div class="d-flex align-items-center justify-content-between mb-4">
-              <h6 class="mb-0">Calender</h6>
-              <a href="">Show All</a>
-            </div>
-            <div id="calender"></div>
-          </div>
-        </div>
-        <div class="col-sm-12 col-md-6 col-xl-4">
-          <div class="h-100 bg-secondary rounded p-4">
-            <div class="d-flex align-items-center justify-content-between mb-4">
-              <h6 class="mb-0">To Do List</h6>
-              <a href="">Show All</a>
-            </div>
-            <div class="d-flex mb-2">
-              <input
-                class="form-control bg-dark border-0"
-                type="text"
-                placeholder="Enter task"
-              />
-              <button type="button" class="btn btn-primary ms-2">Add</button>
-            </div>
-            <div class="d-flex align-items-center border-bottom py-2">
-              <input class="form-check-input m-0" type="checkbox" />
-              <div class="w-100 ms-3">
-                <div
-                  class="d-flex w-100 align-items-center justify-content-between"
-                >
-                  <span>Short task goes here...</span>
-                  <button class="btn btn-sm"><i
-                      class="fa fa-times"
-                    ></i></button>
-                </div>
-              </div>
-            </div>
-            <div class="d-flex align-items-center border-bottom py-2">
-              <input class="form-check-input m-0" type="checkbox" />
-              <div class="w-100 ms-3">
-                <div
-                  class="d-flex w-100 align-items-center justify-content-between"
-                >
-                  <span>Short task goes here...</span>
-                  <button class="btn btn-sm"><i
-                      class="fa fa-times"
-                    ></i></button>
-                </div>
-              </div>
-            </div>
-            <div class="d-flex align-items-center border-bottom py-2">
-              <input class="form-check-input m-0" type="checkbox" checked />
-              <div class="w-100 ms-3">
-                <div
-                  class="d-flex w-100 align-items-center justify-content-between"
-                >
-                  <span><del>Short task goes here...</del></span>
-                  <button class="btn btn-sm text-primary"><i
-                      class="fa fa-times"
-                    ></i></button>
-                </div>
-              </div>
-            </div>
-            <div class="d-flex align-items-center border-bottom py-2">
-              <input class="form-check-input m-0" type="checkbox" />
-              <div class="w-100 ms-3">
-                <div
-                  class="d-flex w-100 align-items-center justify-content-between"
-                >
-                  <span>Short task goes here...</span>
-                  <button class="btn btn-sm"><i
-                      class="fa fa-times"
-                    ></i></button>
-                </div>
-              </div>
-            </div>
-            <div class="d-flex align-items-center pt-2">
-              <input class="form-check-input m-0" type="checkbox" />
-              <div class="w-100 ms-3">
-                <div
-                  class="d-flex w-100 align-items-center justify-content-between"
-                >
-                  <span>Short task goes here...</span>
-                  <button class="btn btn-sm"><i
-                      class="fa fa-times"
-                    ></i></button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Widgets End -->
-
-    <!-- Footer Start -->
-    <div class="container-fluid pt-4 px-4">
-      <div class="bg-secondary rounded-top p-4">
-        <div class="row">
-          <div class="col-12 col-sm-6 text-center text-sm-start">
-            &copy;
-            <a href="#">Your Site Name</a>, All Right Reserved.
-          </div>
-          <div class="col-12 col-sm-6 text-center text-sm-end">
-            <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-            Designed By
-            <a href="https://htmlcodex.com">HTML Codex</a>
-            <br />Distributed By:
-            <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Footer End -->
-  </div>
-  <!-- Content End -->
-
-  <!-- Back to Top -->
-  <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i
-      class="bi bi-arrow-up"
-    ></i></a>
-</div> --}}
-
-    <header class="header" id="header">
-        <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
-        <div class="header_img"> <img src="https://i.imgur.com/hczKIze.jpg" alt=""> </div>
-    </header>
-    <div class="l-navbar" id="nav-bar">
-        <nav class="nav">
-            <div> <a href="#" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> <span class="nav_logo-name">BBBootstrap</span> </a>
-                <div class="nav_list"> <a href="#" class="nav_link active"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Dashboard</span> </a> <a href="#" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">Users</span> </a> <a href="#" class="nav_link"> <i class='bx bx-message-square-detail nav_icon'></i> <span class="nav_name">Messages</span> </a> <a href="#" class="nav_link"> <i class='bx bx-bookmark nav_icon'></i> <span class="nav_name">Bookmark</span> </a> <a href="#" class="nav_link"> <i class='bx bx-folder nav_icon'></i> <span class="nav_name">Files</span> </a> <a href="#" class="nav_link"> <i class='bx bx-bar-chart-alt-2 nav_icon'></i> <span class="nav_name">Stats</span> </a> </div>
-            </div> <a href="#" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span> </a>
-        </nav>
-    </div>
-    <!--Container Main start-->
-    <div class="height-100 bg-light">
-        <h4>Main Components</h4>
-    </div>
-    <!--Container Main end-->
-
-    <SCRipt>
-      document.addEventListener("DOMContentLoaded", function(event) {
-   
-  const showNavbar = (toggleId, navId, bodyId, headerId) =>{
-  const toggle = document.getElementById(toggleId),
-  nav = document.getElementById(navId),
-  bodypd = document.getElementById(bodyId),
-  headerpd = document.getElementById(headerId)
-  
-  // Validate that all variables exist
-  if(toggle && nav && bodypd && headerpd){
-  toggle.addEventListener('click', ()=>{
-  // show navbar
-  nav.classList.toggle('show')
-  // change icon
-  toggle.classList.toggle('bx-x')
-  // add padding to body
-  bodypd.classList.toggle('body-pd')
-  // add padding to header
-  headerpd.classList.toggle('body-pd')
-  })
-  }
-  }
-  
-  showNavbar('header-toggle','nav-bar','body-pd','header')
-  
-  /*===== LINK ACTIVE =====*/
-  const linkColor = document.querySelectorAll('.nav_link')
-  
-  function colorLink(){
-  if(linkColor){
-  linkColor.forEach(l=> l.classList.remove('active'))
-  this.classList.add('active')
-  }
-  }
-  linkColor.forEach(l=> l.addEventListener('click', colorLink))
-  
-   // Your code to run since DOM is loaded and ready
-  });
-    </SCRipt>

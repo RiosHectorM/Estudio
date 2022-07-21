@@ -1,0 +1,84 @@
+<div id="booking" class="section">
+  <div class="section-center">
+    <div class="container">
+      <div class="row">
+        <div class="booking-form">
+          <form action="/links/addart" method="POST">
+            <div class="row">
+              <h5 class="badge bg-primary fs-5">DATOS ART</h5>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <span class="form-label">NOMBRE</span>
+                  <input
+                    class="form-control"
+                    type="text"
+                    name="nombre_art"
+                    placeholder="Nombre de ART"
+                  />
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <span class="form-label">TELEFONO</span>
+                  <input
+                    class="form-control"
+                    type="text"
+                    name="telefono_art"
+                    placeholder="Telefono de ART"
+                  />
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <span class="form-label">MAIL</span>
+                  <input
+                    class="form-control"
+                    type="text"
+                    placeholder="Mail de ART"
+                    name="mail_art"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <span class="form-label">DOMICILIO</span>
+                  <input
+                    class="form-control"
+                    type="text"
+                    name="domicilio_art"
+                    placeholder="Direccion de ART"
+                  />
+                </div>
+              </div>
+            </div>
+            
+            <div class="row d-flex justify-content-around">
+              <div class="col-md-3">
+                <div class="form-btn">
+                  <button class="submit-btn" role="button">GUARDAR ART</button>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-btn">
+                  <a
+                    class="btn submit-btn"
+                    href="/profile"
+                    role="button"
+                  >CANCELAR</a>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+  flatpickr("input[type=time]",{ enableTime: true, noCalendar: true, dateFormat:
+  "H:i"});
+</script>

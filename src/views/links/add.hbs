@@ -12,6 +12,7 @@
                   <input
                     class="form-control"
                     type="text"
+                    name="damnificado"
                     placeholder="Nombre y Apellido"
                   />
                 </div>
@@ -22,6 +23,7 @@
                   <input
                     class="form-control"
                     type="text"
+                    name="dni_cuil"
                     placeholder="DNI/CUIL"
                   />
                 </div>
@@ -29,31 +31,58 @@
               <div class="col-md-3">
                 <div class="form-group">
                   <span class="form-label">EDAD</span>
-                  <input class="form-control" type="text" placeholder="Edad" />
+                  <input
+                    class="form-control"
+                    type="text"
+                    placeholder="Edad"
+                    name="edad"
+                  />
                 </div>
               </div>
             </div>
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <div class="form-group">
                   <span class="form-label">DOMICILIO</span>
                   <input
                     class="form-control"
                     type="text"
+                    name="domicilio"
                     placeholder="Direccion"
                   />
                 </div>
               </div>
-              <div class="col-md-3">
+            </div>
+            <div class="row">
+              <div class="col-md-4">
                 <div class="form-group">
-                  <span class="form-label">Fecha de Ingreso</span>
-                  <input class="form-control" type="date" />
+                  <span class="form-label">TELEFONO</span>
+                  <input
+                    class="form-control"
+                    type="text"
+                    name="telefono"
+                    placeholder="Telefono"
+                  />
                 </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <span class="form-label">Fecha de Ingreso</span>
+                  <input
+                    class="form-control"
+                    type="date"
+                    name="fecha_ingreso"
+                  />
+                </div>
+              </div>
+              <div class="col-md-4">
                 <div class="form-group">
                   <span class="form-label">proximo contacto</span>
-                  <input class="form-control" type="date" />
+                  <input
+                    class="form-control"
+                    type="date"
+                    name="fecha_prox_cont"
+                  />
                 </div>
               </div>
             </div>
@@ -66,19 +95,30 @@
                     class="form-control"
                     type="text"
                     placeholder="Nombre de la Empresa"
+                    name="empresa"
                   />
                 </div>
               </div>
               <div class="col-md-3">
                 <div class="form-group">
                   <span class="form-label">CUIT</span>
-                  <input class="form-control" type="text" placeholder="CUIT" />
+                  <input
+                    class="form-control"
+                    type="text"
+                    placeholder="CUIT"
+                    name="cuit_empresa"
+                  />
                 </div>
               </div>
               <div class="col-md-3">
                 <div class="form-group">
                   <span class="form-label">RUBRO</span>
-                  <input class="form-control" type="text" placeholder="Rubro" />
+                  <input
+                    class="form-control"
+                    type="text"
+                    placeholder="Rubro"
+                    name="rubro_empresa"
+                  />
                 </div>
               </div>
             </div>
@@ -90,25 +130,36 @@
                     class="form-control"
                     type="text"
                     placeholder="Direccion de la Empresa"
+                    name="domicilio_empresa"
                   />
                 </div>
               </div>
               <div class="col-md-2">
                 <div class="form-group">
                   <span class="form-label">HORARIO INGRESO</span>
-                  <input class="form-control" type="time" placeholder="CUIT" />
+                  <input
+                    class="form-control"
+                    type="time"
+                    placeholder="CUIT"
+                    name="horario_inicio"
+                  />
                 </div>
               </div>
               <div class="col-md-2">
                 <div class="form-group">
                   <span class="form-label">HORARIO EGRESO</span>
-                  <input class="form-control" type="time" placeholder="Rubro" />
+                  <input
+                    class="form-control"
+                    type="time"
+                    placeholder="Rubro"
+                    name="horario_fin"
+                  />
                 </div>
               </div>
               <div class="col-md-2">
                 <div class="form-group">
                   <span class="form-label">TURNO</span>
-                  <select class="form-control">
+                  <select class="form-control" name="turno_empresa">
                     <option>Mañana</option>
                     <option>Tarde</option>
                     <option>Noche</option>
@@ -125,6 +176,7 @@
                     class="form-control"
                     type="text"
                     placeholder="Tareas que desemeña el Damnificado en la Empresa"
+                    name="tareas_empresa"
                   />
                 </div>
               </div>
@@ -134,7 +186,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <span class="form-label">ART</span>
-                  <select class="form-control">
+                  <select class="form-control" name="art">
                     <option>ART 1</option>
                     <option>ART 2</option>
                     <option>ART 3</option>
@@ -148,6 +200,7 @@
                     class="form-control"
                     type="text"
                     placeholder="Prestador Medico"
+                    name="prestador"
                   />
                 </div>
               </div>
@@ -160,6 +213,7 @@
                     class="form-control"
                     type="text"
                     placeholder="Domicilio de ART"
+                    name="domicilio_art"
                   />
                 </div>
               </div>
@@ -170,6 +224,7 @@
                     class="form-control"
                     type="text"
                     placeholder="Mail de ART"
+                    name="mail_art"
                   />
                 </div>
               </div>
@@ -180,6 +235,7 @@
                     class="form-control"
                     type="text"
                     placeholder="Numero"
+                    name="telefono_art"
                   />
                 </div>
               </div>
@@ -188,10 +244,10 @@
               <div class="col-md-3">
                 <div class="form-group">
                   <span class="form-label">Historia Clinica</span>
-                  <select class="form-control">
+                  <select class="form-control" name="historia_clinica">
                     <option>Presentada</option>
                     <option>Solicitar</option>
-                    <option>No Requiere</option>
+                    <option>NoRequiere</option>
                   </select>
                   <span class="select-arrow"></span>
                 </div>
@@ -199,7 +255,7 @@
               <div class="col-md-3">
                 <div class="form-group">
                   <span class="form-label">Estudios Medicos</span>
-                  <select class="form-control">
+                  <select class="form-control" name="estudios_medicos">
                     <option>Presentados</option>
                     <option>Solicitar</option>
                     <option>No Requiere</option>
@@ -207,9 +263,19 @@
                   <span class="select-arrow"></span>
                 </div>
               </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <span class="form-label">Lugar Estudios</span>
+                  <input
+                    class="form-control"
+                    type="text"
+                    placeholder="Donde se realizaron los estudios"
+                    name="lugar_estudios"
+                  />
+                </div>
+              </div>
             </div>
             <div class="row d-flex justify-content-around">
-
               <div class="col-md-3">
                 <div class="form-btn">
                   <button class="submit-btn" role="button">GUARDAR CLIENTE</button>
@@ -217,7 +283,11 @@
               </div>
               <div class="col-md-3">
                 <div class="form-btn">
-                  <a class="btn submit-btn" href="/profile" role="button">CANCELAR</a>
+                  <a
+                    class="btn submit-btn"
+                    href="/profile"
+                    role="button"
+                  >CANCELAR</a>
                 </div>
               </div>
             </div>
@@ -228,7 +298,7 @@
   </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script> 
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
   flatpickr("input[type=time]",{ enableTime: true, noCalendar: true, dateFormat:
   "H:i"});

@@ -4,80 +4,83 @@ const router = express.Router();
 const pool = require("../database");
 const { isLoggedIn } = require("../lib/auth");
 
+router.get("/addart", isLoggedIn, (req, res) => {
+  res.render("links/addart.hbs");
+});
+
+router.post("/addart", isLoggedIn, async (req, res) => {
+  const {
+    nombre_art,
+    domicilio_art,
+    telefono_art,  
+    mail_art,
+  } = req.body;
+
+  const newART = {
+    nombre_art,
+    domicilio_art,
+    telefono_art,  
+    mail_art, 
+  };
+
+  await pool.query("INSERT INTO art set ?", [newART]);
+  req.flash("success", "ART Grabada correctamente");
+  res.redirect("/linksart");
+});
+
 router.get("/add", isLoggedIn, (req, res) => {
   res.render("links/add.hbs");
-  
 });
 
 router.post("/add", isLoggedIn, async (req, res) => {
-  // const { title, url, description } = req.body;
-  // const newLink = {
-  //   title,
-  //   url,
-  //   description,
-  //   user_id: req.user.id,
-  // };
-
   const {
     fecha_ingreso,
     damnificado,
-    domicilio,
-    dni_cuil,
-    edad,
-    telefono,
-    empresa,
-    domicilio_empresa,
-    cuit_empresa,
-    rubro_empresa,
+    domicilio,  
+    dni_cuil,  
+    edad, 
+    telefono, 
+    empresa, 
+    domicilio_empresa, 
+    cuit_empresa,  
+    rubro_empresa, 
     tareas_empresa,
-    turno_empresa,
+    turno_empresa, 
     horario_inicio,
-    horario_fin,
-    art,
-    prestador,
-    historia_clinica,
-    estudios_medicos,
-    lugar_estudios,
-    pedir_historia_clinica,
-    pedir_estudios_medicos,
+    horario_fin, 
+    art, 
+    prestador,  
+    historia_clinica, 
+    estudios_medicos, 
+    lugar_estudios, 
   } = req.body;
+
   const newClient = {
     fecha_ingreso,
     damnificado,
-    domicilio,
-    dni_cuil,
-    edad,
-    telefono,
-    empresa,
-    domicilio_empresa,
-    cuit_empresa,
-    rubro_empresa,
+    domicilio,  
+    dni_cuil,  
+    edad, 
+    telefono, 
+    empresa, 
+    domicilio_empresa, 
+    cuit_empresa,  
+    rubro_empresa, 
     tareas_empresa,
-    turno_empresa,
+    turno_empresa, 
     horario_inicio,
-    horario_fin,
-    art,
-    prestador,
-    historia_clinica,
-    estudios_medicos,
-    lugar_estudios,
-    pedir_historia_clinica,
-    pedir_estudios_medicos,
-    id_cliente: req.user.id,
+    horario_fin, 
+    art, 
+    prestador,  
+    historia_clinica, 
+    estudios_medicos, 
+    lugar_estudios, 
   };
 
   await pool.query("INSERT INTO cliente set ?", [newClient]);
   req.flash("success", "Cliente Grabado correctamente");
   res.redirect("/links");
-
-  // parametros art..........
-  // domicilio_art,
-  //     mail_art,
-  //     telefono_art,
 });
-//  esto va a continuacion d ecliente ... WHERE id_cliente = ?", [
-//     req.user.id,
-//   ]
 
 router.get("/", isLoggedIn, async (req, res) => {
   const links = await pool.query("SELECT * FROM cliente");

@@ -50,18 +50,16 @@ body {
 
 .section .section-center {
 	position: absolute;
-	top: 50%;
+	top: 0%;
 	left: 0;
 	right: 0;
-	-webkit-transform: translateY(-50%);
+	bottom: 90%;
+	 -webkit-transform: translateY(-50%);
 	transform: translateY(-50%);
 }
 
 #booking {
 	font-family: 'PT Sans', sans-serif;
-	/* background-image: url('../img/background.jpg'); */
-	background-size: cover;
-	background-position: center;
 }
 
 .booking-form {
@@ -71,7 +69,7 @@ body {
 }
 
 .booking-form .form-group {
-	position: relative;
+	position:relative;
 	margin-bottom: 20px;
 }
 
@@ -201,10 +199,10 @@ body {
 
 .booking-form .submit-btn {
 	color: #fff;
-	background-color: #f23e3e;
+	background-color: #2242fa;
 	font-weight: 400;
 	height: 50px;
-	font-size: 14px;
+	font-size: 16px;
 	border: none;
 	width: 100%;
 	border-radius: 40px;

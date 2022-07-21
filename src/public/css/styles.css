@@ -209,6 +209,9 @@ body {
 	text-transform: uppercase;
 	-webkit-transition: 0.2s all;
 	transition: 0.2s all;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .booking-form .submit-btn:hover,

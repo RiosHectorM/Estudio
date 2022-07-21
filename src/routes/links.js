@@ -6,6 +6,7 @@ const { isLoggedIn } = require("../lib/auth");
 
 router.get("/add", isLoggedIn, (req, res) => {
   res.render("links/add.hbs");
+  
 });
 
 router.post("/add", isLoggedIn, async (req, res) => {
@@ -77,6 +78,7 @@ router.post("/add", isLoggedIn, async (req, res) => {
 //  esto va a continuacion d ecliente ... WHERE id_cliente = ?", [
 //     req.user.id,
 //   ]
+
 router.get("/", isLoggedIn, async (req, res) => {
   const links = await pool.query("SELECT * FROM cliente");
   res.render("links/list.hbs", { links });

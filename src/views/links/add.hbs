@@ -1,587 +1,235 @@
-{{! <div class="container p-4 inline-flex">
-  <div class="row h-75 d-flex align-items-center">
-    <div class="col-md-10 mx-auto">
-      <div class="card bg-dark">
-        <form action="/links/add" method="POST" class="card-body">
+<div id="booking" class="section">
+  <div class="section-center">
+    <div class="container">
+      <div class="row">
+        <div class="booking-form">
+          <form action="/links/add" method="POST">
+            <div class="row">
+              <h5 class="badge bg-primary fs-5">DATOS PERSONALES</h5>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <span class="form-label">DAMNIFICADO</span>
+                  <input
+                    class="form-control"
+                    type="text"
+                    placeholder="Nombre y Apellido"
+                  />
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <span class="form-label">DOCUMENTO</span>
+                  <input
+                    class="form-control"
+                    type="text"
+                    placeholder="DNI/CUIL"
+                  />
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <span class="form-label">EDAD</span>
+                  <input class="form-control" type="text" placeholder="Edad" />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <span class="form-label">DOMICILIO</span>
+                  <input
+                    class="form-control"
+                    type="text"
+                    placeholder="Direccion"
+                  />
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <span class="form-label">Fecha de Ingreso</span>
+                  <input class="form-control" type="date" />
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <span class="form-label">proximo contacto</span>
+                  <input class="form-control" type="date" />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <h5 class="badge bg-primary fs-5">DATOS LABORALES</h5>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <span class="form-label">EMPRESA</span>
+                  <input
+                    class="form-control"
+                    type="text"
+                    placeholder="Nombre de la Empresa"
+                  />
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <span class="form-label">CUIT</span>
+                  <input class="form-control" type="text" placeholder="CUIT" />
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <span class="form-label">RUBRO</span>
+                  <input class="form-control" type="text" placeholder="Rubro" />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <span class="form-label">DOMICILIO EMPRESA</span>
+                  <input
+                    class="form-control"
+                    type="text"
+                    placeholder="Direccion de la Empresa"
+                  />
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <span class="form-label">HORARIO INGRESO</span>
+                  <input class="form-control" type="time" placeholder="CUIT" />
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <span class="form-label">HORARIO EGRESO</span>
+                  <input class="form-control" type="time" placeholder="Rubro" />
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <span class="form-label">TURNO</span>
+                  <select class="form-control">
+                    <option>Mañana</option>
+                    <option>Tarde</option>
+                    <option>Noche</option>
+                  </select>
+                  <span class="select-arrow"></span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <span class="form-label">TAREAS DEL DAMNIFICADO</span>
+                  <input
+                    class="form-control"
+                    type="text"
+                    placeholder="Tareas que desemeña el Damnificado en la Empresa"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <h5 class="badge bg-primary fs-5">INFORMACION MEDICA</h5>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <span class="form-label">ART</span>
+                  <select class="form-control">
+                    <option>ART 1</option>
+                    <option>ART 2</option>
+                    <option>ART 3</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <span class="form-label">PRESTADOR MEDICO</span>
+                  <input
+                    class="form-control"
+                    type="text"
+                    placeholder="Prestador Medico"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <span class="form-label">DOMICILIO ART</span>
+                  <input
+                    class="form-control"
+                    type="text"
+                    placeholder="Domicilio de ART"
+                  />
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <span class="form-label">MAIL ART</span>
+                  <input
+                    class="form-control"
+                    type="text"
+                    placeholder="Mail de ART"
+                  />
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <span class="form-label">TELEFONO</span>
+                  <input
+                    class="form-control"
+                    type="text"
+                    placeholder="Numero"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <span class="form-label">Historia Clinica</span>
+                  <select class="form-control">
+                    <option>Presentada</option>
+                    <option>Solicitar</option>
+                    <option>No Requiere</option>
+                  </select>
+                  <span class="select-arrow"></span>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <span class="form-label">Estudios Medicos</span>
+                  <select class="form-control">
+                    <option>Presentados</option>
+                    <option>Solicitar</option>
+                    <option>No Requiere</option>
+                  </select>
+                  <span class="select-arrow"></span>
+                </div>
+              </div>
+            </div>
+            <div class="row d-flex justify-content-around">
 
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <h1 class="text-light mb-3 h4">Create a New Task</h1>
-            <button class="btn btn-success btn-block">
-              Save
-            </button>
-          </div>
-          <label for="title">Write a title:</label>
-          <input
-            type="text"
-            name="title"
-            class="form-control bg-dark text-light mb-3"
-            placeholder="Title"
-            autofocus
-          />
-
-          <label for="url">Website:</label>
-          <input
-            type="url"
-            name="url"
-            class="form-control bg-dark text-light mb-3"
-            placeholder="URL"
-          />
-
-          <label for="description">Write a description:</label>
-          <textarea
-            name="description"
-            rows="2"
-            class="form-control bg-dark text-light mb-3"
-            placeholder="Description"
-          ></textarea>
-        </form>
+              <div class="col-md-3">
+                <div class="form-btn">
+                  <button class="submit-btn" role="button">GUARDAR CLIENTE</button>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-btn">
+                  <a class="btn submit-btn" href="/profile" role="button">CANCELAR</a>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div> }}
-
-<!--** Contenedor general-->
-
-<div id="booking" class="section">
-		<div class="section-center">
-			<div class="container">
-				<div class="row">
-					<div class="booking-form">
-						<form action="/links/add" method="POST">
-              <div class="row">
-                <h5 class="badge bg-primary fs-5">DATOS PERSONALES</h5>
-								<div class="col-md-6">
-									<div class="form-group">
-										<span class="form-label">DAMNIFICADO</span>
-										<input class="form-control" type="text" placeholder="Nombre y Apellido">
-									</div>
-								</div>
-								<div class="col-md-3">
-									<div class="form-group">
-										<span class="form-label">DOCUMENTO</span>
-										<input class="form-control" type="text" placeholder="DNI/CUIL">
-									</div>
-								</div>
-                <div class="col-md-3">
-									<div class="form-group">
-										<span class="form-label">EDAD</span>
-										<input class="form-control" type="text" placeholder="Edad">
-									</div>
-								</div>
-							</div>
-              <div class="row">
-								<div class="col-md-6">
-									<div class="form-group">
-										<span class="form-label">DOMICILIO</span>
-										<input class="form-control" type="text" placeholder="Direccion">
-									</div>
-								</div>
-								<div class="col-md-3">
-									<div class="form-group">
-										<span class="form-label">Fecha de Ingreso</span>
-										<input class="form-control" type="date" required>
-									</div>
-								</div>
-								<div class="col-md-3">
-									<div class="form-group">
-										<span class="form-label">proximo contacto</span>
-										<input class="form-control" type="date" required>
-									</div>
-								</div>
-							</div>
-              
-							<div class="row">
-                <h5 class="badge bg-primary fs-5">DATOS LABORALES</h5>
-                <div class="col-md-6">
-									<div class="form-group">
-										<span class="form-label">EMPRESA</span>
-										<input class="form-control" type="text" placeholder="Nombre de la Empresa">
-									</div>
-								</div>
-								<div class="col-md-3">
-									<div class="form-group">
-										<span class="form-label">CUIT</span>
-										<input class="form-control" type="text" placeholder="CUIT">
-									</div>
-								</div>
-                <div class="col-md-3">
-									<div class="form-group">
-										<span class="form-label">RUBRO</span>
-										<input class="form-control" type="text" placeholder="Rubro">
-									</div>
-								</div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-									<div class="form-group">
-										<span class="form-label">DOMICILIO EMPRESA</span>
-										<input class="form-control" type="text" placeholder="Direccion de la Empresa">
-									</div>
-								</div>
-								<div class="col-md-2">
-									<div class="form-group">
-										<span class="form-label">HORARIO INGRESO</span>
-										<input class="form-control" type="time" placeholder="CUIT">
-									</div>
-								</div>
-                <div class="col-md-2">
-									<div class="form-group">
-										<span class="form-label">HORARIO EGRESO</span>
-										<input class="form-control" type="time" placeholder="Rubro">
-									</div>
-								</div>
-                <div class="col-md-2">
-									<div class="form-group">
-										<span class="form-label">TURNO</span>
-										<select class="form-control">
-											<option>Mañana</option>
-											<option>Tarde</option>
-											<option>Noche</option>
-										</select>
-										<span class="select-arrow"></span>
-									</div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-									<div class="form-group">
-										<span class="form-label">TAREAS DEL DAMNIFICADO</span>
-										<input class="form-control" type="text" placeholder="Tareas que desemeña el Damnificado en la Empresa">
-									</div>
-								</div>
-              </div>
-              
-              <div class="row">
-                <h5 class="badge bg-primary fs-5">INFORMACION MEDICA</h5>
-                <div class="col-md-6">
-									<div class="form-group">
-										<span class="form-label">ART</span>
-										<select class="form-control">
-											<option>ART 1</option>
-											<option>ART 2</option>
-											<option>ART 3</option>
-										</select>
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<span class="form-label">PRESTADOR MEDICO</span>
-										<input class="form-control" type="text" placeholder="Prestador Medico">
-									</div>
-								</div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-									<div class="form-group">
-										<span class="form-label">DOMICILIO ART</span>
-										<input class="form-control" type="text" placeholder="Domicilio de ART">
-									</div>
-								</div>
-								<div class="col-md-4">
-									<div class="form-group">
-										<span class="form-label">MAIL ART</span>
-										<input class="form-control" type="text" placeholder="Mail de ART">
-									</div>
-								</div>
-                <div class="col-md-2">
-									<div class="form-group">
-										<span class="form-label">TELEFONO</span>
-										<input class="form-control" type="text" placeholder="Numero">
-									</div>
-								</div>
-              </div>
-							<div class="row">
-								<div class="col-md-3">
-									<div class="form-group">
-										<span class="form-label">Historia Clinica</span>
-										<select class="form-control">
-											<option>Presentada</option>
-											<option>Solicitar</option>
-											<option>No Requiere</option>
-										</select>
-										<span class="select-arrow"></span>
-									</div>
-								</div>
-								<div class="col-md-3">
-									<div class="form-group">
-										<span class="form-label">Estudios Medicos</span>
-										<select class="form-control">
-											<option>Presentados</option>
-											<option>Solicitar</option>
-											<option>No Requiere</option>
-										</select>
-										<span class="select-arrow"></span>
-									</div>
-								</div>
-							</div>
-              <div class="row d-flex justify-content-around">
-                <div class="col-md-3">
-									<div class="form-btn">
-										<button class="submit-btn ">GUARDAR CLIENTE</button>
-									</div>
-								</div>
-                <div class="col-md-3">
-									<div class="form-btn ">
-										<button class="submit-btn">CANCELAR</button>
-									</div>
-								</div>
-              </div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
 </div>
 
-
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script> 
 <script>
-  flatpickr("input[type=time]",{ enableTime: true, noCalendar: true, dateFormat: "H:i"});
+  flatpickr("input[type=time]",{ enableTime: true, noCalendar: true, dateFormat:
+  "H:i"});
 </script>
-
-
-{{!-- <!--** FIN Contenedor general-->
-<div class="container col-10">
-  <form class="mt-3" action="/links/add" method="POST">
-    <div class="justify-content-center align-items-center mt-3">
-      <button class="btn btn-primary btn-lg btn-block">
-      GUARDAR
-      </button>
-    </div>
-  </form>
-</div> --}}
-
-{{!-- CHECK BOX
-              <div class="form-group">
-								<div class="form-checkbox">
-									<label for="roundtrip">
-										<input type="radio" id="roundtrip" name="flight-type">
-										<span></span>Roundtrip
-									</label>
-									<label for="one-way">
-										<input type="radio" id="one-way" name="flight-type">
-										<span></span>One way
-									</label>
-									<label for="multi-city">
-										<input type="radio" id="multi-city" name="flight-type">
-										<span></span>Multi-City
-									</label>
-								</div>
-							</div> --}}
-
-
-{{!--
-    <h4>Datos Personales</h4>
-    <div class="row">
-      <label class="col-2 col-form-label" for="fecha_ingreso">Fecha de Ingreso:
-      </label>
-      <div class="col-2">
-        <input
-          name="fecha_ingreso"
-          class="form-control"
-          type="date"
-          placeholder="Select DateTime"
-          id="fecha_ingreso"
-        />
-      </div>
-    </div>
-    <!--Script para el datepiker -->
-    <script>
-      flatpickr("input[type=date]",{ dateFormat: "d-m-Y",});
-    </script>
-
-    <div class="row">
-      <label class="col-2 col-form-label" for="damnificado">Damnificado:
-      </label>
-      <div class="col-10">
-        <input
-          name="damnificado"
-          class="form-control"
-          type="text"
-          placeholder="Nombre"
-          id="damnificado"
-        />
-      </div>
-    </div>
-
-    <div class="row">
-      <label class="col-2 col-form-label" for="domicilio">Domicilio: </label>
-      <div class="col-10">
-        <input
-          name="domicilio"
-          class="form-control"
-          type="text"
-          placeholder="Domicilio"
-          id="domicilio"
-        />
-      </div>
-    </div>
-
-    <div class="row">
-      <label class="col-2 col-form-label" for="dni_cuil">DNI / CUIL: </label>
-      <div class="col-2">
-        <input
-          name="dni_cuil"
-          class="form-control"
-          type="text"
-          placeholder="DNI o CUIL"
-          id="dni_cuil"
-        />
-      </div>
-      <label class="col-2 col-form-label" for="edad">Edad: </label>
-      <div class="col-2">
-        <input
-          name="edad"
-          class="form-control"
-          type="text"
-          placeholder="Edad"
-          id="edad"
-        />
-      </div>
-      <label class="col-2 col-form-label" for="telefono">Telefono: </label>
-      <div class="col-2">
-        <input
-          name="telefono"
-          class="form-control"
-          type="text"
-          placeholder="Telefono"
-          id="telefono"
-        />
-      </div>
-    </div> --}}
-{{!-- 
-<h4 class="mt-3">Datos Laborales</h4>
-    <div class="row">
-      <label class="col-2 col-form-label" for="empresa">Empresa: </label>
-      <div class="col-10">
-        <input
-          name="empresa"
-          class="form-control"
-          type="text"
-          placeholder="Nombre de la Empresa"
-          id="empresa"
-        />
-      </div>
-    </div>
-    <div class="row">
-      <label class="col-2 col-form-label" for="domicilio_empresa">Domicilio Laboral:
-      </label>
-      <div class="col-10">
-        <input
-          name="domicilio_empresa"
-          class="form-control"
-          type="text"
-          placeholder="Domicilio de la Empresa"
-          id="domicilio_empresa"
-        />
-      </div>
-    </div>
-
-    <div class="row">
-      <label class="col-2 col-form-label" for="cuit_empresa">CUIT:
-      </label>
-      <div class="col-2">
-        <input
-          name="cuit_empresa"
-          class="form-control"
-          type="text"
-          placeholder="CUIT"
-          id="cuit_empresa"
-        />
-      </div>
-
-      <label class="col-2 col-form-label" for="rubro_empresa">Rubro de la
-        Empresa:
-      </label>
-      <div class="col-6">
-        <input
-          name="rubro_empresa"
-          class="form-control"
-          type="text"
-          placeholder="Rubro de la Empresa"
-          id="rubro_empresa"
-        />
-      </div>
-    </div>
-
-    <div class="row">
-      <label class="col-2 col-form-label" for="tareas_empresa">Tareas del
-        Damnificado:
-      </label>
-      <div class="col-10">
-        <textarea
-          name="tareas_empresa"
-          class="form-control"
-          type="text"
-          rows="3"
-          placeholder="Tareas que desempeña el Damnificado en la Empresa"
-          id="tareas_empresa"
-        /></textarea>
-      </div>
-    </div>
-
-    <div class="row">
-        <label class="col-2 col-form-label" for="turno_empresa">Turno:
-        </label>
-        <div class="col-2">
-          <div class="bd-example-snippet bd-code-snippet">
-            <div class="bd-example">
-              <div class="">
-                <select class="form-select form-select-mb" name="turno_empresa" id="turno_empresa"aria-label=".form-select-lg example">
-                  <option selected="">Seleccione</option>
-                  <option value="Mañana">Mañana</option>
-                  <option value="Tarde">Tarde</option>
-                  <option value="Noche">Noche</option>
-                </select>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <label class="col-2 col-form-label" for="horario_inicio">Horario de Ingreso:
-        </label>
-        <div class="col-2">
-          <input
-            name="horario_inicio"
-            class="form-control"
-            type="time"
-            placeholder="Hora de Ingreso"
-            id="horario_inicio"
-          />
-        </div>
-
-        <label class="col-2 col-form-label" for="horario_fin">Horario de Egreso:
-        </label>
-        <div class="col-2">
-          <input
-            name="horario_fin"
-            class="form-control"
-            type="time"
-            placeholder="Hora de Egreso"
-            id="horario_fin"
-          />
-        </div>
-    <!--Script para el datepiker -->
-
-
-    </div> --}}
-
-
-{{!-- 
-<h4 class="mt-3">Informacion Medica</h4>
-    <div class="row">
-      <label class="col-2 col-form-label" for="art">ART:
-      </label>
-      <div class="col-2">
-          <div class="bd-example-snippet bd-code-snippet">
-            <div class="bd-example">
-                <select class="select" data-mdb-filter="true">
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                  <option value="4">Four</option>
-                  <option value="5">Five</option>
-                  <option value="6">Six</option>
-                  <option value="7">Seven</option>
-                  <option value="8">Eight</option>
-                  <option value="9">Nine</option>
-                  <option value="10">Ten</option>
-                </select>
-            </div>
-          </div>
-        </div>
-
-      <label class="col-2 col-form-label" for="prestador">Prestador:
-      </label>
-      <div class="col-4">
-        <input
-          name="prestador"
-          class="form-control"
-          type="text"
-          placeholder="Prestador Medico"
-          id="prestador"
-        />
-      </div>
-    </div>
-
-    <div class="row">
-      <label class="col-2 col-form-label" for="domicilio_art">Domicilio ART:
-      </label>
-      <div class="col-4">
-        <input
-          name="domicilio_art"
-          class="form-control"
-          type="text"
-          placeholder="Domicilio de la ART"
-          id="domicilio_art"
-        />
-      </div>
-
-      <label class="col-2 col-form-label" for="mail_art">Mail ART:
-      </label>
-      <div class="col-4">
-        <input
-          name="mail_art"
-          class="form-control"
-          type="text"
-          placeholder="Mail de Contacto ART"
-          id="mail_art"
-        />
-      </div>
-    </div>
-
-    <div class="row">
-      <label class="col-2 col-form-label" for="telefono_art">Telefono ART:
-      </label>
-      <div class="col-2">
-        <input
-          name="telefono_art"
-          class="form-control"
-          type="text"
-          placeholder="Telefono ART"
-          id="telefono_art"
-        />
-      </div>
-    </div>
-    <br>
-    <div class="list-group">
-      <div class="row">
-        <div class="col-5">
-          <label class="list-group-item d-flex gap-3">
-            <input class="form-check-input flex-shrink-0" type="checkbox" name="historia_clinica" id="historia_clinica" value="" style="font-size: 1.375em;">
-            <span class="pt-1 form-checked-content">
-              <strong>Historia Clinica</strong>
-              <small class="d-block text-muted">
-              </small>
-            </span>
-          </label>
-          <label class="list-group-item d-flex gap-3">
-            <input class="form-check-input flex-shrink-0" type="checkbox" name="estudios_medicos" id="estudios_medicos" value="" style="font-size: 1.375em;">
-            <span class="pt-1 form-checked-content">
-              <strong>Estudios Medicos</strong>
-              <small class="d-block text-muted">
-              </small>
-            </span>
-          </label>
-          <div class="col mt-2">
-              <input class="form-control" type="text" name="lugar_estudios" id="lugar_estudios" value=""  placeholder="Lugar de Realizacion de Estudios Medicos">
-          </div>
-        </div>
-
-        <div class="col-5">
-          <label class="list-group-item d-flex gap-3">
-            <input class="form-check-input flex-shrink-0" type="checkbox" name="pedir_historia_clinica" id="pedir_historia_clinica" value="" style="font-size: 1.375em;">
-              <span class="pt-1 form-checked-content">
-                <strong>Pedir Estudios Medicos</strong>
-                <small class="d-block text-muted"></small>
-              </span>
-          </label>
-          <label class="list-group-item d-flex gap-3">
-              <input class="form-check-input flex-shrink-0" type="checkbox" name="pedir_estudios_medicos" id="pedir_estudios_medicos" value="" style="font-size: 1.375em;">
-                <span class="pt-1 form-checked-content">
-                  <strong>Pedir Historia Clinica</strong>
-                  <small class="d-block text-muted"></small>
-                </span>
-          </label>
-        </div>
-      </div>
-    </div> --}}

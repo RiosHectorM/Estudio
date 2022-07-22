@@ -28,9 +28,22 @@ router.post("/addart", isLoggedIn, async (req, res) => {
   res.redirect("/linksart");
 });
 
+// router.get("/add", isLoggedIn, (req, res) => {
+//   res.render("links/add.hbs");
+// });
+
 router.get("/add", isLoggedIn, (req, res) => {
-  res.render("links/add.hbs");
+  pool.query("SELECT * FROM art", function (err, art_tabla) {
+    if (err) throw err;
+      console.log(art_tabla);
+      // res.send(art_tabla);
+      res.render("links/add.hbs");
+  });
 });
+
+function myFunction(val) {
+  console.log("The input value has changed. The new value is: " + val);
+}
 
 router.post("/add", isLoggedIn, async (req, res) => {
   const {

@@ -28,22 +28,10 @@ router.post("/addart", isLoggedIn, async (req, res) => {
   res.redirect("/linksart");
 });
 
-// esta me funciona
-
-// router.get("/add", isLoggedIn, (req, res) => {
-//   pool.query("SELECT * FROM art", function (err, result) {
-//     if (err) throw err;
-//       console.log(art_tabla);
-//       // res.send(art_tabla);
-//       res.render("links/add.hbs", {data: results});
-//   });
-// });
-
 router.get("/add", isLoggedIn,  function(req, res) {
   if(req.user) {
     pool.query("SELECT * FROM art",function (err,results) {
     if (err) throw err;
-    // console.log(JSON.stringify(results))
     // res.render("links/add.hbs", {data: results});
     res.render("links/add.hbs", {data: JSON.stringify(results)});
 });

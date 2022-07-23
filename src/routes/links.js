@@ -40,6 +40,11 @@ router.get("/add", isLoggedIn,  function(req, res) {
 }
 });
 
+router.get("/art", isLoggedIn, async (req, res) => {
+  const links_art = await pool.query("SELECT * FROM art");
+  res.render("links/listart.hbs", { links_art });
+});
+
 router.post("/add", isLoggedIn, async (req, res) => {
   const {
     fecha_ingreso,

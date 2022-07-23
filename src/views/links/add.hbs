@@ -191,7 +191,40 @@
                     <option>Seleccione una Opcion</option>                    
                   </select> 
 
+<script>
+  window.addEventListener('load', function() {
+  cargar_art();
+});
 
+function cargar_art() {
+ const json0 = {{{data}}};
+ addOptions("nombre_art", json0);
+}
+
+function addOptions(domElement, array) {
+ var select = document.getElementsByName(domElement)[0];
+
+ for (value in array) {
+  var option = document.createElement("option");
+  option.text = array[value].nombre_art;
+  select.add(option);
+ }
+}
+
+function actualizar(valor){
+    const json = `{{{data}}}`;
+    const listado_art = JSON.parse(json)
+ 
+    for (let index = 0; index < listado_art.length; index++) {
+      if (valor == listado_art[index].nombre_art){
+        document.formulario1.mail_art.value = listado_art[index].mail_art;
+        document.formulario1.telefono_art.value = listado_art[index].telefono_art;
+        document.formulario1.domicilio_art.value = listado_art[index].domicilio_art;
+      }
+    }
+  };
+ 
+</script>
                 </div>
               </div>
               <div class="col-md-6">
@@ -220,6 +253,7 @@
                   />
                 </div>
               </div>
+
 
               <div class="col-md-4">
                 <div class="form-group">
@@ -306,37 +340,4 @@
 <script>
   flatpickr("input[type=time]",{ enableTime: true, noCalendar: true, dateFormat:
   "H:i"});
-
-window.addEventListener('load', function() {
-  cargar_art();
-});
-function cargar_art() {
- const json = `{{{data}}}`;
- const listado_art = JSON.parse(json)
- addOptions("nombre_art", listado_art);
-}
-
-function addOptions(domElement, array) {
- var select = document.getElementsByName(domElement)[0];
-
- for (value in array) {
-  var option = document.createElement("option");
-  option.text = array[value].nombre_art;
-  select.add(option);
- }
-}
-
-function actualizar(valor){
-    const json = `{{{data}}}`;
-    const listado_art = JSON.parse(json)
- 
-    for (let index = 0; index < listado_art.length; index++) {
-      if (valor == listado_art[index].nombre_art){
-        document.formulario1.mail_art.value = listado_art[index].mail_art;
-        document.formulario1.telefono_art.value = listado_art[index].telefono_art;
-        document.formulario1.domicilio_art.value = listado_art[index].domicilio_art;
-      }
-    }
-  };
-
 </script>

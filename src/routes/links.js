@@ -45,6 +45,11 @@ router.get("/art", isLoggedIn, async (req, res) => {
   res.render("links/listart.hbs", { links_art });
 });
 
+router.get("/evento", isLoggedIn, async (req, res) => {
+  const evento_clientes = await pool.query("SELECT * FROM cliente");
+  res.render("links/evento.hbs", { evento_clientes });
+});
+
 router.post("/add", isLoggedIn, async (req, res) => {
   const {
     fecha_ingreso,

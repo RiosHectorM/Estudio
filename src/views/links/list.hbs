@@ -44,17 +44,17 @@
               <table class="table table-hover">
                 <thead>
                   <tr>
-                    <th class="bg-primary fs-5">Nombre</th>
-                    <th class="bg-primary fs-5">DNI</th>
-                    <th class="bg-primary fs-5">Evento</th>
-                    <th class="bg-primary fs-5">Editar</th>
+                    <th class="bg-primary fs-5 text-center">Nombre</th>
+                    <th class="bg-primary fs-5 text-center">DNI</th>
+                    <th class="bg-primary fs-5 text-center">Evento</th>
+                    <th class="bg-primary fs-5 text-center">Editar</th>
                   </tr>
                 </thead>
                 <tbody>
                   {{#each links}}
                   <tr>
                     <td class="fs-4 text-light">{{damnificado}}</td>
-                    <td class="fs-5 text-light">{{dni_cuil}}</td>
+                    <td class="fs-5 text-light text-center">{{dni_cuil}}</td>
                     <td>
                       <div>
                           <a class="btn submit-btn" href="/links/delete/{{id}}" role="button"
@@ -73,6 +73,26 @@
                   {{/each}}
                 </tbody>
               </table>
+              <div class="row d-flex justify-content-around">
+              <div class="col-md-3">
+                <div class="form-btn">
+                  <a
+                    class="btn submit-btn"
+                    href="/links/add"
+                    role="button"
+                  >AGREGAR CLIENTE</a>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-btn">
+                  <a
+                    class="btn submit-btn"
+                    href="/profile"
+                    role="button"
+                  >CANCELAR</a>
+                </div>
+              </div>
+            </div>
             </div>
         </div>
       </div>

@@ -28,6 +28,39 @@ router.post("/addart", isLoggedIn, async (req, res) => {
   res.redirect("/linksart");
 });
 
+router.post("/addevento", isLoggedIn, async (req, res) => {
+  const {
+    nombre_cliente_evt,
+    dni_evt,
+    importante,  
+    favorito,
+    finalizado,
+    baja,
+    fecha_prox_legal,
+    diag_leg,
+    fecha_prox_med,
+    diag_med,
+    fecha_prox_psico,
+    diag_psico,
+    notas,
+    fecha_prox_contacto,
+    tipo,
+    estado,
+    fecha_evt,
+  } = req.body;
+
+  const newART = {
+    nombre_art,
+    domicilio_art,
+    telefono_art,  
+    mail_art, 
+  };
+
+  await pool.query("INSERT INTO eventos set ?", [newART]);
+  req.flash("success", "ART Grabada correctamente");
+  res.redirect("/linkseventos");
+});
+
 router.get("/add", isLoggedIn,  function(req, res) {
   if(req.user) {
     pool.query("SELECT * FROM art",function (err,results) {

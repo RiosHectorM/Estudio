@@ -3,8 +3,8 @@
     <div class="container">
       <div class="row">
         <div class="booking-form">
-          <form action="/links/add" method="POST" name="formulario1"> 
-            <div class="row">
+          <form action="/links/addevento" method="POST" name="formulario1"> 
+            <div class="row justify-content-around">
               <h5 class="badge bg-primary fs-5">DATOS PERSONALES</h5>
               <div class="col-md-6">
                 <div class="form-group">
@@ -12,26 +12,28 @@
                   <input
                     class="form-control"
                     type="text"
-                    name="damnificado"
+                    name="nombre_cliente_evt"
                     placeholder="Nombre y Apellido"
                   />
                 </div>
               </div>
-              <div class="col-md-2">
+              <div class="col-md-3">
                 <div class="form-group">
                   <span class="form-label">DOCUMENTO</span>
                   <input
                     class="form-control"
                     type="text"
-                    name="dni_cuil"
+                    name="dni_evt"
                     placeholder="DNI/CUIL"
                   />
                 </div>
               </div>
+            </div>
+            <div class="row justify-content-around">
               <div class="col-md-2">
                 <div class="form-group">
                   <span class="form-label">ESTADO</span>
-                  <select class="form-control" name="turno_empresa">
+                  <select class="form-control" name="estado">
                     <option>Alta</option>
                     <option>Alta con Discapacidad</option>
                     <option>Judiciales</option>
@@ -43,7 +45,7 @@
               <div class="col-md-2">
                 <div class="form-group">
                   <span class="form-label">TIPO</span>
-                  <select class="form-control" name="turno_empresa">
+                  <select class="form-control" name="tipo">
                     <option>Accidente</option>
                     <option>Accidente Initinere</option>
                     <option>Enfermedad</option>
@@ -51,12 +53,22 @@
                   <span class="select-arrow"></span>
                 </div>
               </div>
+            <div class="col-md-3">
+                    <div class="form-group">
+                      <span class="form-label">FECHA DE EVENTO</span>
+                      <input
+                        class="form-control"
+                        type="date"
+                        name="fecha_evt"
+                      />
+                    </div>
+                  </div>
             </div>
             <div class="row">
               <div class="col-md-3">
                 <div class="form-group">
                   <div class="form-check form-switch fs-5 text-light">
-                    <input class="form-check-input" type="checkbox" id="switch_importante">
+                    <input class="form-check-input" type="checkbox" id="switch_importante" name="importante">
                     <label class="form-check-label" for="switch_importante">IMPORTANTE</label>
                   </div>
                 </div>
@@ -64,7 +76,7 @@
               <div class="col-md-3">
                 <div class="form-group">
                   <div class="form-check form-switch fs-5 text-light">
-                    <input class="form-check-input" type="checkbox" id="switch_favorito">
+                    <input class="form-check-input" type="checkbox" id="switch_favorito" name="favorito">
                     <label class="form-check-label" for="switch_favorito">FAVORITO</label>
                   </div>
                 </div>
@@ -72,7 +84,7 @@
               <div class="col-md-3 d-flex align-items-center text-center">
                 <div class="form-group">
                   <div class="form-check form-switch fs-5 text-light">
-                    <input class="form-check-input" type="checkbox" id="switch_finalizado">
+                    <input class="form-check-input" type="checkbox" id="switch_finalizado" name="finalizado">
                     <label class="form-check-label" for="switch_finalizado">FINALIZADO</label>
                   </div>
                 </div>
@@ -80,76 +92,90 @@
                <div class="col-md-3 d-flex align-items-center text-center">
                 <div class="form-group">
                   <div class="form-check form-switch fs-5 text-light">
-                    <input class="form-check-input" type="checkbox" id="switch_baja">
+                    <input class="form-check-input" type="checkbox" id="switch_baja" name="baja">
                     <label class="form-check-label" for="switch_baja">BAJA</label>
                   </div>
                 </div>
               </div>   
             </div>
-
-            <div class="row">
+            
+        <div class="row">
 
         <div name="contenedorNav">
         <nav>
           <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
-            <button class="nav-link active fs-4" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">LEGAL</button>
-            <button class="nav-link fs-4" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">MEDICO</button>
-            <button class="nav-link fs-4" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">PSICOLOGICO</button>
+            <button class="nav-link active fs-5" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">LEGAL</button>
+            <button class="nav-link fs-5" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">MEDICO</button>
+            <button class="nav-link fs-5" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">PSICOLOGICO</button>
           </div>
         </nav>
         <div class="tab-content" id="nav-tabContent">
           <div class="tab-pane fade active show" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
               <label for="exampleFormControlTextarea1" class="form-label fs-5">DIAGNOSTICO LEGAL</label>
-              <textarea name="textarea" style="height: 25vh;" class="form-control" placeholder="Ingrese diagnostico Legal"></textarea>
+              <textarea name="diag_leg" style="height: 25vh;" class="form-control" placeholder="Ingrese diagnostico Legal"></textarea>
               <div class="col-md-4">
                 <div class="form-group">
                   <span class="form-label">PROXIMA VISITA LEGAL</span>
                   <input
                     class="form-control"
                     type="date"
-                    name="fecha_ingreso"
+                    name="fecha_prox_legal"
                   />
                 </div>
               </div>
           </div>
           <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
           <label for="exampleFormControlTextarea1" class="form-label fs-5">DIAGNOSTICO MEDICO</label>
-              <textarea name="textarea" style="height: 25vh;" class="form-control" placeholder="Ingrese diagnostico Medico"></textarea>
+              <textarea name="diag_med" style="height: 25vh;" class="form-control" placeholder="Ingrese diagnostico Medico"></textarea>
               <div class="col-md-4">
                 <div class="form-group">
                   <span class="form-label">PROXIMA VISITA MEDICA</span>
                   <input
                     class="form-control"
                     type="date"
-                    name="fecha_ingreso"
+                    name="fecha_prox_med"
                   />
                 </div>
               </div>
           </div>
           <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
               <label for="exampleFormControlTextarea1" class="form-label fs-5">DIAGNOSTICO PSICOLOGICO</label>
-              <textarea name="textarea" style="height: 25vh;" class="form-control" placeholder="Ingrese diagnostico Psicologico"></textarea>
+              <textarea name="diag_psico" style="height: 25vh;" class="form-control" placeholder="Ingrese diagnostico Psicologico"></textarea>
               <div class="col-md-4">
                 <div class="form-group">
                   <span class="form-label">PROXIMA VISITA PSICOLOGICA</span>
                   <input
                     class="form-control"
                     type="date"
-                    name="fecha_ingreso"
+                    name="fecha_prox_psico"
                   />
                 </div>
               </div>
           </div>
         </div>
         </div>
-          <div class="row justify-content-around">
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <span class="form-label">NOTAS</span>
+                <input
+                    class="form-control"
+                    type="text"
+                    name="notas"
+                    placeholder="Notas adicionales"
+                  />
+                </div>
+              </div>
+        </div>
+        <div class="row justify-content-around">
                   <div class="col-md-4">
                     <div class="form-group">
                       <span class="form-label">PROXIMO CONTACTO CON CLIENTE</span>
                       <input
                         class="form-control"
                         type="date"
-                        name="fecha_ingreso"
+                        name="fecha_prox_contacto"
                       />
                     </div>
                   </div>
@@ -169,7 +195,6 @@
                     </div>
                   </div>
             </div>
-
           </form>
         </div>
       </div>

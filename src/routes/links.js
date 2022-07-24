@@ -40,7 +40,7 @@ router.post("/addevento", isLoggedIn, async (req, res) => {
     diag_leg,
     fecha_prox_med,
     diag_med,
-    fecha_prox_psico,
+    fecha_prox_psico,    
     diag_psico,
     notas,
     fecha_prox_contacto,
@@ -49,15 +49,28 @@ router.post("/addevento", isLoggedIn, async (req, res) => {
     fecha_evt,
   } = req.body;
 
-  const newART = {
-    nombre_art,
-    domicilio_art,
-    telefono_art,  
-    mail_art, 
+  const newEvento = {
+    nombre_cliente_evt,
+    dni_evt,
+    importante,  
+    favorito,
+    finalizado,
+    baja,
+    fecha_prox_legal,
+    diag_leg,
+    fecha_prox_med,
+    diag_med,
+    fecha_prox_psico,
+    diag_psico,
+    notas,
+    fecha_prox_contacto,
+    tipo,
+    estado,
+    fecha_evt,
   };
 
-  await pool.query("INSERT INTO eventos set ?", [newART]);
-  req.flash("success", "ART Grabada correctamente");
+  await pool.query("INSERT INTO eventos set ?", [newEvento]);
+  req.flash("success", "Evento Grabado correctamente");
   res.redirect("/linkseventos");
 });
 

@@ -1,0 +1,102 @@
+<div id="booking" class="section" >
+        <div class="section-center">
+          <div class="container">
+            <div class="row">
+              <div class="booking-form">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <h5 class="bg-primary fs-5 text-light text-center">CALENDAloRIO</h5>
+                      <input type="text" id="fecha11" onchange="actdatetime()"/>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <h5 class="bg-primary fs-5 text-light text-center">FILTRAR POR:</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="row">
+                  <div class="col-12 col-lg-8 col-xxl-9 d-flex">
+                    <div class="card flex-fill">
+                      <div class="card-header">
+                        <h5 class="card-title mb-0">Latest Projects</h5>
+                      </div>
+                      <table class="table table-hover my-0">
+                        <thead>
+                          <tr>
+                            <th>Name</th>
+                            <th class="d-none d-xl-table-cell">Start Date</th>
+                            <th class="d-none d-xl-table-cell">End Date</th>
+                            <th>Status</th>
+                            <th class="d-none d-md-table-cell">Assignee</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Project Apollo</td>
+                            <td class="d-none d-xl-table-cell">01/01/2021</td>
+                            <td class="d-none d-xl-table-cell">31/06/2021</td>
+                            <td><span class="badge bg-success">Done</span></td>
+                            <td class="d-none d-md-table-cell">Vanessa Tucker</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <form action="" id="formulario1" name="formulario1"></form>
+
+                        <input type="text" name="inputtest" id="inputtest">
+
+                  </div>
+
+                  <button onclick="generarTabla();">Generar Tabla</button>
+                  <div id="contenedorTabla">
+
+
+
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<ul class="people_list">
+  {{#each listadeeventos}}
+    <li>{{nombre_cliente_evt}}</li>
+  {{/each}}
+
+<ul class="people_list">
+  {{#each json0}}
+    <li>{{estado}}</li>
+  {{/each}}
+
+</ul>
+
+<script >
+function generarTabla() {
+ const json0 = {{{dataeventos}}};
+ data = JSON.stringify(json0)
+ console.log(json0)
+    var instrumentos= json0;
+    for(i=0;i<instrumentos.length;i++){
+         document.write(instrumentos[i].estado+"<br/>");
+    }
+    numFilas = 3;
+    numColumnas=2;
+    var tabla = "<table>";
+    for(var f = 1 ; f <= numFilas ;f++){
+        tabla += "<tr>";
+        for(var c = 1 ; c <= numColumnas ; c++){
+            tabla += "<td>OK</td>";
+        }
+        tabla += "</tr>";
+   }
+    tabla += "</table>";
+    console.log(tabla)
+    }
+
+</script>

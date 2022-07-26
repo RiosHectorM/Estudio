@@ -1,8 +1,14 @@
 const express = require("express");
 const router = express.Router();
-
 const pool = require("../database");
 const { isLoggedIn } = require("../lib/auth");
+
+router.get("/calendario", isLoggedIn, async (req, res) => {
+  const listadeclientes = await pool.query("SELECT * FROM cliente");
+  const listadeeventos = await pool.query("SELECT * FROM eventos");
+  res.render("links/calendario.hbs", { listadeclientes, listadeeventos,  dataclientes: JSON.stringify(listadeclientes), dataeventos: JSON.stringify(listadeeventos)});
+});
+
 
 router.get("/addart", isLoggedIn, (req, res) => {
   res.render("links/addart.hbs");

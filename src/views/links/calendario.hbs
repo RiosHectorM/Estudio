@@ -51,8 +51,8 @@
                         <input type="text" name="inputtest" id="inputtest">
 
                   </div>
-
-                  <button onclick="generarTabla();">Generar Tabla</button>
+        <div id='foo'>asdasd</div>
+                  <button onclick="generarTabla()">Generar Tabla</button>
                   <div id="contenedorTabla">
 
 
@@ -62,21 +62,11 @@
             </div>
           </div>
         </div>
+
       </div>
 
-<ul class="people_list">
-  {{#each listadeeventos}}
-    <li>{{nombre_cliente_evt}}</li>
-  {{/each}}
 
-<ul class="people_list">
-  {{#each json0}}
-    <li>{{estado}}</li>
-  {{/each}}
-
-</ul>
-
-<script >
+{{!-- <script >
 function generarTabla() {
  const json0 = {{{dataeventos}}};
  data = JSON.stringify(json0)
@@ -98,5 +88,44 @@ function generarTabla() {
     tabla += "</table>";
     console.log(tabla)
     }
+
+</script> --}}
+
+<script>
+
+  function generarTabla(){
+var myArray = [
+    {
+        "marca": "Motorola",
+        "modelo": "G 4 PLAY",
+        "sistema_operativo": "Android",
+        "pantalla_pulgadas": 5,
+        "pantalla_resolucion": "1280x720",
+        "camara_resolucion": "8 Mpx",
+        "camara_frontal": true,
+        "camara_frontal_res": "5 Mpx",
+        "memoria_interna": "16 GB"
+    },
+    {
+        "marca": "Motorola",
+        "modelo": "G 4 PLAYsdsdf",
+        "sistema_operativo": "Android",
+        "pantalla_pulgadas": 5,
+        "pantalla_resolucion": "1280x720",
+        "camara_resolucion": "8 Mpx",
+        "camara_frontal": true,
+        "camara_frontal_res": "5 Mpx",
+        "memoria_interna": "16 GB"
+    }]
+
+ const json0 = {{{dataeventos}}};
+ data = JSON.stringify(json0)
+ console.log(json0)
+
+var foo = json0.map(function(bar){
+  if (bar.nombre_cliente_evt == "rodrigo")
+  return '<li>'+bar.nombre_cliente_evt +' '+bar.estado+'</li>'
+})
+document.getElementById("foo").innerHTML = foo;}
 
 </script>

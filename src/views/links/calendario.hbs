@@ -1,67 +1,41 @@
 <div id="booking" class="section" >
-        <div class="section-center">
-          <div class="container">
-            <div class="row">
-              <div class="booking-form">
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <h5 class="bg-primary fs-5 text-light text-center">CALENDAloRIO</h5>
-                      <input type="text" id="fecha11" onchange="actdatetime()"/>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <h5 class="bg-primary fs-5 text-light text-center">FILTRAR POR:</h5>
-                    </div>
-                  </div>
-                </div>
+  <div class="section-center">
+    <div class="container">
+      <div class="row">
+        <div class="booking-form">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <h5 class="bg-primary fs-5 text-light text-center">CALENDAloRIO</h5>
+                <input type="text" id="fecha11" onchange="actdatetime()"/>
               </div>
             </div>
-            <div class="row">
-              <div class="row">
-                  <div class="col-12 col-lg-8 col-xxl-9 d-flex">
-                    <div class="card flex-fill">
-                      <div class="card-header">
-                        <h5 class="card-title mb-0">Latest Projects</h5>
-                      </div>
-                      <table class="table table-hover my-0">
-                        <thead>
-                          <tr>
-                            <th>Name</th>
-                            <th class="d-none d-xl-table-cell">Start Date</th>
-                            <th class="d-none d-xl-table-cell">End Date</th>
-                            <th>Status</th>
-                            <th class="d-none d-md-table-cell">Assignee</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>Project Apollo</td>
-                            <td class="d-none d-xl-table-cell">01/01/2021</td>
-                            <td class="d-none d-xl-table-cell">31/06/2021</td>
-                            <td><span class="badge bg-success">Done</span></td>
-                            <td class="d-none d-md-table-cell">Vanessa Tucker</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-        <div id='foo'>asdasd</div>
-                  <button onclick="generarTabla()">Generar Tabla</button>
-                  <div id="contenedorTabla">
-                  </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <h5 class="bg-primary fs-5 text-light text-center">FILTRAR POR:</h5>
               </div>
             </div>
           </div>
         </div>
-
       </div>
+      <div class="row">
+        <div class="row">
+          <div class="col-12 col-lg-8 col-xxl-9 d-flex">
+            <div class="card flex-fill">
+              <div class="card-header" id="arrayFechaInHtml">
+
+            </div>        
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous">
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha256-FEqEelWI3WouFOo2VWP/uJfs1y8KJ++FLh2Lbqc8SJk=" crossorigin="anonymous">
 </script>
-
 
 <script>
   $(document).ready(() => {
@@ -71,7 +45,7 @@
   });
 
 jQuery('#fecha11').datetimepicker({
-  format:'d.m.Y',
+  format:'Y-m-d',
   inline:true,
   timepicker:false,
   lang:'es',
@@ -80,22 +54,18 @@ jQuery('#fecha11').datetimepicker({
 
 <script>
   function actdatetime(){
-    console.log(document.getElementById('fecha11').value)}
-</script>
+    const fechaselect = document.getElementById('fecha11').value;
+    const allEvents = {{{dataeventos}}};
+    constructor ='<table class="table table-hover my-0"><thead><tr><th>Nombre</th><th>DNI</th><th class="d-none d-md-table-cell">Ultimo Evento</th><th class="d-none d-md-table-cell">Estado</th><th class="d-none d-md-table-cell">Tipo</th><th class="d-none d-md-table-cell">Cita Legal</th><th class="d-none d-md-table-cell">Cita Medica</th><th class="d-none d-md-table-cell">Cita Psico</th><th>Ver Perfil</th><th>Ver Eventos</th><th>OK</th></tr></thead><tbody>';
 
-<script>
+    const arrayFechaSelec = allEvents.filter(function(evtFecha){
+    if (evtFecha.fecha_prox_contacto == fechaselect)
+      constructor += '<tr><td>'+evtFecha.nombre_cliente_evt+'</td></tr>'
+    return true
+    });
 
-  function generarTabla(){
-
- const json0 = {{{dataeventos}}};
- data = JSON.stringify(json0)
- console.log(json0)
-
-var foo = json0.map(function(bar){
-  if (bar.nombre_cliente_evt == "rodrigo")
-  return '<li>'+bar.nombre_cliente_evt +' '+bar.estado+'</li>'
-})
-document.getElementById("foo").innerHTML = foo;}
-
+  constructor += "</tbody>"
+  document.getElementById("arrayFechaInHtml").innerHTML = constructor;
+}
 </script>
 

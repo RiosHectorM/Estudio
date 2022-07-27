@@ -46,17 +46,9 @@
                         </tbody>
                       </table>
                     </div>
-                    <form action="" id="formulario1" name="formulario1"></form>
-
-                        <input type="text" name="inputtest" id="inputtest">
-
-                  </div>
         <div id='foo'>asdasd</div>
                   <button onclick="generarTabla()">Generar Tabla</button>
                   <div id="contenedorTabla">
-
-
-
                   </div>
               </div>
             </div>
@@ -65,58 +57,35 @@
 
       </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha256-FEqEelWI3WouFOo2VWP/uJfs1y8KJ++FLh2Lbqc8SJk=" crossorigin="anonymous">
+</script>
 
-{{!-- <script >
-function generarTabla() {
- const json0 = {{{dataeventos}}};
- data = JSON.stringify(json0)
- console.log(json0)
-    var instrumentos= json0;
-    for(i=0;i<instrumentos.length;i++){
-         document.write(instrumentos[i].estado+"<br/>");
-    }
-    numFilas = 3;
-    numColumnas=2;
-    var tabla = "<table>";
-    for(var f = 1 ; f <= numFilas ;f++){
-        tabla += "<tr>";
-        for(var c = 1 ; c <= numColumnas ; c++){
-            tabla += "<td>OK</td>";
-        }
-        tabla += "</tr>";
-   }
-    tabla += "</table>";
-    console.log(tabla)
-    }
 
-</script> --}}
+<script>
+  $(document).ready(() => {
+      $('#fecha11').datetimepicker({
+          inline: true,
+      });
+  });
+
+jQuery('#fecha11').datetimepicker({
+  format:'d.m.Y',
+  inline:true,
+  timepicker:false,
+  lang:'es',
+});
+</script>
+
+<script>
+  function actdatetime(){
+    console.log(document.getElementById('fecha11').value)}
+</script>
 
 <script>
 
   function generarTabla(){
-var myArray = [
-    {
-        "marca": "Motorola",
-        "modelo": "G 4 PLAY",
-        "sistema_operativo": "Android",
-        "pantalla_pulgadas": 5,
-        "pantalla_resolucion": "1280x720",
-        "camara_resolucion": "8 Mpx",
-        "camara_frontal": true,
-        "camara_frontal_res": "5 Mpx",
-        "memoria_interna": "16 GB"
-    },
-    {
-        "marca": "Motorola",
-        "modelo": "G 4 PLAYsdsdf",
-        "sistema_operativo": "Android",
-        "pantalla_pulgadas": 5,
-        "pantalla_resolucion": "1280x720",
-        "camara_resolucion": "8 Mpx",
-        "camara_frontal": true,
-        "camara_frontal_res": "5 Mpx",
-        "memoria_interna": "16 GB"
-    }]
 
  const json0 = {{{dataeventos}}};
  data = JSON.stringify(json0)
@@ -129,3 +98,4 @@ var foo = json0.map(function(bar){
 document.getElementById("foo").innerHTML = foo;}
 
 </script>
+

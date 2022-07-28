@@ -1,28 +1,38 @@
-<div id="booking" class="section" >
-  <div class="section-center">
-    <div class="container">
-      <div class="row">
-        <div class="booking-form">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <h5 class="bg-primary fs-5 text-light text-center">CALENDARIO</h5>
-                <input type="text" id="inputFechaList" onchange="actdatetime()"/>
+<div class="container-fluid overflow-hidden">
+  <div class="row vh-100 overflow-auto">
+    {{>navigation}}
+    <div class="col d-flex flex-column h-100">
+      <main class="row">
+      {{!-- CONTENIDO PRINCIPAL DE CALENDARIO --}}
+      <div id="booking" class="section" >
+        <div class="section-center">
+          <div class="container">
+            <div class="row">
+              <div class="booking-form">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <h5 class="bg-primary fs-5 text-light text-center">CALENDARIO</h5>
+                      <input type="text" id="inputFechaList" onchange="actdatetime()"/>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <h5 class="bg-primary fs-5 text-light text-center">FILTRAR POR:</h5>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <h5 class="bg-primary fs-5 text-light text-center">FILTRAR POR:</h5>
+            <div class="row">
+              <div class=" d-flex col-md-12">
+                <div class="card-header" id="arrayFechaInHtml"></div>        
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class=" d-flex col-md-12">
-          <div class="card-header" id="arrayFechaInHtml"></div>        
-        </div>
-      </div>
+      </main>
     </div>
   </div>
 </div>

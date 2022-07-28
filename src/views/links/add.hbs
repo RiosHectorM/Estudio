@@ -75,16 +75,7 @@
                   />
                 </div>
               </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <span class="form-label">proximo contacto</span>
-                  <input
-                    class="form-control"
-                    type="date"
-                    name="fecha_prox_cont"
-                  />
-                </div>
-              </div>
+              
             </div>
             <div class="row">
               <h5 class="badge bg-primary fs-5">DATOS LABORALES</h5>
@@ -190,41 +181,36 @@
                   <select class="form-control" name="nombre_art" id="nombre_art" onchange="actualizar(this.value)">
                     <option>Seleccione una Opcion</option>                    
                   </select> 
-
-<script>
-  window.addEventListener('load', function() {
-  cargar_art();
-});
-
-function cargar_art() {
- const json0 = {{{data}}};
- addOptions("nombre_art", json0);
-}
-
-function addOptions(domElement, array) {
- var select = document.getElementsByName(domElement)[0];
-
- for (value in array) {
-  var option = document.createElement("option");
-  option.text = array[value].nombre_art;
-  select.add(option);
- }
-}
-
-function actualizar(valor){
-    const json = `{{{data}}}`;
-    const listado_art = JSON.parse(json)
- 
-    for (let index = 0; index < listado_art.length; index++) {
-      if (valor == listado_art[index].nombre_art){
-        document.formulario1.mail_art.value = listado_art[index].mail_art;
-        document.formulario1.telefono_art.value = listado_art[index].telefono_art;
-        document.formulario1.domicilio_art.value = listado_art[index].domicilio_art;
-      }
-    }
-  };
- 
-</script>
+                  {{!-- SCRIPTS PARA SELECT DE ART --}}
+                  <script>
+                    window.addEventListener('load', function() {
+                    cargar_art();
+                  });
+                  function cargar_art() {
+                  const json0 = {{{data}}};
+                  addOptions("nombre_art", json0);
+                  }
+                  function addOptions(domElement, array) {
+                  var select = document.getElementsByName(domElement)[0];
+                  for (value in array) {
+                    var option = document.createElement("option");
+                    option.text = array[value].nombre_art;
+                    select.add(option);
+                  }
+                  }
+                  function actualizar(valor){
+                      const json = `{{{data}}}`;
+                      const listado_art = JSON.parse(json)
+                      for (let index = 0; index < listado_art.length; index++) {
+                        if (valor == listado_art[index].nombre_art){
+                          document.formulario1.mail_art.value = listado_art[index].mail_art;
+                          document.formulario1.telefono_art.value = listado_art[index].telefono_art;
+                          document.formulario1.domicilio_art.value = listado_art[index].domicilio_art;
+                        }
+                      }
+                    };
+                  </script>
+                  {{!-- FIN SCRIPT DE SELECT ART --}}
                 </div>
               </div>
               <div class="col-md-6">
@@ -253,8 +239,6 @@ function actualizar(valor){
                   />
                 </div>
               </div>
-
-
               <div class="col-md-4">
                 <div class="form-group">
                   <span class="form-label">MAIL ART</span>
@@ -335,6 +319,7 @@ function actualizar(valor){
     </div>
   </div>
 </div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>

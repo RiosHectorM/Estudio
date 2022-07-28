@@ -84,7 +84,6 @@ router.get("/add", isLoggedIn,  function(req, res) {
   if(req.user) {
     pool.query("SELECT * FROM art",function (err,results) {
     if (err) throw err;
-    // res.render("links/add.hbs", {data: results});
     res.render("links/add.hbs", {data: JSON.stringify(results)});
 });
 } else {

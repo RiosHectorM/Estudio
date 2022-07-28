@@ -19,13 +19,8 @@
         </div>
       </div>
       <div class="row">
-        <div class="row">
-          <div class="col-12 col-lg-8 col-xxl-9 d-flex">
-            <div class="card flex-fill">
-              <div class="card-header" id="arrayFechaInHtml">
-
-            </div>        
-          </div>
+        <div class=" d-flex col-md-12">
+          <div class="card-header" id="arrayFechaInHtml"></div>        
         </div>
       </div>
     </div>
@@ -56,15 +51,35 @@ jQuery('#fecha11').datetimepicker({
   function actdatetime(){
     const fechaselect = document.getElementById('fecha11').value;
     const allEvents = {{{dataeventos}}};
-    constructor ='<table class="table table-hover my-0"><thead><tr><th>Nombre</th><th>DNI</th><th class="d-none d-md-table-cell">Ultimo Evento</th><th class="d-none d-md-table-cell">Estado</th><th class="d-none d-md-table-cell">Tipo</th><th class="d-none d-md-table-cell">Cita Legal</th><th class="d-none d-md-table-cell">Cita Medica</th><th class="d-none d-md-table-cell">Cita Psico</th><th>Ver Perfil</th><th>Ver Eventos</th><th>OK</th></tr></thead><tbody>';
+
+    constructor = "";
+    document.getElementById("arrayFechaInHtml").innerHTML = constructor;
+
+    constructor ='<table class="table table-hover"><thead><tr><th>Nombre</th><th>DNI</th><th class="d-none d-md-table-cell">Ultimo Evento</th><th class="d-none d-md-table-cell">Estado</th><th class="d-none d-md-table-cell">Tipo</th><th class="d-none d-md-table-cell">Cita Legal</th><th class="d-none d-md-table-cell">Cita Medica</th><th class="d-none d-md-table-cell">Cita Psico</th><th>Ver Perfil</th><th>Ver Eventos</th><th>OK</th></tr></thead><tbody>';
 
     const arrayFechaSelec = allEvents.filter(function(evtFecha){
-    if (evtFecha.fecha_prox_contacto == fechaselect)
-      constructor += '<tr><td>'+evtFecha.nombre_cliente_evt+'</td></tr>'
+    if (evtFecha.fecha_prox_contacto == fechaselect){
+      constructor += '<tr><td>'+evtFecha.nombre_cliente_evt+'</td>'
+      constructor += '<td>'+evtFecha.dni_evt+'</td>'
+      constructor += '<td>'+evtFecha.fecha_evt+'</td>'
+      constructor += '<td>'+evtFecha.estado+'</td>'
+      constructor += '<td>'+evtFecha.tipo+'</td>'
+      if (evtFecha.fecha_prox_legal != ""){
+        constructor += '<td>'+evtFecha.fecha_prox_legal+'</td>'}
+      else{constructor += '<td>Sin Fecha</td>'}
+        if (evtFecha.fecha_prox_med != ""){
+        constructor += '<td>'+evtFecha.fecha_prox_med+'</td>'}
+      else{constructor += '<td>Sin Fecha</td>'}
+      if (evtFecha.fecha_prox_psico != ""){
+        constructor += '<td>'+evtFecha.fecha_prox_psico+'</td>'}
+      else{constructor += '<td>Sin Fecha</td>'}
+      constructor += '<td>PERFIL</td>'
+      constructor += '<td>EVENTOS</td>'
+      constructor += '<td>CHECK</td></tr>'}
     return true
     });
 
-  constructor += "</tbody>"
+  constructor += "</tbody></table>"
   document.getElementById("arrayFechaInHtml").innerHTML = constructor;
 }
 </script>

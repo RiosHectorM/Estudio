@@ -6,8 +6,8 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <h5 class="bg-primary fs-5 text-light text-center">CALENDAloRIO</h5>
-                <input type="text" id="fecha11" onchange="actdatetime()"/>
+                <h5 class="bg-primary fs-5 text-light text-center">CALENDARIO</h5>
+                <input type="text" id="inputFechaList" onchange="actdatetime()"/>
               </div>
             </div>
             <div class="col-md-6">
@@ -34,12 +34,12 @@
 
 <script>
   $(document).ready(() => {
-      $('#fecha11').datetimepicker({
+      $('#inputFechaList').datetimepicker({
           inline: true,
       });
   });
 
-jQuery('#fecha11').datetimepicker({
+jQuery('#inputFechaList').datetimepicker({
   format:'Y-m-d',
   inline:true,
   timepicker:false,
@@ -49,7 +49,7 @@ jQuery('#fecha11').datetimepicker({
 
 <script>
   function actdatetime(){
-    const fechaselect = document.getElementById('fecha11').value;
+    const fechaselect = document.getElementById('inputFechaList').value;
     const allEvents = {{{dataeventos}}};
 
     constructor = "";
@@ -61,18 +61,18 @@ jQuery('#fecha11').datetimepicker({
     if (evtFecha.fecha_prox_contacto == fechaselect){
       constructor += '<tr><td>'+evtFecha.nombre_cliente_evt+'</td>'
       constructor += '<td>'+evtFecha.dni_evt+'</td>'
-      constructor += '<td>'+evtFecha.fecha_evt+'</td>'
-      constructor += '<td>'+evtFecha.estado+'</td>'
-      constructor += '<td>'+evtFecha.tipo+'</td>'
+      constructor += '<td class="d-none d-md-table-cell">'+evtFecha.fecha_evt+'</td>'
+      constructor += '<td class="d-none d-md-table-cell">'+evtFecha.estado+'</td>'
+      constructor += '<td class="d-none d-md-table-cell">'+evtFecha.tipo+'</td>'
       if (evtFecha.fecha_prox_legal != ""){
-        constructor += '<td>'+evtFecha.fecha_prox_legal+'</td>'}
-      else{constructor += '<td>Sin Fecha</td>'}
+        constructor += '<td class="d-none d-md-table-cell">'+evtFecha.fecha_prox_legal+'</td>'}
+      else{constructor += '<td class="d-none d-md-table-cell">Sin Fecha</td>'}
         if (evtFecha.fecha_prox_med != ""){
-        constructor += '<td>'+evtFecha.fecha_prox_med+'</td>'}
-      else{constructor += '<td>Sin Fecha</td>'}
+        constructor += '<td class="d-none d-md-table-cell">'+evtFecha.fecha_prox_med+'</td>'}
+      else{constructor += '<td class="d-none d-md-table-cell">Sin Fecha</td>'}
       if (evtFecha.fecha_prox_psico != ""){
-        constructor += '<td>'+evtFecha.fecha_prox_psico+'</td>'}
-      else{constructor += '<td>Sin Fecha</td>'}
+        constructor += '<td class="d-none d-md-table-cell">'+evtFecha.fecha_prox_psico+'</td>'}
+      else{constructor += '<td class="d-none d-md-table-cell">Sin Fecha</td>'}
       constructor += '<td>PERFIL</td>'
       constructor += '<td>EVENTOS</td>'
       constructor += '<td>CHECK</td></tr>'}

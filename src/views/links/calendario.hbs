@@ -12,13 +12,30 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
-                      <h5 class="bg-primary fs-5 text-light text-center">CALENDARIO</h5>
-                      <input type="text" id="inputFechaList" onchange="actdatetime()"/>
+                      <h5 class="bg-primary fs-5 text-light text-center">FECHA SELECCIONADA</h5>
+                      <div class="card profile-card-1">
+                        <img src="/img/FondoCard.png" alt="profile-sample1" class="background"/>
+                        <img src="/img/date.png" alt="profile-image" class="profile"/>
+                          <div class="card-content d-inline">
+                            <div class="col-12">
+                              <p id="dia">DIA</p>
+                            </div>
+                            <div class="col-12 d-flex">
+                            <div class="col-6 justify-content-end">
+                              <p id="mes">MES</p>
+                            </div>
+                            <div class="col-6"> 
+                              <p id="anio">AÑO</p>
+                            </div>
+                            </div>
+                          </div>
+                      </div>
                     </div>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-6" >
                     <div class="form-group">
-                      <h5 class="bg-primary fs-5 text-light text-center">FILTRAR POR:</h5>
+                      <h5 class="bg-primary fs-5 text-light text-center">CALENDARIO</h5>
+                      <input type="date" id="inputFechaList" onchange="actdatetime()"/>
                     </div>
                   </div>
                 </div>
@@ -26,7 +43,7 @@
             </div>
             <div class="row">
               <div class=" d-flex col-md-12">
-                <div class="card-header" id="arrayFechaInHtml"></div>        
+                <div class="card-header" id="arrayFechaInHtml"></div>
               </div>
             </div>
           </div>
@@ -54,11 +71,30 @@ jQuery('#inputFechaList').datetimepicker({
   inline:true,
   timepicker:false,
   lang:'es',
+  
+  
 });
 </script>
 
 <script>
   function actdatetime(){
+    var today = new Date();
+    var date = document.getElementById('inputFechaList').value;
+
+    var cadena2 = date.slice(0, -6);
+
+    var anio = date.getFullYear();
+    var mes = date.getMonth();
+    var dia = date.getDate();
+
+    console.log(date, "año", anio, "mes", mes, "dia", dia)
+    console.log(document.getElementById('inputFechaList').value)
+    console.log(cadena2)
+
+    document.getElementById("anio").innerHTML = anio;
+    document.getElementById("mes").innerHTML = mes;
+    document.getElementById("dia").innerHTML = dia;
+    
     const fechaselect = document.getElementById('inputFechaList').value;
     const allEvents = {{{dataeventos}}};
 
@@ -66,10 +102,12 @@ jQuery('#inputFechaList').datetimepicker({
     document.getElementById("arrayFechaInHtml").innerHTML = constructor;
 
     constructor ='<table class="table table-hover"><thead><tr><th>Nombre</th><th>DNI</th><th class="d-none d-md-table-cell">Ultimo Evento</th><th class="d-none d-md-table-cell">Estado</th><th class="d-none d-md-table-cell">Tipo</th><th class="d-none d-md-table-cell">Cita Legal</th><th class="d-none d-md-table-cell">Cita Medica</th><th class="d-none d-md-table-cell">Cita Psico</th><th>Ver Perfil</th><th>Ver Eventos</th><th>OK</th></tr></thead><tbody>';
+    
+    sinFecha = constructor;
 
     const arrayFechaSelec = allEvents.filter(function(evtFecha){
     if (evtFecha.fecha_prox_contacto == fechaselect){
-      constructor += '<tr><td>'+evtFecha.nombre_cliente_evt+'</td>'
+      constructor += '<tr><td><div class="notas-container"><p>'+evtFecha.nombre_cliente_evt+'</p><h6>'+evtFecha.notas+'</h6></div></td>'
       constructor += '<td>'+evtFecha.dni_evt+'</td>'
       constructor += '<td class="d-none d-md-table-cell">'+evtFecha.fecha_evt+'</td>'
       constructor += '<td class="d-none d-md-table-cell">'+evtFecha.estado+'</td>'
@@ -88,8 +126,11 @@ jQuery('#inputFechaList').datetimepicker({
       constructor += '<td>CHECK</td></tr>'}
     return true
     });
+    
+  if (sinFecha == constructor)
+    {constructor = '<div class="bg-primary col-12 justify-content-center"><h3 class="text-white text-center ">No hay contactos registrados para la fecha seleccionada</h3></div>'}
+  else{constructor += "</tbody></table>";}
 
-  constructor += "</tbody></table>"
   document.getElementById("arrayFechaInHtml").innerHTML = constructor;
 }
 </script>

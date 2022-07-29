@@ -9,10 +9,11 @@
               <table class="table table-hover">
                 <thead>
                   <tr>
-                    <th class="bg-primary fs-5 text-center">Nombre</th>
+                    <th class="bg-primary fs-5 text-center">DAMNIFICADO</th>
                     <th class="bg-primary fs-5 text-center">DNI</th>
-                    <th class="bg-primary fs-5 text-center">Evento</th>
-                    <th class="bg-primary fs-5 text-center">Editar</th>
+                    <th class="bg-primary fs-5 text-center">EVENTO</th>
+                    <th class="bg-primary fs-5 text-center">EDITAR</th>
+                    <th class="bg-primary fs-5 text-center">PERFIL</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -22,18 +23,33 @@
                     <td class="fs-5 text-light text-center">{{dni_cuil}}</td>
                     <td>
                       <div>
-                          <a class="btn submit-btn" href="/links/delete/{{id}}" role="button"
+                          <a class="btn submit-btn" href="/links/evento/{{id_cliente}}" role="button"
                             >Asignar Evento
                           </a>
                       </div>
                     </td>
                     <td> 
                       <div>
-                          <a class="btn submit-btn" href="/links/delete/{{id}}" role="button"
+                          <a class="btn submit-btn" href="/links/edit/{{id_cliente}}" role="button"
                             >Editar Cliente
                           </a>
                       </div>
                     </td> 
+                    <td>
+                      <div>
+                          {{!-- *! agregar VISTA DE PERFFIL ----------------- --}}
+                          {{!-- *! agregar VISTA DE PERFFIL ----------------- --}}
+                          {{!-- *! agregar VISTA DE PERFFIL ----------------- --}}
+                          {{!-- *! agregar VISTA DE PERFFIL ----------------- --}}
+                          <a class="btn submit-btn" href="/links/profile/{{id_cliente}}" role="button"
+                            >Ver Perfil
+                          </a>
+                          {{!-- *! agregar VISTA DE PERFFIL ----------------- --}}
+                          {{!-- *! agregar VISTA DE PERFFIL ----------------- --}}
+                          {{!-- *! agregar VISTA DE PERFFIL ----------------- --}}
+                          {{!-- *! agregar VISTA DE PERFFIL ----------------- --}}
+                      </div>
+                    </td>
                   </tr>
                   {{/each}}
                 </tbody>

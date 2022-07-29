@@ -77,7 +77,7 @@ router.post("/addevento", isLoggedIn, async (req, res) => {
 
   await pool.query("INSERT INTO eventos set ?", [newEvento]);
   req.flash("success", "Evento Grabado correctamente");
-  res.redirect("/linkseventos");
+  res.redirect("/links/calendario");
 });
 
 router.get("/add", isLoggedIn,  function(req, res) {
@@ -96,10 +96,15 @@ router.get("/art", isLoggedIn, async (req, res) => {
   res.render("links/listart.hbs", { links_art });
 });
 
-router.get("/evento", isLoggedIn, async (req, res) => {
-  const evento_clientes = await pool.query("SELECT * FROM cliente");
-  res.render("links/evento.hbs", { evento_clientes });
+
+
+
+router.get("/evento/:id_cliente", isLoggedIn, async (req, res) => {
+  const { id_cliente } = req.params;
+  const evento_cliente = await pool.query("SELECT * FROM cliente WHERE id_cliente = ?", [id_cliente]);
+  res.render("links/evento.hbs", { eventocli: evento_cliente[0] });
 });
+
 
 router.post("/add", isLoggedIn, async (req, res) => {
   const {
@@ -166,7 +171,6 @@ router.get("/delete/:id", isLoggedIn, async (req, res) => {
 router.get("/edit/:id", isLoggedIn, async (req, res) => {
   const { id } = req.params;
   const links = await pool.query("SELECT * FROM cliente WHERE id_cliente = ?", [id]);
-  console.log(links[0].turno_empresa)
   res.render("links/edit.hbs", { link: links[0] });
 });
 

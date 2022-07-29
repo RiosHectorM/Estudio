@@ -1,4 +1,4 @@
-<div class="container p-4">
+{{!-- <div class="container p-4">
   <div class="row">
     <div class="col-md-4 mx-auto">
       <div class="card bg-dark border border-dark">
@@ -41,7 +41,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> --}}
 
 
 
@@ -200,7 +200,6 @@
                 <div class="form-group">
                   <span class="form-label">TURNO</span>
                   <select class="form-control" name="turno_empresa">
-                    
                     <option>Mañana</option>
                     <option>Tarde</option>
                     <option>Noche</option>
@@ -216,7 +215,7 @@
                   <input
                     class="form-control"
                     type="text"
-                    placeholder="Tareas que desemeña el Damnificado en la Empresa"
+                    value="{{link.tareas_empresa}}"
                     name="tareas_empresa"
                     id="tareas_empresa"
                   />
@@ -269,7 +268,7 @@
                   <input
                     class="form-control"
                     type="text"
-                    placeholder="Prestador Medico"
+                    value="{{link.prestador}}"
                     name="prestador"
                     id="prestador"
                   />
@@ -302,7 +301,7 @@
               </div>
               <div class="col-md-2">
                 <div class="form-group">
-                  <span class="form-label">TELEFONO</span>
+                  <span class="form-label">TELEFONO ART</span>
                   <input
                     class="form-control"
                     type="text"
@@ -341,7 +340,7 @@
                   <input
                     class="form-control"
                     type="text"
-                    placeholder="Donde se realizaron los estudios"
+                    value="{{link.lugar_estudios}}"
                     name="lugar_estudios"
                   />
                 </div>

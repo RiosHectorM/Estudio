@@ -165,17 +165,18 @@ router.get("/delete/:id", isLoggedIn, async (req, res) => {
 
 router.get("/edit/:id", isLoggedIn, async (req, res) => {
   const { id } = req.params;
-  const links = await pool.query("SELECT * FROM cliente WHERE id = ?", [id]);
+  const links = await pool.query("SELECT * FROM cliente WHERE id_cliente = ?", [id]);
+  console.log(links[0].turno_empresa)
   res.render("links/edit.hbs", { link: links[0] });
 });
 
 router.post("/edit/:id", isLoggedIn, async (req, res) => {
   const { id } = req.params;
-  const { title, description, url } = req.body;
+  const { damnificado, domicilio, telefono } = req.body;
   const newLink = {
-    title,
-    description,
-    url,
+    damnificado,
+    domicilio,
+    telefono,
   };
   await pool.query("UPDATE links set ? WHERE id = ?", [newLink, id]);
   req.flash("success", "Link Editado correctamente");

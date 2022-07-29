@@ -42,3 +42,337 @@
     </div>
   </div>
 </div>
+
+
+
+
+<div id="booking" class="section" >
+  <div class="section-center">
+    <div class="container">
+      <div class="row">
+        <div class="booking-form">
+          <form "/links/edit/{{link.id_cliente}}" method="POST" name="formulario1"> 
+            <div class="row">
+              <h5 class="badge bg-primary fs-5">DATOS PERSONALES</h5>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <span class="form-label">DAMNIFICADO</span>
+                  <input
+                    class="form-control"
+                    type="text"
+                    name="damnificado"
+                    value="{{link.damnificado}}"
+                  />
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <span class="form-label">DOCUMENTO</span>
+                  <input
+                    class="form-control"
+                    type="text"
+                    name="dni_cuil"
+                    value="{{link.dni_cuil}}"
+                  />
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <span class="form-label">EDAD</span>
+                  <input
+                    class="form-control"
+                    type="text"
+                    value="{{link.edad}}"
+                    name="edad"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <span class="form-label">DOMICILIO</span>
+                  <input
+                    class="form-control"
+                    type="text"
+                    name="domicilio"
+                    value="{{link.domicilio}}"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <span class="form-label">TELEFONO</span>
+                  <input
+                    class="form-control"
+                    type="text"
+                    name="telefono"
+                    value="{{link.telefono}}"
+                  />
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <span class="form-label">Fecha de Ingreso</span>
+                  <input
+                    class="form-control"
+                    type="date"
+                    name="fecha_ingreso"
+                    value="{{link.fecha_ingreso}}"
+                  />
+                </div>
+              </div>
+              
+            </div>
+            <div class="row">
+              <h5 class="badge bg-primary fs-5">DATOS LABORALES</h5>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <span class="form-label">EMPRESA</span>
+                  <input
+                    class="form-control"
+                    type="text"
+                    value="{{link.empresa}}"
+                    name="empresa"
+                  />
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <span class="form-label">CUIT</span>
+                  <input
+                    class="form-control"
+                    type="text"
+                    value="{{link.cuit_empresa}}"
+                    name="cuit_empresa"
+                  />
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <span class="form-label">RUBRO</span>
+                  <input
+                    class="form-control"
+                    type="text"
+                    value="{{link.rubro_empresa}}"
+                    name="rubro_empresa"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <span class="form-label">DOMICILIO EMPRESA</span>
+                  <input
+                    class="form-control"
+                    type="text"
+                    value="{{link.domicilio_empresa}}"
+                    name="domicilio_empresa"
+                  />
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <span class="form-label">HORARIO INGRESO</span>
+                  <input
+                    class="form-control"
+                    type="time"
+                    value="{{link.horario_inicio}}"
+                    name="horario_inicio"
+                  />
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <span class="form-label">HORARIO EGRESO</span>
+                  <input
+                    class="form-control"
+                    type="time"
+                    value="{{link.horario_fin}}"
+                    name="horario_fin"
+                  />
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <span class="form-label">TURNO</span>
+                  <select class="form-control" name="turno_empresa">
+                    
+                    <option>Mañana</option>
+                    <option>Tarde</option>
+                    <option>Noche</option>
+                  </select>
+                  <span class="select-arrow"></span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <span class="form-label">TAREAS DEL DAMNIFICADO</span>
+                  <input
+                    class="form-control"
+                    type="text"
+                    placeholder="Tareas que desemeña el Damnificado en la Empresa"
+                    name="tareas_empresa"
+                    id="tareas_empresa"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <h5 class="badge bg-primary fs-5">INFORMACION MEDICA</h5>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <span class="form-label">ART</span>
+                  <select class="form-control" name="nombre_art" id="nombre_art" onchange="actualizar(this.value)">
+                    <option>Seleccione una Opcion</option>                    
+                  </select> 
+                  {{!-- SCRIPTS PARA SELECT DE ART --}}
+                  <script>
+                    window.addEventListener('load', function() {
+                    cargar_art();
+                  });
+                  function cargar_art() {
+                  const json0 = {{{data}}};
+                  addOptions("nombre_art", json0);
+                  }
+                  function addOptions(domElement, array) {
+                  var select = document.getElementsByName(domElement)[0];
+                  for (value in array) {
+                    var option = document.createElement("option");
+                    option.text = array[value].nombre_art;
+                    select.add(option);
+                  }
+                  }
+                  function actualizar(valor){
+                      const json = `{{{data}}}`;
+                      const listado_art = JSON.parse(json)
+                      for (let index = 0; index < listado_art.length; index++) {
+                        if (valor == listado_art[index].nombre_art){
+                          document.formulario1.mail_art.value = listado_art[index].mail_art;
+                          document.formulario1.telefono_art.value = listado_art[index].telefono_art;
+                          document.formulario1.domicilio_art.value = listado_art[index].domicilio_art;
+                        }
+                      }
+                    };
+                  </script>
+                  {{!-- FIN SCRIPT DE SELECT ART --}}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <span class="form-label">PRESTADOR MEDICO</span>
+                  <input
+                    class="form-control"
+                    type="text"
+                    placeholder="Prestador Medico"
+                    name="prestador"
+                    id="prestador"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <span class="form-label">DOMICILIO ART</span>
+                  <input
+                    class="form-control"
+                    type="text"
+                    placeholder="Domicilio de ART"
+                    name="domicilio_art"
+                    id="domicilio_art"
+                  />
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <span class="form-label">MAIL ART</span>
+                  <input
+                    class="form-control"
+                    type="text"
+                    placeholder="Mail de ART"
+                    name="mail_art"
+                  />
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <span class="form-label">TELEFONO</span>
+                  <input
+                    class="form-control"
+                    type="text"
+                    placeholder="Numero"
+                    name="telefono_art"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <span class="form-label">Historia Clinica</span>
+                  <select class="form-control" name="historia_clinica">
+                    <option>Presentada</option>
+                    <option>Solicitar</option>
+                    <option>NoRequiere</option>
+                  </select>
+                  <span class="select-arrow"></span>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <span class="form-label">Estudios Medicos</span>
+                  <select class="form-control" name="estudios_medicos">
+                    <option>Presentados</option>
+                    <option>Solicitar</option>
+                    <option>No Requiere</option>
+                  </select>
+                  <span class="select-arrow"></span>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <span class="form-label">Lugar Estudios</span>
+                  <input
+                    class="form-control"
+                    type="text"
+                    placeholder="Donde se realizaron los estudios"
+                    name="lugar_estudios"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row d-flex justify-content-around">
+              <div class="col-md-3">
+                <div class="form-btn">
+                  <button class="submit-btn" role="button">GUARDAR CLIENTE</button>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-btn">
+                  <a
+                    class="btn submit-btn"
+                    href="/profile"
+                    role="button"
+                  >CANCELAR</a>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+  flatpickr("input[type=time]",{ enableTime: true, noCalendar: true, dateFormat:
+  "H:i"});
+</script>

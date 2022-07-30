@@ -6,6 +6,79 @@
           <h5 class="badge bg-primary fs-5">BUSCAR CLIENTE</h5>
           <input class="form-control mt-2" type="text" name="search" id="search" placeholder="Ingrese nombre de Cliente" />
             <div class="table-responsive mt-3">
+
+
+            <div class="row justify-content-around">
+              <div class="col-md-2">
+                <div class="form-group">
+                  <span class="form-label">ESTADO</span>
+                  <select class="form-control" name="estado">
+                    <option>Alta</option>
+                    <option>Alta con Discapacidad</option>
+                    <option>Judiciales</option>
+                    <option>Acordado</option>
+                  </select>
+                  <span class="select-arrow"></span>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <span class="form-label">TIPO</span>
+                  <select class="form-control" name="tipo">
+                    <option>Accidente</option>
+                    <option>Accidente Initinere</option>
+                    <option>Enfermedad</option>
+                  </select>
+                  <span class="select-arrow"></span>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <span class="form-label">FECHA DE EVENTO</span>
+                  <input
+                    class="form-control"
+                    type="date"
+                    name="fecha_evt"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <div class="form-check form-switch fs-5 text-light">
+                    <input class="form-check-input" type="checkbox" id="switch_importante" name="importante">
+                    <label class="form-check-label" for="switch_importante">IMPORTANTE</label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <div class="form-check form-switch fs-5 text-light">
+                    <input class="form-check-input" type="checkbox" id="switch_favorito" name="favorito">
+                    <label class="form-check-label" for="switch_favorito">FAVORITO</label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3 d-flex align-items-center text-center">
+                <div class="form-group">
+                  <div class="form-check form-switch fs-5 text-light">
+                    <input class="form-check-input" type="checkbox" id="switch_finalizado" name="finalizado">
+                    <label class="form-check-label" for="switch_finalizado">FINALIZADO</label>
+                  </div>
+                </div>
+              </div>         
+              <div class="col-md-3 d-flex align-items-center text-center">
+                <div class="form-group">
+                  <div class="form-check form-switch fs-5 text-light">
+                    <input class="form-check-input" type="checkbox" id="switch_baja" name="baja">
+                    <label class="form-check-label" for="switch_baja">BAJA</label>
+                  </div>
+                </div>
+              </div>   
+            </div>
+
+
               <table class="table table-hover">
                 <thead>
                   <tr>

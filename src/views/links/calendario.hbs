@@ -18,7 +18,7 @@
                         <img src="/img/date.png" alt="profile-image" class="profile"/>
                           <div class="card-content d-inline">
                             <div class="col-12">
-                              <p id="dia">DIA</p>
+                              <p class="fs-2"id="dia">DIA</p>
                             </div>
                             <div class="col-12 d-flex">
                             <div class="col-6 justify-content-end">
@@ -60,49 +60,68 @@
 </script>
 
 <script>
-  $(document).ready(() => {
-      $('#inputFechaList').datetimepicker({
-          inline: true,
-      });
-  });
 
-jQuery('#inputFechaList').datetimepicker({
-  format:'Y-m-d',
-  inline:true,
-  timepicker:false,
-  lang:'es',
-  
-  
-});
-</script>
+  function messelector(mes){
+    switch (mes) {
+      case "01":
+        return "ENERO";
+        break;
+      case "02":
+        return "FEBRERO";
+        break;
+      case "03":
+        return "MARZO";
+        break;
+      case "04":
+        return "ABRIL";
+        break;
+      case "05":
+        return "MAYO";
+        break;
+      case "06":
+        return "JUNIO";
+        break;
+      case "07":
+        return "JULIO";
+        break;
+      case "08":
+        return "AGOSTO";
+        break;
+      case "09":
+        return "SEPTIEMBRE";
+        break;
+      case "10":
+        return "OCTUBRE";
+        break;
+      case "11":
+        return "NOVIEMBRE";
+        break;
+      case "12":
+        return "DICIEMBRE";
+        break;
+    }
+  }
 
-<script>
-  function actdatetime(){
-    var today = new Date();
+  function cargarimagen(){
     var date = document.getElementById('inputFechaList').value;
-
-    var cadena2 = date.slice(0, -6);
-
-    var anio = date.getFullYear();
-    var mes = date.getMonth();
-    var dia = date.getDate();
-
-    console.log(date, "año", anio, "mes", mes, "dia", dia)
-    console.log(document.getElementById('inputFechaList').value)
-    console.log(cadena2)
-
-    document.getElementById("anio").innerHTML = anio;
-    document.getElementById("mes").innerHTML = mes;
-    document.getElementById("dia").innerHTML = dia;
-    
+    document.getElementById("anio").innerHTML = date.slice(0, -6);
+    document.getElementById("mes").innerHTML = messelector(date.slice(5, -3));
+    document.getElementById("dia").innerHTML = date.slice(8);
+  }
+  
+  function actdatetime(){
     const fechaselect = document.getElementById('inputFechaList').value;
     const allEvents = {{{dataeventos}}};
-
+    cargarimagen();
     constructor = "";
     document.getElementById("arrayFechaInHtml").innerHTML = constructor;
 
-    constructor ='<table class="table table-hover"><thead><tr><th>Nombre</th><th>DNI</th><th class="d-none d-md-table-cell">Ultimo Evento</th><th class="d-none d-md-table-cell">Estado</th><th class="d-none d-md-table-cell">Tipo</th><th class="d-none d-md-table-cell">Cita Legal</th><th class="d-none d-md-table-cell">Cita Medica</th><th class="d-none d-md-table-cell">Cita Psico</th><th>Ver Perfil</th><th>Ver Eventos</th><th>OK</th></tr></thead><tbody>';
-    
+    constructor ='<table class="table table-hover"><thead><tr><th>Nombre</th><th>DNI</th><th class="d-none d-md-table-cell">Ultimo Evento</th><th class="d-none d-md-table-cell">Estado</th><th class="d-none d-md-table-cell">Tipo</th><th class="d-none d-md-table-cell">Cita Legal</th><th class="d-none d-md-table-cell">Cita Medica</th><th class="d-none d-md-table-cell">Cita Psico</th><th>Ver Perfil</th><th>OK</th></tr></thead><tbody>';
+    {{!-- *! agregar LINK DE PERFFIL ----------------- --}}
+    {{!-- *! agregar LINK DE PERFFIL ----------------- --}}
+    {{!-- *! agregar LINK DE PERFFIL ----------------- --}}
+    {{!-- *! agregar LINK DE PERFFIL ----------------- --}}
+    {{!-- *! agregar LINK DE PERFFIL ----------------- --}}
     sinFecha = constructor;
 
     const arrayFechaSelec = allEvents.filter(function(evtFecha){
@@ -121,8 +140,7 @@ jQuery('#inputFechaList').datetimepicker({
       if (evtFecha.fecha_prox_psico != ""){
         constructor += '<td class="d-none d-md-table-cell">'+evtFecha.fecha_prox_psico+'</td>'}
       else{constructor += '<td class="d-none d-md-table-cell">Sin Fecha</td>'}
-      constructor += '<td>PERFIL</td>'
-      constructor += '<td>EVENTOS</td>'
+      constructor += '<td><button type="button" class="btn btn-primary">Perfil</button></td>'
       constructor += '<td>CHECK</td></tr>'}
     return true
     });
@@ -135,3 +153,28 @@ jQuery('#inputFechaList').datetimepicker({
 }
 </script>
 
+<script>
+  $(document).ready(() => {
+    $('#inputFechaList').datetimepicker({
+        inline: true,
+    });
+    var datehoy = new Date();
+    mes = (datehoy.getMonth() + 1);
+    mes = "0"+mes
+    mes = mes.slice(-2);
+    var dateini = datehoy.getFullYear()+'-'+mes+'-'+datehoy.getDate();
+    document.getElementById("anio").innerHTML = dateini.slice(0, -6);
+    document.getElementById("mes").innerHTML = messelector(dateini.slice(5, -3));
+    document.getElementById("dia").innerHTML = dateini.slice(8);
+  });
+
+jQuery('#inputFechaList').datetimepicker({
+  format:'Y-m-d',
+  inline:true,
+  timepicker:false,
+  lang:'es',
+});
+
+cargarimagen();
+
+</script>

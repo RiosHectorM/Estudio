@@ -9,6 +9,13 @@ router.get("/calendario", isLoggedIn, async (req, res) => {
   res.render("links/calendario.hbs", { listadeclientes, listadeeventos,  dataclientes: JSON.stringify(listadeclientes), dataeventos: JSON.stringify(listadeeventos)});
 });
 
+router.get("/perfil/:id_cliente_evt", isLoggedIn, async (req, res) => {
+  const { id_cliente_evt } = req.params;
+  const eventocli = await pool.query("SELECT * FROM eventos WHERE id_cliente_evt = 1");
+  console.log(eventocli)
+  res.render("links/perfil.hbs", { eventocli, dataeventos: JSON.stringify(eventocli) });
+});
+
 
 router.get("/addart", isLoggedIn, (req, res) => {
   res.render("links/addart.hbs");
@@ -95,8 +102,6 @@ router.get("/art", isLoggedIn, async (req, res) => {
   const links_art = await pool.query("SELECT * FROM art");
   res.render("links/listart.hbs", { links_art });
 });
-
-
 
 
 router.get("/evento/:id_cliente", isLoggedIn, async (req, res) => {

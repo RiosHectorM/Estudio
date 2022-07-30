@@ -1,0 +1,187 @@
+<body onload="cargarDatosDeCliente()">
+  
+  <div class="container" onload="cargarDatosDeCliente()">
+     <div class="row">
+        <div class="col-md-12">
+           <div id="content" class="content content-full-width">
+              <!-- begin profile -->
+              <div class="profile">
+                 <div class="profile-header">
+                    <!-- BEGIN profile-header-cover -->
+                    <div class="profile-header-cover"></div>
+                    <!-- END profile-header-cover -->
+                    <!-- BEGIN profile-header-content -->
+                    <div class="profile-header-content">
+                       <!-- BEGIN profile-header-img -->
+                       <div class="profile-header-img">
+                          <img src="/img/logop.png" alt="">
+                       </div>
+                       <!-- END profile-header-img -->
+                       <!-- BEGIN profile-header-info -->
+                       <div class="profile-header-info">
+                          <h4 id="idnombrehtml" class="m-t-10 m-b-5"></h4>
+                          <p class="m-b-10" id="dninombrehtml"></p>
+                          <a href="#" class="btn btn-primary mb-2">EDITAR DATOS</a>
+                       </div>
+                       <!-- END profile-header-info -->
+                    </div>
+                    <!-- END profile-header-content -->
+                    <!-- BEGIN profile-header-tab -->
+                    <ul class="profile-header-tab nav nav-tabs">
+                       <li class="nav-item"><a href="#" class="nav-link_">VER TODOS</a></li>
+                       <li class="nav-item"><a href="#" class="nav-link_">EVENTOS LEGALES</a></li>
+                       <li class="nav-item"><a href="#" class="nav-link_">EVENTOS MEDICOS</a></li>
+                       <li class="nav-item"><a href="#" class="nav-link_">EVENTOS PSICOLOGICOS</a></li>
+                    </ul>
+                    <!-- END profile-header-tab -->
+                 </div>
+              </div>
+              <!-- end profile -->
+  
+              <!-- begin profile-content -->
+              <div class="profile-content">
+                 <!-- begin tab-content -->
+                 <div class="tab-content p-0">
+                    <!-- begin #profile-post tab -->
+                    <div class="tab-pane fade active show" id="eventosPost">
+                       <!-- begin timeline -->
+                       <ul class="timeline">
+                          <li>
+                             <!-- begin timeline-time -->
+                             <div class="timeline-time">
+                                <span class="date">Fecha</span>
+                                <span class="time">CARGAR FECHA</span>
+                             </div>
+                             <!-- end timeline-time -->
+                             <!-- begin timeline-icon -->
+                             <div class="timeline-icon">
+                                <a href="">&nbsp;</a>
+                             </div>
+                             <!-- end timeline-icon -->
+                             <!-- begin timeline-body -->
+                             <div class="timeline-body">
+                                <div class="timeline-header">
+                                   <span class="username"><a href="javascript:;">DIAGNOSTICO LEGAL</a> </span>
+                                </div>
+                                <div class="timeline-content">
+                                   <p>
+                                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc faucibus turpis quis tincidunt luctus.
+                                      Nam sagittis dui in nunc consequat, in imperdiet nunc sagittis.
+                                   </p>
+                                </div>
+                                <div class="timeline-header">
+                                   <span class="username"><a href="javascript:;">DIAGNOSTICO MEDICO</a> </span>
+                                </div>
+                                <div class="timeline-content">
+                                   <p>
+                                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc faucibus turpis quis tincidunt luctus.
+                                      Nam sagittis dui in nunc consequat, in imperdiet nunc sagittis.
+                                   </p>
+                                </div>
+                                <div class="timeline-header">
+                                   <span class="username"><a href="javascript:;">DIAGNOSTICO PSICOLOGICO</a> </span>
+                                </div>
+                                <div class="timeline-content">
+                                  <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc faucibus turpis quis tincidunt luctus.
+                                    Nam sagittis dui in nunc consequat, in imperdiet nunc sagittis.
+                                  </p>
+                                </div>
+                                <div class="timeline-comment-box">
+                                  <div class="input">
+                                    <div class="input-group">
+                                      <span class="input-group-btn p-l-10"><button class="btn btn-primary f-s-12 rounded-corner" type="button">EDITAR</button>  Ultimo Contacto: CARGAR FECHA / CHEKED</span>
+                                    </div>
+                                  </div>
+                                </div>
+                             </div>
+                             <!-- end timeline-body -->
+                          </li>
+                       </ul>
+                       <!-- end timeline -->
+                    </div>
+                    <!-- end #profile-post tab -->
+                 </div>
+                 <!-- end tab-content -->
+              </div>
+              <!-- end profile-content -->
+           </div>
+        </div>
+     </div>
+  </div>
+</body>
+
+
+{{!-- <script>
+  
+  function actdatetime(){
+    const fechaselect = document.getElementById('inputFechaList').value;
+    const allEvents = {{{dataeventos}}};
+    constructor = "";
+    document.getElementById("arrayFechaInHtml").innerHTML = constructor;
+
+    constructor ='<table class="table table-hover"><thead><tr><th>Nombre</th><th>DNI</th><th class="d-none d-md-table-cell">Ultimo Evento</th><th class="d-none d-md-table-cell">Estado</th><th class="d-none d-md-table-cell">Tipo</th><th class="d-none d-md-table-cell">Cita Legal</th><th class="d-none d-md-table-cell">Cita Medica</th><th class="d-none d-md-table-cell">Cita Psico</th><th>Ver Perfil</th><th>OK</th></tr></thead><tbody>';
+    {{!-- *! agregar LINK DE PERFFIL ----------------- --}}
+    {{!-- *! agregar LINK DE PERFFIL ----------------- --}}
+    {{!-- *! agregar LINK DE PERFFIL ----------------- --}}
+    {{!-- *! agregar LINK DE PERFFIL ----------------- --}}
+    {{!-- *! agregar LINK DE PERFFIL ----------------- --}}
+    sinFecha = constructor;
+
+    const arrayFechaSelec = allEvents.filter(function(evtFecha){
+    if (evtFecha.fecha_prox_contacto == fechaselect){
+      constructor += '<tr><td><div class="notas-container"><p>'+evtFecha.nombre_cliente_evt+'</p><h6>'+evtFecha.notas+'</h6></div></td>'
+      constructor += '<td>'+evtFecha.dni_evt+'</td>'
+      constructor += '<td class="d-none d-md-table-cell">'+evtFecha.fecha_evt+'</td>'
+      constructor += '<td class="d-none d-md-table-cell">'+evtFecha.estado+'</td>'
+      constructor += '<td class="d-none d-md-table-cell">'+evtFecha.tipo+'</td>'
+      if (evtFecha.fecha_prox_legal != ""){
+        constructor += '<td class="d-none d-md-table-cell">'+evtFecha.fecha_prox_legal+'</td>'}
+      else{constructor += '<td class="d-none d-md-table-cell">Sin Fecha</td>'}
+        if (evtFecha.fecha_prox_med != ""){
+        constructor += '<td class="d-none d-md-table-cell">'+evtFecha.fecha_prox_med+'</td>'}
+      else{constructor += '<td class="d-none d-md-table-cell">Sin Fecha</td>'}
+      if (evtFecha.fecha_prox_psico != ""){
+        constructor += '<td class="d-none d-md-table-cell">'+evtFecha.fecha_prox_psico+'</td>'}
+      else{constructor += '<td class="d-none d-md-table-cell">Sin Fecha</td>'}
+      constructor += '<td><button type="button" class="btn btn-primary">Perfil</button></td>'
+      constructor += '<td>CHECK</td></tr>'}
+    return true
+    });
+    
+  if (sinFecha == constructor)
+    {constructor = '<div class="bg-primary col-12 justify-content-center"><h3 class="text-white text-center ">No hay contactos registrados para la fecha seleccionada</h3></div>'}
+  else{constructor += "</tbody></table>";}
+
+  document.getElementById("arrayFechaInHtml").innerHTML = constructor;
+}
+</script> --}}
+
+<script>
+  function generadoraHtml(condicion, arrayEvt){
+
+  constructor= "";
+
+    for (let index = 0; index < arrayEvt.length; index++) {
+      constructor += '554454545'+arrayEvt[index].nombre_cliente_evt+'5444'
+    }
+
+
+    console.log(constructor)
+
+
+    document.getElementById("eventosPost").innerHTML = constructor
+  }
+
+
+  function cargarDatosDeCliente(){ 
+    const allEvents = {{{dataeventos}}};
+    console.log(allEvents)
+    document.getElementById("idnombrehtml").innerHTML = allEvents[0].nombre_cliente_evt;
+    document.getElementById("dninombrehtml").innerHTML = allEvents[0].dni_evt;
+    generadoraHtml(true, allEvents)
+   
+
+  };
+
+</script>

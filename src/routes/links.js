@@ -162,7 +162,7 @@ router.post("/add", isLoggedIn, async (req, res) => {
 
 router.get("/", isLoggedIn, async (req, res) => {
   const links = await pool.query("SELECT * FROM cliente");
-  res.render("links/list.hbs", { links });
+  res.render("links/list.hbs", { links, dataCliArray: JSON.stringify(links)});
 });
 
 router.get("/delete/:id", isLoggedIn, async (req, res) => {

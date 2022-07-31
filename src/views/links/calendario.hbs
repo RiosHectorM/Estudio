@@ -60,6 +60,11 @@
 </script>
 
 <script>
+  function alertachec(gg){
+    let nomcheck= "checkbox"+gg
+    let ooo = document.getElementById(nomcheck).checked
+    alert("grabar esto en tabla eventos"+ooo+ nomcheck)
+  }
 
   function messelector(mes){
     switch (mes) {
@@ -116,12 +121,8 @@
     constructor = "";
     document.getElementById("arrayFechaInHtml").innerHTML = constructor;
 
-    constructor ='<table class="table table-hover"><thead><tr><th>Nombre</th><th>DNI</th><th class="d-none d-md-table-cell">Ultimo Evento</th><th class="d-none d-md-table-cell">Estado</th><th class="d-none d-md-table-cell">Tipo</th><th class="d-none d-md-table-cell">Cita Legal</th><th class="d-none d-md-table-cell">Cita Medica</th><th class="d-none d-md-table-cell">Cita Psico</th><th>Ver Perfil</th><th>OK</th></tr></thead><tbody>';
-    {{!-- *! agregar LINK DE PERFFIL ----------------- --}}
-    {{!-- *! agregar LINK DE PERFFIL ----------------- --}}
-    {{!-- *! agregar LINK DE PERFFIL ----------------- --}}
-    {{!-- *! agregar LINK DE PERFFIL ----------------- --}}
-    {{!-- *! agregar LINK DE PERFFIL ----------------- --}}
+    constructor ='<table class="table table-hover"><thead><tr><th>Nombre</th><th>DNI</th><th class="d-none d-md-table-cell">Ultimo Evento</th><th class="d-none d-md-table-cell">Estado</th><th class="d-none d-md-table-cell">Tipo</th><th class="d-none d-md-table-cell">Cita Legal</th><th class="d-none d-md-table-cell">Cita Medica</th><th class="d-none d-md-table-cell">Cita Psico</th><th>Perfil</th><th>Contacto</th></tr></thead><tbody>';
+
     sinFecha = constructor;
 
     const arrayFechaSelec = allEvents.filter(function(evtFecha){
@@ -140,8 +141,8 @@
       if (evtFecha.fecha_prox_psico != ""){
         constructor += '<td class="d-none d-md-table-cell">'+evtFecha.fecha_prox_psico+'</td>'}
       else{constructor += '<td class="d-none d-md-table-cell">Sin Fecha</td>'}
-      constructor += '<td><button type="button" class="btn btn-primary">Perfil</button></td>'
-      constructor += '<td>CHECK</td></tr>'}
+      constructor += '<td><a class="btn btn-primary submit-btn" href="/links/perfil/'+evtFecha.id_cliente_evt+'" role="button">Perfil</a></td>'
+      constructor += '<td><div class="checkbox"><input type="checkbox" id="checkbox'+evtFecha.id_cliente_evt+'" onchange="alertachec('+evtFecha.id_cliente_evt+')"><label for="checkbox'+evtFecha.id_cliente_evt+'"></label></div></td></tr>'}
     return true
     });
     
@@ -176,5 +177,4 @@ jQuery('#inputFechaList').datetimepicker({
 });
 
 cargarimagen();
-
 </script>

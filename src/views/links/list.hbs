@@ -4,16 +4,17 @@
       <div class="row">
         <div class="booking-form row">
           <h5 id="titulo" class="badge bg-primary fs-5">BUSCAR CLIENTE</h5>
-          <input class="form-control mt-2" type="text" name="search" id="search" placeholder="Ingrese nombre de Cliente" />
+          <input class="form-control mt-2" type="text" name="search" id="search" placeholder="Ingrese nombre de Cliente" onchange="cambioeltexto()" />
 
           <button class="btn btn-primary mt-3" onclick="mostrarFlitros()">BUSCAR POR FILTROS</button>
 
           <div class="gradientefondo" id="divFiltros" style="display: none">
             <div class="row justify-content-around">
-              <div class="col-md-2">
+              <div class="col-md-4">
                 <div class="form-group">
                   <span class="form-label">ESTADO</span>
-                  <select class="form-control" name="estado" id="estado">
+                  <select class="form-control" name="estado" id="estado" onchange="cambioelestado()">
+                    <option>Seleccione una opcion</option>
                     <option>Alta</option>
                     <option>Alta con Discapacidad</option>
                     <option>Judiciales</option>
@@ -22,10 +23,11 @@
                   <span class="select-arrow"></span>
                 </div>
               </div>
-              <div class="col-md-2">
+              <div class="col-md-4">
                 <div class="form-group">
                   <span class="form-label">TIPO</span>
-                  <select class="form-control" name="tipo" id="tipo">
+                  <select class="form-control" name="tipo" id="tipo" onchange="cambioeltipo()">
+                    <option>Seleccione una Opcion</option>
                     <option>Accidente</option>
                     <option>Accidente Initinere</option>
                     <option>Enfermedad</option>
@@ -38,7 +40,7 @@
               <div class="col-md-3">
                 <div class="form-group">
                   <div class="form-check form-switch fs-5 text-light">
-                    <input class="form-check-input" type="checkbox" id="switch_importante" name="importante">
+                    <input class="form-check-input" type="checkbox" id="switch_importante" name="importante" onchange="cambioelimportante()">
                     <label class="form-check-label" for="switch_importante">IMPORTANTE</label>
                   </div>
                 </div>
@@ -46,7 +48,7 @@
               <div class="col-md-3">
                 <div class="form-group">
                   <div class="form-check form-switch fs-5 text-light">
-                    <input class="form-check-input" type="checkbox" id="switch_favorito" name="favorito">
+                    <input class="form-check-input" type="checkbox" id="switch_favorito" name="favorito" onchange="cambioelfavorito()">
                     <label class="form-check-label" for="switch_favorito">FAVORITO</label>
                   </div>
                 </div>
@@ -54,7 +56,7 @@
               <div class="col-md-3 d-flex align-items-center text-center">
                 <div class="form-group">
                   <div class="form-check form-switch fs-5 text-light">
-                    <input class="form-check-input" type="checkbox" id="switch_finalizado" name="finalizado">
+                    <input class="form-check-input" type="checkbox" id="switch_finalizado" name="finalizado" onchange="cambioelfinalizado()">
                     <label class="form-check-label" for="switch_finalizado">FINALIZADO</label>
                   </div>
                 </div>
@@ -62,7 +64,7 @@
               <div class="col-md-3 d-flex align-items-center text-center">
                 <div class="form-group">
                   <div class="form-check form-switch fs-5 text-light">
-                    <input class="form-check-input" type="checkbox" id="switch_baja" name="baja">
+                    <input class="form-check-input" type="checkbox" id="switch_baja" name="baja" onchange="cambioelBaja()">
                     <label class="form-check-label" for="switch_baja">BAJA</label>
                   </div>
                 </div>
@@ -70,10 +72,7 @@
             </div>
           </div>
 
-
-
             <div class="table-responsive mt-3">
-
 
             <div id="constructorArrays">
               <table class="table table-hover">
@@ -145,6 +144,7 @@
 </div>
     
 <script>
+  function cambioeltexto(){
   const searchInput = document.getElementById("search");
   const rows = document.querySelectorAll("tbody tr");
   searchInput.addEventListener("keyup", function (event) {
@@ -154,7 +154,7 @@
         ? (row.style.display = "table-row")
         : (row.style.display = "none");
     });
-  });
+  });}
 
 function mostrarFlitros() {
   var x = document.getElementById("divFiltros");
@@ -164,6 +164,62 @@ function mostrarFlitros() {
     x.style.display = "none";
   }
 }
+
+function cambioelestado(){
+const valorEstado = document.getElementById("estado").value;
+  arrayFiltrado(valorEstado, "estado");
+}
+
+function cambioeltipo(){
+const valorTipo = document.getElementById("tipo").value;
+  arrayFiltrado(valorTipo, "tipo")
+}
+
+function cambioelimportante(){
+  let valorImportante = document.getElementById("switch_importante").checked;
+  if (valorImportante == true){
+    valorImportante="on"
+    document.getElementById("titulo").textContent = "BUSCAR CLIENTE POR FAVORITO"}
+  else{
+    document.getElementById("titulo").textContent = "BUSCAR CLIENTE"
+    valorImportante = null}
+  arrayFiltrado(valorImportante, "importante")
+}
+  
+function cambioelfavorito(){
+  let valorFavorito = document.getElementById("switch_favorito").checked;
+  if (valorFavorito == true){
+    valorFavorito="on"
+    document.getElementById("titulo").textContent = "BUSCAR CLIENTE POR FAVORITO"}
+  else{
+    document.getElementById("titulo").textContent = "BUSCAR CLIENTE"
+    valorFavorito = null}
+  arrayFiltrado(valorFavorito, "favorito")
+}
+
+function cambioelfinalizado(){
+  let valorFinalizado = document.getElementById("switch_finalizado").checked;
+  if (valorFinalizado == true){
+    valorFinalizado="on"
+    document.getElementById("titulo").textContent = "BUSCAR CLIENTE POR FINALIZADOS"}
+  else{
+    document.getElementById("titulo").textContent = "BUSCAR CLIENTE"
+    valorFinalizado = null}
+  arrayFiltrado(valorFinalizado, "finalizado")
+}
+
+function cambioelBaja(){
+  let valorBaja = document.getElementById("switch_baja").checked;
+  if (valorBaja == true){
+    valorBaja="on"
+    document.getElementById("titulo").textContent = "BUSCAR CLIENTE POR BAJA"}
+  else{
+    document.getElementById("titulo").textContent = "BUSCAR CLIENTE"
+    valorBaja = null}
+  arrayFiltrado(valorBaja, "baja")
+}
+
+
 
 function constructorDeHTML(cli_fil){
   let constructor = '<tr><td class="fs-4 text-light">'+cli_fil.damnificado+'</td><td class="fs-5 text-light text-center">'+cli_fil.dni_cuil+'</td><td><div><a class="btn submit-btn" href="/links/evento/'+cli_fil.id_cliente+'" role="button">Asignar Evento</a></div></td><td> <div><a class="btn submit-btn" href="/links/edit/'+cli_fil.id_cliente+'" role="button">Editar Cliente</a></div></td><td><div><a class="btn submit-btn" href="/links/perfil/'+cli_fil.id_cliente+'" role="button">Ver Perfil</a></div></td></tr>'
@@ -181,14 +237,14 @@ function arrayFiltrado(valor, campo){
 
     sinClientes = constructor
 
-    if (campo = "estado"){
+    if (campo == "estado"){
         const clientesFiltrados = clientesSinFiltro.filter(function(cli_fil){
           if (cli_fil.estado == valor){
             constructor += constructorDeHTML(cli_fil)
             }
           return true
         });}
-    if (campo = "tipo"){
+    if (campo == "tipo"){
       const clientesFiltrados = clientesSinFiltro.filter(function(cli_fil){
           if (cli_fil.tipo == valor){
             constructor += constructorDeHTML(cli_fil)
@@ -196,9 +252,33 @@ function arrayFiltrado(valor, campo){
           return true
         });
     }
-    if (campo = "importante"){
+    if (campo == "importante"){
       const clientesFiltrados = clientesSinFiltro.filter(function(cli_fil){
-          if (cli_fil.tipo == valor){
+          if (cli_fil.importante == valor){
+            constructor += constructorDeHTML(cli_fil)
+            }
+          return true
+        });
+    }
+    if (campo == "favorito"){
+      const clientesFiltrados = clientesSinFiltro.filter(function(cli_fil){
+          if (cli_fil.favorito == valor){
+            constructor += constructorDeHTML(cli_fil)
+            }
+          return true
+        });
+    }
+    if (campo == "finalizado"){
+      const clientesFiltrados = clientesSinFiltro.filter(function(cli_fil){
+          if (cli_fil.finalizado == valor){
+            constructor += constructorDeHTML(cli_fil)
+            }
+          return true
+        });
+    }
+    if (campo == "baja"){
+      const clientesFiltrados = clientesSinFiltro.filter(function(cli_fil){
+          if (cli_fil.baja == valor){
             constructor += constructorDeHTML(cli_fil)
             }
           return true
@@ -210,55 +290,10 @@ function arrayFiltrado(valor, campo){
   else{
     constructor += "</tbody></table>";
     document.getElementById("constructorArrays").innerHTML = constructorPre+constructor;}
-
-  
-  document.getElementById("titulo").textContent = "BUSCAR CLIENTE"
-  titulo = document.getElementById("titulo").textContent;
-  titulo += " POR "+valor.toUpperCase()
-  document.getElementById("titulo").textContent = titulo
 }
 
-const elementoEstado = document.getElementById("estado");
-elementoEstado.addEventListener('change', (event) => {
-  let valorEstado = event.target.value
-  arrayFiltrado(valorEstado, "estado")
-});
-
-const elementoTipo = document.getElementById("tipo");
-elementoTipo.addEventListener('change', (event) => {
-  let valorTipo = event.target.value
-  arrayFiltrado(valorTipo, "tipo")
-});
-
-const elementoImportante = document.getElementById("switch_importante");
-elementoImportante.addEventListener('change', (event) => {
-    alert(`Te gusta el sabor ${event.target.checked}`);
-});
-const elementoFavorito = document.getElementById("switch_favorito");
-elementoFavorito.addEventListener('change', (event) => {
-    alert(`Te gusta el sabor ${event.target.checked}`);
-});
-const elementoFinalizado = document.getElementById("switch_finalizado");
-elementoFinalizado.addEventListener('change', (event) => {
-    alert(`Te gusta el sabor ${event.target.checked}`);
-});
-const elementoBaja = document.getElementById("switch_baja");
-elementoBaja.addEventListener('change', (event) => {
-    alert(`Te gusta el sabor ${event.target.checked}`);
-    filtrarArray("baja", true)
-});
-
-
-  function filtrarArray(flag, valor){
-    var x = document.getElementById("divFiltros");
-    var titulo = document.getElementById("titulo").textContent;
-    x.style.display = "none";
-    alert(flag, valor)
-
-
-
-
-  }
 </script>
+
+
 
 

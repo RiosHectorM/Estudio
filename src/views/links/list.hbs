@@ -3,16 +3,17 @@
     <div class="container">
       <div class="row">
         <div class="booking-form row">
-          <h5 class="badge bg-primary fs-5">BUSCAR CLIENTE</h5>
+          <h5 id="titulo" class="badge bg-primary fs-5">BUSCAR CLIENTE</h5>
           <input class="form-control mt-2" type="text" name="search" id="search" placeholder="Ingrese nombre de Cliente" />
-            <div class="table-responsive mt-3">
 
+          <button class="btn btn-primary mt-3" onclick="mostrarFlitros()">BUSCAR POR FILTROS</button>
 
+          <div class="gradientefondo" id="divFiltros" style="display: none">
             <div class="row justify-content-around">
               <div class="col-md-2">
                 <div class="form-group">
                   <span class="form-label">ESTADO</span>
-                  <select class="form-control" name="estado">
+                  <select class="form-control" name="estado" id="estado">
                     <option>Alta</option>
                     <option>Alta con Discapacidad</option>
                     <option>Judiciales</option>
@@ -24,22 +25,12 @@
               <div class="col-md-2">
                 <div class="form-group">
                   <span class="form-label">TIPO</span>
-                  <select class="form-control" name="tipo">
+                  <select class="form-control" name="tipo" id="tipo">
                     <option>Accidente</option>
                     <option>Accidente Initinere</option>
                     <option>Enfermedad</option>
                   </select>
                   <span class="select-arrow"></span>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="form-group">
-                  <span class="form-label">FECHA DE EVENTO</span>
-                  <input
-                    class="form-control"
-                    type="date"
-                    name="fecha_evt"
-                  />
                 </div>
               </div>
             </div>
@@ -77,8 +68,14 @@
                 </div>
               </div>   
             </div>
+          </div>
 
 
+
+            <div class="table-responsive mt-3">
+
+
+            <div id="constructorArrays">
               <table class="table table-hover">
                 <thead>
                   <tr>
@@ -110,23 +107,16 @@
                     </td> 
                     <td>
                       <div>
-                          {{!-- *! agregar VISTA DE PERFFIL ----------------- --}}
-                          {{!-- *! agregar VISTA DE PERFFIL ----------------- --}}
-                          {{!-- *! agregar VISTA DE PERFFIL ----------------- --}}
-                          {{!-- *! agregar VISTA DE PERFFIL ----------------- --}}
-                          <a class="btn submit-btn" href="/links/profile/{{id_cliente}}" role="button"
+                          <a class="btn submit-btn" href="/links/perfil/{{id_cliente}}" role="button"
                             >Ver Perfil
                           </a>
-                          {{!-- *! agregar VISTA DE PERFFIL ----------------- --}}
-                          {{!-- *! agregar VISTA DE PERFFIL ----------------- --}}
-                          {{!-- *! agregar VISTA DE PERFFIL ----------------- --}}
-                          {{!-- *! agregar VISTA DE PERFFIL ----------------- --}}
                       </div>
                     </td>
                   </tr>
                   {{/each}}
                 </tbody>
               </table>
+        </div>
               <div class="row d-flex justify-content-around">
               <div class="col-md-3">
                 <div class="form-btn">
@@ -165,6 +155,110 @@
         : (row.style.display = "none");
     });
   });
+
+function mostrarFlitros() {
+  var x = document.getElementById("divFiltros");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+function constructorDeHTML(cli_fil){
+  let constructor = '<tr><td class="fs-4 text-light">'+cli_fil.damnificado+'</td><td class="fs-5 text-light text-center">'+cli_fil.dni_cuil+'</td><td><div><a class="btn submit-btn" href="/links/evento/'+cli_fil.id_cliente+'" role="button">Asignar Evento</a></div></td><td> <div><a class="btn submit-btn" href="/links/edit/'+cli_fil.id_cliente+'" role="button">Editar Cliente</a></div></td><td><div><a class="btn submit-btn" href="/links/perfil/'+cli_fil.id_cliente+'" role="button">Ver Perfil</a></div></td></tr>'
+  return constructor
+}
+
+function arrayFiltrado(valor, campo){
+
+    const clientesSinFiltro = {{{dataCliArray}}};
+
+    constructor = "";
+    document.getElementById("constructorArrays").innerHTML = constructor;
+
+    constructorPre ='<table class="table table-hover"><thead><tr><th class="bg-primary fs-5 text-center">DAMNIFICADO</th><th class="bg-primary fs-5 text-center">DNI</th><th class="bg-primary fs-5 text-center">EVENTO</th><th class="bg-primary fs-5 text-center">EDITAR</th><th class="bg-primary fs-5 text-center">PERFIL</th></tr></thead><tbody>'
+
+    sinClientes = constructor
+
+    if (campo = "estado"){
+        const clientesFiltrados = clientesSinFiltro.filter(function(cli_fil){
+          if (cli_fil.estado == valor){
+            constructor += constructorDeHTML(cli_fil)
+            }
+          return true
+        });}
+    if (campo = "tipo"){
+      const clientesFiltrados = clientesSinFiltro.filter(function(cli_fil){
+          if (cli_fil.tipo == valor){
+            constructor += constructorDeHTML(cli_fil)
+            }
+          return true
+        });
+    }
+    if (campo = "importante"){
+      const clientesFiltrados = clientesSinFiltro.filter(function(cli_fil){
+          if (cli_fil.tipo == valor){
+            constructor += constructorDeHTML(cli_fil)
+            }
+          return true
+        });
+    }
+
+  if (sinClientes == constructor){
+    document.getElementById("constructorArrays").innerHTML = '<div class="bg-primary col-12 justify-content-center"><h3 class="text-white text-center ">No hay ningun cliente que cumpla con este Filtro</h3></div>'}
+  else{
+    constructor += "</tbody></table>";
+    document.getElementById("constructorArrays").innerHTML = constructorPre+constructor;}
+
+  
+  document.getElementById("titulo").textContent = "BUSCAR CLIENTE"
+  titulo = document.getElementById("titulo").textContent;
+  titulo += " POR "+valor.toUpperCase()
+  document.getElementById("titulo").textContent = titulo
+}
+
+const elementoEstado = document.getElementById("estado");
+elementoEstado.addEventListener('change', (event) => {
+  let valorEstado = event.target.value
+  arrayFiltrado(valorEstado, "estado")
+});
+
+const elementoTipo = document.getElementById("tipo");
+elementoTipo.addEventListener('change', (event) => {
+  let valorTipo = event.target.value
+  arrayFiltrado(valorTipo, "tipo")
+});
+
+const elementoImportante = document.getElementById("switch_importante");
+elementoImportante.addEventListener('change', (event) => {
+    alert(`Te gusta el sabor ${event.target.checked}`);
+});
+const elementoFavorito = document.getElementById("switch_favorito");
+elementoFavorito.addEventListener('change', (event) => {
+    alert(`Te gusta el sabor ${event.target.checked}`);
+});
+const elementoFinalizado = document.getElementById("switch_finalizado");
+elementoFinalizado.addEventListener('change', (event) => {
+    alert(`Te gusta el sabor ${event.target.checked}`);
+});
+const elementoBaja = document.getElementById("switch_baja");
+elementoBaja.addEventListener('change', (event) => {
+    alert(`Te gusta el sabor ${event.target.checked}`);
+    filtrarArray("baja", true)
+});
+
+
+  function filtrarArray(flag, valor){
+    var x = document.getElementById("divFiltros");
+    var titulo = document.getElementById("titulo").textContent;
+    x.style.display = "none";
+    alert(flag, valor)
+
+
+
+
+  }
 </script>
 
 

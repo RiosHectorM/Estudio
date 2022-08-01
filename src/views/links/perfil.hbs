@@ -4,55 +4,38 @@
      <div class="row">
         <div class="col-md-12">
            <div id="content" class="content content-full-width">
-              <!-- begin profile -->
               <div class="profile">
                  <div class="profile-header">
-                    <!-- BEGIN profile-header-cover -->
                     <div class="profile-header-cover"></div>
-                    <!-- END profile-header-cover -->
-                    <!-- BEGIN profile-header-content -->
                     <div class="profile-header-content">
-                       <!-- BEGIN profile-header-img -->
                        <div class="profile-header-img">
                           <img src="/img/logop.png" alt="">
                        </div>
-                       <!-- END profile-header-img -->
-                       <!-- BEGIN profile-header-info -->
-                       <div class="profile-header-info">
+                       <div class="profile-header-info" id="botonActu">
                           <h4 id="idnombrehtml" class="m-t-10 m-b-5"></h4>
                           <p class="m-b-10" id="dninombrehtml"></p>
-                          <a href="#" class="btn btn-primary mb-2">EDITAR DATOS</a>
                        </div>
-                       <!-- END profile-header-info -->
                     </div>
-                    <!-- END profile-header-content -->
-                    <!-- BEGIN profile-header-tab -->
-                    <ul class="profile-header-tab nav nav-tabs">
+                    <ul class="profile-header-tab nav nav-tabs" id="barradelinks">
                        <li class="nav-item"><a href="#" class="nav-link" onclick="cargarDatosDeCliente()">VER TODOS</a></li>
                        <li class="nav-item"><a href="#" class="nav-link" onclick="cargarDatosLegales()">EVENTOS LEGALES</a></li>
                        <li class="nav-item"><a href="#" class="nav-link" onclick="cargarDatosMedicos()">EVENTOS MEDICOS</a></li>
                        <li class="nav-item"><a href="#" class="nav-link "onclick="cargarDatosPsicologicos()">EVENTOS PSICOLOGICOS</a></li>
                     </ul>
-                    <!-- END profile-header-tab -->
                  </div>
               </div>
-              <!-- end profile -->
   
-              <!-- begin profile-content -->
               <div class="profile-content">
-                 <!-- begin tab-content -->
                  <div class="tab-content p-0">
-                    <!-- begin #profile-post tab -->
                     <div class="tab-pane fade active show" id="eventosPost">
-                       <!-- begin timeline -->
-                       
-                       <!-- end timeline -->
+
                     </div>
-                    <!-- end #profile-post tab -->
                  </div>
-                 <!-- end tab-content -->
               </div>
-              <!-- end profile-content -->
+              
+              <div class="d-flex justify-content-center">
+                <a class="btn btn-primary mb-3" href="/profile" role="button">VOLVER AL MENU</a>
+              </div>
            </div>
         </div>
      </div>
@@ -87,7 +70,6 @@
     generadoraHtml(arrayPsico, "psico")
   }
 
-
   function generadoraHtml(arrayEvt, flag){
 
     constructor = ""
@@ -104,13 +86,25 @@
       constructor += '<div class="timeline-comment-box"><div class="input"><div class="input-group"><span class="input-group-btn p-l-10"><button class="btn btn-primary f-s-12 rounded-corner" type="button">EDITAR</button> Fecha de Contacto: '+arrayEvt[index].fecha_prox_contacto+' Realizado: '+arrayEvt[index].check+'</span></div></div></div></div></li>';
     }
     constructor += '</ul>'
-    document.getElementById("eventosPost").innerHTML = constructor
+    
+    if (arrayEvt.length == 0){
+      console.log("entro al IF)")
+      document.getElementById("eventosPost").innerHTML = '<div class="booking-form text-center"><h2>NO HAY EVENTOS PARA EL CLIENTE SELECCIONADO</h2></div>'}
+      else{document.getElementById("eventosPost").innerHTML = constructor}
   }
 
   function cargarDatosDeCliente(){ 
     const allEvents = {{{dataeventos}}};
-    document.getElementById("idnombrehtml").innerHTML = allEvents[0].nombre_cliente_evt;
-    document.getElementById("dninombrehtml").innerHTML = allEvents[0].dni_evt;
+    console.log(allEvents)
+    const clienteSeleccionado = {{{clienteSel}}};
+
+    document.getElementById("idnombrehtml").innerHTML = clienteSeleccionado[0].damnificado;
+    document.getElementById("dninombrehtml").innerHTML = 'DNI: '+clienteSeleccionado[0].dni_cuil+' Telefono: '+clienteSeleccionado[0].telefono;
+    
+    document.getElementById("botonActu").innerHTML += '<a href="/links/edit/'+clienteSeleccionado[0].id_cliente+'" class="btn btn-primary mb-2">EDITAR DATOS</a>'
+    
+    document.getElementById("barradelinks").innerHTML += '<li class="nav-item"><a class="btn btn-primary" href="/links/evento/'+clienteSeleccionado[0].id_cliente+'" role="button">AGREGAR EVENTO</a></li>'
+
     generadoraHtml(allEvents,"todos")
   };
 

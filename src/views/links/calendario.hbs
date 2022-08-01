@@ -163,14 +163,21 @@
     $('#inputFechaList').datetimepicker({
         inline: true,
     });
+
     var datehoy = new Date();
     mes = (datehoy.getMonth() + 1);
     mes = "0"+mes
     mes = mes.slice(-2);
-    var dateini = datehoy.getFullYear()+'-'+mes+'-'+datehoy.getDate();
+    dia = datehoy.getDate()
+    dia = "0"+dia
+    dia = dia.slice(-2);
+    var dateini = datehoy.getFullYear()+'-'+mes+'-'+dia;
     document.getElementById("anio").innerHTML = dateini.slice(0, -6);
     document.getElementById("mes").innerHTML = messelector(dateini.slice(5, -3));
     document.getElementById("dia").innerHTML = dateini.slice(8);
+    
+    document.getElementById('inputFechaList').value = dateini
+    actdatetime();
   });
 
 jQuery('#inputFechaList').datetimepicker({

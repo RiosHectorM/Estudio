@@ -4,16 +4,17 @@ const pool = require("../database");
 const { isLoggedIn } = require("../lib/auth");
 
 router.get("/calendario", isLoggedIn, async (req, res) => {
-  const listadeclientes = await pool.query("SELECT * FROM cliente");
   const listadeeventos = await pool.query("SELECT * FROM eventos");
-  res.render("links/calendario.hbs", { listadeclientes, listadeeventos,  dataclientes: JSON.stringify(listadeclientes), dataeventos: JSON.stringify(listadeeventos)});
+  res.render("links/calendario.hbs", { dataeventos: JSON.stringify(listadeeventos)});
 });
 
 router.get("/perfil/:id_cliente_evt", isLoggedIn, async (req, res) => {
   const { id_cliente_evt } = req.params;
+  const clienteSelected = await pool.query("SELECT * FROM cliente WHERE id_cliente = ?", [id_cliente_evt]);
   const eventocli = await pool.query("SELECT * FROM eventos WHERE id_cliente_evt = ?", [id_cliente_evt]);
   console.log(eventocli)
-  res.render("links/perfil.hbs", { eventocli, dataeventos: JSON.stringify(eventocli) });
+  console.log(clienteSelected)
+  res.render("links/perfil.hbs", { clienteSel: JSON.stringify(clienteSelected), eventocli, dataeventos: JSON.stringify(eventocli) });
 });
 
 router.get("/addart", isLoggedIn, (req, res) => {
@@ -37,10 +38,38 @@ router.post("/addart", isLoggedIn, async (req, res) => {
 
   await pool.query("INSERT INTO art set ?", [newART]);
   req.flash("success", "ART Grabada correctamente");
-  res.redirect("/linksart");
+  res.redirect("/links/art");
 });
 
+router.get("/art", isLoggedIn, async (req, res) => {
+  const links_art = await pool.query("SELECT * FROM art");
+  res.render("links/listart.hbs", { links_art });
+});
 
+router.get("/deleteart/:id", isLoggedIn, async (req, res) => {
+  const { id } = req.params;
+  await pool.query("DELETE FROM art WHERE id_art = ?", [id]);
+  res.redirect("/links/art");
+});
+
+router.get("/editart/:id", isLoggedIn, async (req, res) => {
+  const { id } = req.params;
+  const artDat = await pool.query("SELECT * FROM art WHERE id_art = ?", [id]);
+  res.render("links/editart.hbs", { artDatos: artDat[0] });
+});
+
+router.post("/editart/:id", isLoggedIn, async (req, res) => {
+  const { id } = req.params;
+  const { nombre_art, domicilio_art, telefono_art, mail_art } = req.body;
+  const artAct = {
+    nombre_art,
+    domicilio_art,
+    telefono_art,
+    mail_art,
+  };
+  await pool.query("UPDATE art set ? WHERE id_art = ?", [artAct, id]);
+  res.redirect("/links/art");
+});
 
 router.post("/addevento/:id_cliente", isLoggedIn, async (req, res) => {
   const { id_cliente } = req.params;
@@ -112,18 +141,11 @@ router.get("/add", isLoggedIn,  function(req, res) {
 }
 });
 
-router.get("/art", isLoggedIn, async (req, res) => {
-  const links_art = await pool.query("SELECT * FROM art");
-  res.render("links/listart.hbs", { links_art });
-});
-
-
 router.get("/evento/:id_cliente", isLoggedIn, async (req, res) => {
   const { id_cliente } = req.params;
   const evento_cliente = await pool.query("SELECT * FROM cliente WHERE id_cliente = ?", [id_cliente]);
   res.render("links/evento.hbs", { eventocli: evento_cliente[0] });
 });
-
 
 router.post("/add", isLoggedIn, async (req, res) => {
   const {
@@ -169,7 +191,6 @@ router.post("/add", isLoggedIn, async (req, res) => {
     estudios_medicos, 
     lugar_estudios, 
   };
-
   await pool.query("INSERT INTO cliente set ?", [newClient]);
   req.flash("success", "Cliente Grabado correctamente");
   res.redirect("/links");
@@ -178,13 +199,6 @@ router.post("/add", isLoggedIn, async (req, res) => {
 router.get("/", isLoggedIn, async (req, res) => {
   const links = await pool.query("SELECT * FROM cliente");
   res.render("links/list.hbs", { links, dataCliArray: JSON.stringify(links)});
-});
-
-router.get("/delete/:id", isLoggedIn, async (req, res) => {
-  const { id } = req.params;
-  await pool.query("DELETE FROM cliente WHERE id_cliente = ?", [id]);
-  req.flash("success", "Cliente Eliminado correctamente");
-  res.redirect("/links/");
 });
 
 router.get("/edit/:id", isLoggedIn, async (req, res) => {
@@ -206,8 +220,6 @@ router.post("/edit/:id", isLoggedIn, async (req, res) => {
   res.redirect("/links");
 });
 
-
-
 router.get("/check/:id", isLoggedIn, async (req, res) => {
   console.log("entro");
   const { id } = 2;
@@ -218,7 +230,6 @@ router.get("/check/:id", isLoggedIn, async (req, res) => {
   await pool.query("UPDATE eventos set ? WHERE id_cliente_evt = ?", [newCheck, id]);
   req.flash("success", "Link Editado correctamente");
 });
-
 
 module.exports = router;
 

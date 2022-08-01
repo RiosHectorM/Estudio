@@ -4,12 +4,12 @@
       <div class="row">
         <div class="booking-form row">
           <h5 id="titulo" class="badge bg-primary fs-5">BUSCAR CLIENTE</h5>
-          <input class="form-control mt-2" type="text" name="search" id="search" placeholder="Ingrese nombre de Cliente" onchange="cambioeltexto()" />
+          <input class="form-control mt-2" type="text" name="search" id="search" placeholder="Ingrese nombre de Cliente" onkeyup="cambioeltexto()" />
 
           <button class="btn btn-primary mt-3" onclick="mostrarFlitros()">BUSCAR POR FILTROS</button>
 
-          <div class="gradientefondo" id="divFiltros" style="display: none">
-            <div class="row justify-content-around">
+          <div class="gradientefondo align-" id="divFiltros" style="display: none">
+            <div class="row justify-content-around align-items-center">
               <div class="col-md-4">
                 <div class="form-group">
                   <span class="form-label">ESTADO</span>
@@ -35,6 +35,14 @@
                   <span class="select-arrow"></span>
                 </div>
               </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <span class="form-label">Reset</span>
+                  <button class="submit-btn" role="button" onclick="location.reload()">QUITAR FILTROS</button>
+                </div>
+              </div>
+
             </div>
             <div class="row">
               <div class="col-md-3">
@@ -155,6 +163,11 @@
         : (row.style.display = "none");
     });
   });}
+
+function resetFiltros(){
+
+}
+
 
 function mostrarFlitros() {
   var x = document.getElementById("divFiltros");

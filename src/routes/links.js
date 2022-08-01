@@ -40,8 +40,12 @@ router.post("/addart", isLoggedIn, async (req, res) => {
   res.redirect("/linksart");
 });
 
-router.post("/addevento", isLoggedIn, async (req, res) => {
+
+
+router.post("/addevento/:id_cliente", isLoggedIn, async (req, res) => {
+  const { id_cliente } = req.params;
   const {
+    id_cliente_evt = id_cliente,
     nombre_cliente_evt,
     dni_evt,
     importante,  
@@ -61,7 +65,17 @@ router.post("/addevento", isLoggedIn, async (req, res) => {
     fecha_evt,
   } = req.body;
 
+  const newClienteEstado = {
+    tipo,
+    estado,
+    importante,  
+    favorito,
+    finalizado,
+    baja,
+  };
+
   const newEvento = {
+    id_cliente_evt,
     nombre_cliente_evt,
     dni_evt,
     importante,  
@@ -80,9 +94,10 @@ router.post("/addevento", isLoggedIn, async (req, res) => {
     estado,
     fecha_evt,
   };
-
   await pool.query("INSERT INTO eventos set ?", [newEvento]);
-  req.flash("success", "Evento Grabado correctamente");
+  console.log("nuevo estado", newClienteEstado)
+  console.log(id_cliente);
+  await pool.query("UPDATE cliente set ? WHERE id_cliente = ?", [newClienteEstado, id_cliente]);
   res.redirect("/links/calendario");
 });
 
@@ -190,6 +205,20 @@ router.post("/edit/:id", isLoggedIn, async (req, res) => {
   req.flash("success", "Link Editado correctamente");
   res.redirect("/links");
 });
+
+
+
+router.get("/check/:id", isLoggedIn, async (req, res) => {
+  console.log("entro");
+  const { id } = 2;
+  const { check } = true;
+  const newCheck = {
+    check,
+  };
+  await pool.query("UPDATE eventos set ? WHERE id_cliente_evt = ?", [newCheck, id]);
+  req.flash("success", "Link Editado correctamente");
+});
+
 
 module.exports = router;
 

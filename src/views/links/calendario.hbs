@@ -125,7 +125,7 @@
     constructor = "";
     document.getElementById("arrayFechaInHtml").innerHTML = constructor;
 
-    constructor ='<table class="table table-hover"><thead><tr><th>Nombre</th><th>DNI</th><th class="d-none d-md-table-cell">Ultimo Evento</th><th class="d-none d-md-table-cell">Estado</th><th class="d-none d-md-table-cell">Tipo</th><th class="d-none d-md-table-cell">Cita Legal</th><th class="d-none d-md-table-cell">Cita Medica</th><th class="d-none d-md-table-cell">Cita Psico</th><th>Perfil</th><th>Contacto</th></tr></thead><tbody>';
+    constructor ='<table class="table table-hover"><thead><tr><th>Nombre</th><th>DNI</th><th>Telefono</th><th class="d-none d-md-table-cell">Ultimo Evento</th><th class="d-none d-md-table-cell">Estado</th><th class="d-none d-md-table-cell">Tipo</th><th class="d-none d-md-table-cell">Cita Legal</th><th class="d-none d-md-table-cell">Cita Medica</th><th class="d-none d-md-table-cell">Cita Psico</th><th>Perfil</th></tr></thead><tbody>';
 
     sinFecha = constructor;
 
@@ -133,6 +133,7 @@
     if (evtFecha.fecha_prox_contacto == fechaselect){
       constructor += '<tr><td><div class="notas-container"><p>'+evtFecha.nombre_cliente_evt+'</p><h6>'+evtFecha.notas+'</h6></div></td>'
       constructor += '<td>'+evtFecha.dni_evt+'</td>'
+      constructor += '<td>'+evtFecha.telefono+'</td>'
       constructor += '<td class="d-none d-md-table-cell">'+evtFecha.fecha_evt+'</td>'
       constructor += '<td class="d-none d-md-table-cell">'+evtFecha.estado+'</td>'
       constructor += '<td class="d-none d-md-table-cell">'+evtFecha.tipo+'</td>'
@@ -145,8 +146,7 @@
       if (evtFecha.fecha_prox_psico != ""){
         constructor += '<td class="d-none d-md-table-cell">'+evtFecha.fecha_prox_psico+'</td>'}
       else{constructor += '<td class="d-none d-md-table-cell">Sin Fecha</td>'}
-      constructor += '<td><a class="btn btn-primary submit-btn" href="/links/perfil/'+evtFecha.id_cliente_evt+'" role="button">Perfil</a></td>'
-      constructor += '<td><div class="checkbox"><input type="checkbox" id="checkbox'+evtFecha.id_cliente_evt+'" onchange="alertachec('+evtFecha.id_cliente_evt+')"><label for="checkbox'+evtFecha.id_cliente_evt+'"></label></div></td></tr>'}
+      constructor += '<td><a class="btn btn-primary submit-btn" href="/links/perfil/'+evtFecha.id_cliente_evt+'" role="button">Perfil</a></td></tr>'}
     return true
     });
     

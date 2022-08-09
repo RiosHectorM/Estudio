@@ -61,7 +61,7 @@ app.use("/links", require("./routes/links"));
 //Publicos
 app.use(express.static(path.join(__dirname, "public")));
 
-//Start Server
+//Start Server server on
 app.listen(app.get("port"), () => {
   console.log("Server on port", app.get("port"));
 });

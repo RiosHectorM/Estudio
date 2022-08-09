@@ -8,6 +8,7 @@ background: radial-gradient(circle, rgba(68,106,238,0.25253851540616246) 3%, rgb
 .index {
   width: 100vw;
   height: 100vh;
+
 }
 
 .gradientefondo{
@@ -78,6 +79,7 @@ background: linear-gradient(0deg, rgba(19,7,232,0.6502976190476191) 2%, rgba(68,
 
 .input-group-append {
   cursor: pointer;
+	cursor: pointer;
 }
 
 

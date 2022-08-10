@@ -1,8 +1,8 @@
 module.exports={
   database:{
     host:'9p0my9ounxvd.aws-sa-east-1-1.psdb.cloud',
-    user:'1bn6j5na7aum',
-    password:'pscale_pw_x-bTWrm4mT6N4_EMMwMY4-_bRDIhGNDGPkw5K3uva6g',
+    user:'owg8homajutk',
+    password:'pscale_pw_qLF4qG9j2WQgSF8yFK3tBG6h38dky6Oav0Hec_fkx7Q',
     database:'estudio',
     ssl: true
   }

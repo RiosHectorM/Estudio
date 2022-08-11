@@ -1,9 +1,9 @@
 module.exports={
   database:{
-    host:'localhost',
-    user:'c2161585_estudio',
-    password:'78RInufore',
-    database:'c2161585_estudio',
+    host:'9p0my9ounxvd.aws-sa-east-1-1.psdb.cloud',
+    user:'lqnf3fuxixh3',
+    password:'pscale_pw_tAX4wcwTNrwpUpqg9hxfCe4onUOc5lqUbX82L2GO2UM',
+    database:'estudio',
     ssl: true
   }
 };

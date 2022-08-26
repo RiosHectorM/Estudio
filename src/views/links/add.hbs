@@ -54,7 +54,6 @@
                   <h5 class="badge bg-primary fs-5">ESTADO DEL DAMNIFICADO</h5>
             
                   <div class="row">
-              
                     <div class="col-md-auto d-flex align-items-center text-cente">
                       <div class="form-group">
                         <span class="form-label">TIPO</span>
@@ -66,7 +65,6 @@
                         <span class="select-arrow"></span>
                       </div>
                     </div>
-                    
                     <div class="col-md-auto d-flex align-items-center text-center">
                       <div class="form-group">
                         <div class="form-check form-switch fs-5 text-light">
@@ -102,30 +100,24 @@
                   </div>
 
                   <div class="row">
-                    
                     <div class="col-md-auto d-flex align-items-center text-center">
                       <div class="form-group" style="display: block;" id="fecha_acc">
                         <span class="form-label">Fecha del Accidente</span>
                         <input class="form-control" type="date" name="fecha_accidente" />
                       </div>
                     </div>
-                    
                     <div class="col-md-auto d-flex align-items-center text-center">
                       <div class="form-group" style="display: none;" id="fecha_pmi">
                         <span class="form-label">Fecha PMI</span>
                         <input class="form-control" type="date" name="fecha_pmi" />
                       </div>
                     </div>
-
                     <div id="divEstado" class="col-md-6"></div>
-                    
                     <div class="col-md-3" id="divFechaVD" style="display: none;">
                         <span class="form-label">Fecha de VD</span>
                         <input class="form-control" type="date" name="fechaVD" id="fechaVD"/>
                     </div>
-                    
                   </div>
-
                   <div class="" style="height: 150px">
                     <div class="menu-desktop" id="menu">
                       <ul>
@@ -169,7 +161,6 @@
                         <li><a  onclick='constructorEstado("acord")'>ACORDADO (VD)</a></li>
                         <li><a  onclick='constructorEstado("cerrarSrt")'>CERRAR (SRT)</a></li>
                       </ul>
-               
                       </div>
                     </div><!-- menu-desktop -->
                   <div class="row">
@@ -577,27 +568,5 @@
       break; 
       }
         document.getElementById("divEstado").innerHTML = constructor
-      
-console.log(document.getElementById("conInc").value)
-console.log(document.getElementById("conIncFechaVD").value)
-console.log(document.getElementById("conIncFechaPend").value)
-console.log(document.getElementById("sinInc").value)
-console.log(document.getElementById("sinIncDDI").value)
-console.log(document.getElementById("sinIncDDIJud").value)
-console.log(document.getElementById("sinIncDDICerrar").value)
-console.log(document.getElementById("sinIncDA").value)
-console.log(document.getElementById("detInc").value)
-console.log(document.getElementById("detIncDDI").value)
-console.log(document.getElementById("detIncDDIJud").value)
-console.log(document.getElementById("detIncDDICerrar").value)
-console.log(document.getElementById("jud").value)
-console.log(document.getElementById("judAbr").value)
-console.log(document.getElementById("judOrd").value)
-console.log(document.getElementById("trat").value)
-console.log(document.getElementById("acord").value)
-console.log(document.getElementById("cerrarSrt").value)
-console.log(document.getElementById("detalles").value)
-
-
-    }
+  }
 </script>

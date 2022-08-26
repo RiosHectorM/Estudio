@@ -148,6 +148,8 @@ router.get("/evento/:id_cliente", isLoggedIn, async (req, res) => {
 });
 
 router.post("/add", isLoggedIn, async (req, res) => {
+
+try {
   const {
     fecha_ingreso,
     damnificado,
@@ -287,6 +289,11 @@ router.post("/add", isLoggedIn, async (req, res) => {
   await pool.query("INSERT INTO eventos set ?", [eventoInit]);
 
   res.redirect("/links");
+} catch (error) {
+  console.log(error)
+  res.redirect("/links");
+}
+  
 });
 
 router.get("/", isLoggedIn, async (req, res) => {

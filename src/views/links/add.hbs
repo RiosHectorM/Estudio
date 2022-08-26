@@ -1,42 +1,27 @@
-<div id="booking" class="section" >
+<div id="booking" class="section">
   <div class="section-center">
     <div class="container">
       <div class="row">
         <div class="booking-form">
-          <form action="/links/add" method="POST" name="formulario1"> 
+          <form action="/links/add" method="POST" name="formulario1">
             <div class="row">
               <h5 class="badge bg-primary fs-5">DATOS PERSONALES</h5>
               <div class="col-md-6">
                 <div class="form-group">
                   <span class="form-label">DAMNIFICADO</span>
-                  <input
-                    class="form-control"
-                    type="text"
-                    name="damnificado"
-                    placeholder="Nombre y Apellido"
-                  />
+                  <input class="form-control" type="text" name="damnificado" placeholder="Nombre y Apellido" />
                 </div>
               </div>
               <div class="col-md-3">
                 <div class="form-group">
                   <span class="form-label">DOCUMENTO</span>
-                  <input
-                    class="form-control"
-                    type="text"
-                    name="dni_cuil"
-                    placeholder="DNI/CUIL"
-                  />
+                  <input class="form-control" type="text" name="dni_cuil" placeholder="DNI/CUIL" />
                 </div>
               </div>
               <div class="col-md-3">
                 <div class="form-group">
                   <span class="form-label">EDAD</span>
-                  <input
-                    class="form-control"
-                    type="text"
-                    placeholder="Edad"
-                    name="edad"
-                  />
+                  <input class="form-control" type="text" placeholder="Edad" name="edad" />
                 </div>
               </div>
             </div>
@@ -44,12 +29,7 @@
               <div class="col-md-12">
                 <div class="form-group">
                   <span class="form-label">DOMICILIO</span>
-                  <input
-                    class="form-control"
-                    type="text"
-                    name="domicilio"
-                    placeholder="Direccion"
-                  />
+                  <input class="form-control" type="text" name="domicilio" placeholder="Direccion" />
                 </div>
               </div>
             </div>
@@ -57,59 +37,182 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <span class="form-label">TELEFONO</span>
-                  <input
-                    class="form-control"
-                    type="text"
-                    name="telefono"
-                    placeholder="Telefono"
-                  />
+                  <input class="form-control" type="text" name="telefono" placeholder="Telefono" />
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <span class="form-label">Fecha de Ingreso</span>
-                  <input
-                    class="form-control"
-                    type="date"
-                    name="fecha_ingreso"
-                  />
+                  <input class="form-control" type="date" name="fecha_ingreso" />
+                </div>
+              </div>              
+            </div>
+
+            <div class="container">
+              <div class="row">
+                <div class="row justify-content-around">
+                  <h5 class="badge bg-primary fs-5">ESTADO DEL DAMNIFICADO</h5>
+            
+                  <div class="row">
+              
+                    <div class="col-md-auto d-flex align-items-center text-cente">
+                      <div class="form-group">
+                        <span class="form-label">TIPO</span>
+                        <select class="form-control" name="tipo" id="tipo" onclick="accidente()">
+                          <option>Seleccione Tipo</option>
+                          <option>Accidente</option>
+                          <option>Accidente Initinere</option>
+                          <option>Enfermedad</option>
+                        </select>
+                        <span class="select-arrow"></span>
+                      </div>
+                    </div>
+                    
+                    <div class="col-md-auto d-flex align-items-center text-center">
+                      <div class="form-group">
+                        <div class="form-check form-switch fs-5 text-light">
+                          <input class="form-check-input" type="checkbox" id="switch_importante" name="importante">
+                          <label class="form-check-label" for="switch_importante">IMPORTANTE</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-auto d-flex align-items-center text-center">
+                      <div class="form-group">
+                        <div class="form-check form-switch fs-5 text-light">
+                          <input class="form-check-input" type="checkbox" id="switch_regHonorarios" name="regHonorarios">
+                          <label class="form-check-label" for="switch_regHonorarios">REG HONORARIOS</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-auto d-flex align-items-center text-center">
+                      <div class="form-group">
+                        <div class="form-check form-switch fs-5 text-light">
+                          <input class="form-check-input" type="checkbox" id="switch_finalizado" name="finalizado">
+                          <label class="form-check-label" for="switch_finalizado">FINALIZADO</label>
+                        </div>
+                      </div>
+                    </div>         
+                    <div class="col-md-auto d-flex align-items-center text-center">
+                      <div class="form-group">
+                        <div class="form-check form-switch fs-5 text-light">
+                          <input class="form-check-input" type="checkbox" id="switch_baja" name="baja">
+                          <label class="form-check-label" for="switch_baja">BAJA</label>
+                        </div>
+                      </div>
+                    </div>   
+                  </div>
+
+                  <div class="row">
+                    
+                    <div class="col-md-auto d-flex align-items-center text-center">
+                      <div class="form-group" style="display: none;" id="fecha_acc">
+                        <span class="form-label">Fecha del Accidente</span>
+                        <input class="form-control" type="date" name="fecha_accidente" />
+                      </div>
+                    </div>
+
+                    <div id="divEstado" class="col-md-6"></div>
+                    
+                    <div class="col-md-3" id="divFechaVD" style="display: none;">
+                        <span class="form-label">Fecha de VD</span>
+                        <input class="form-control" type="date" name="fechaVD" id="fechaVD"/>
+                    </div>
+                  </div>
+
+                  <div class="" style="height: 150px">
+                    <div class="menu-desktop" id="menu">
+                      <ul>
+                        <li><a onclick='constructorEstado("conInc")'>CON INCAPACIDAD</a>
+                          <ul>
+                            <li><a  onclick='constructorEstado("conIncFechaVD")'>INGRESAR FECHA VD</a></li>
+                            <li><a  onclick='constructorEstado("conIncFechaPend")'>DEJAR FECHA PENDIENTE</a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li><a  onclick='constructorEstado("sinInc")'>SIN INCAPACIDAD </a>
+                          <ul>
+                            <li><a  onclick='constructorEstado("sinIncDDI")'>DDI</a>
+                              <ul>
+                                <li><a  onclick='constructorEstado("sinIncDDIJud")'>JUDICIAL</a>
+                                </li>
+                                <li><a  onclick='constructorEstado("sinIncDDICerrar")'>CERRAR</a></li>
+                              </ul>
+                            </li>
+                            <li><a  onclick='constructorEstado("sinIncDA")'>DA</a></li>
+                          </ul>
+                        </li>
+                        <li><a  onclick='constructorEstado("detInc")'>DET INCAPACIDAD</a>
+                          <ul>
+                            <li><a  onclick='constructorEstado("detIncDDI")'>DDI</a>
+                              <ul>
+                                <li><a  onclick='constructorEstado("detIncDDIJud")'>JUDICIAL</a>
+                                </li>
+                                <li><a  onclick='constructorEstado("detIncDDICerrar")'>CERRAR</a></li>
+                              </ul>
+                            </li>
+                          </ul>
+                        </li>
+                        <li><a  onclick='constructorEstado("jud")'>JUDICIAL</a>
+                          <ul>
+                            <li><a  onclick='constructorEstado("judAbr")'>ABREVIADO</a></li>
+                            <li><a  onclick='constructorEstado("judOrd")'>ORDINARIO</a></li>
+                          </ul>
+                        </li>
+                        <li><a  onclick='constructorEstado("trat")'>TRATAMIENTO</a></li>
+                        <li><a  onclick='constructorEstado("acord")'>ACORDADO (VD)</a></li>
+                        <li><a  onclick='constructorEstado("cerrarSrt")'>CERRAR (SRT)</a></li>
+                      </ul>
+               
+                      </div>
+                    </div><!-- menu-desktop -->
+                    <div class="col-md-12">
+                    <div class="form-group">
+                      <span class="form-label">DETALLES DEL HECHO</span>
+                      <input class="form-control" type="text" name="detalles" id="detalles" placeholder="Detalles del Hecho" />
+                    </div>
+                  </div>
+                  </div><!-- fixed bar -->
                 </div>
               </div>
-              
+            <div id="invisible" style="display: none;">
+              <input type="text" id="conInc" name="conInc" value="">
+              <input type="text" id="conIncFechaVD" name="conIncFechaVD" value="">
+              <input type="text" id="conIncFechaPend" name="conIncFechaPend" value="">
+              <input type="text" id="sinInc" name="sinInc" value="">
+              <input type="text" id="sinIncDDI" name="cosinIncDDInInc" value="">
+              <input type="text" id="sinIncDDIJud" name="sinIncDDIJud" value="">
+              <input type="text" id="sinIncDDICerrar" name="sinIncDDICerrar" value="">
+              <input type="text" id="sinIncDA" name="sinIncDA" value="">
+              <input type="text" id="detInc" name="detInc" value="">
+              <input type="text" id="detIncDDI" name="detIncDDI" value="">
+              <input type="text" id="detIncDDIJud" name="detIncDDIJud" value="">
+              <input type="text" id="detIncDDICerrar" name="detIncDDICerrar" value="">
+              <input type="text" id="jud" name="jud" value="">
+              <input type="text" id="judAbr" name="judAbr" value="">
+              <input type="text" id="judOrd" name="judOrd" value="">
+              <input type="text" id="trat" name="trat" value="">
+              <input type="text" id="acord" name="acord" value="">
+              <input type="text" id="cerrarSrt" name="cerrarSrt" value="">
             </div>
+
             <div class="row">
               <h5 class="badge bg-primary fs-5">DATOS LABORALES</h5>
               <div class="col-md-6">
                 <div class="form-group">
                   <span class="form-label">EMPRESA</span>
-                  <input
-                    class="form-control"
-                    type="text"
-                    placeholder="Nombre de la Empresa"
-                    name="empresa"
-                  />
+                  <input class="form-control" type="text" placeholder="Nombre de la Empresa" name="empresa" />
                 </div>
               </div>
               <div class="col-md-3">
                 <div class="form-group">
                   <span class="form-label">CUIT</span>
-                  <input
-                    class="form-control"
-                    type="text"
-                    placeholder="CUIT"
-                    name="cuit_empresa"
-                  />
+                  <input class="form-control" type="text" placeholder="CUIT" name="cuit_empresa" />
                 </div>
               </div>
               <div class="col-md-3">
                 <div class="form-group">
                   <span class="form-label">RUBRO</span>
-                  <input
-                    class="form-control"
-                    type="text"
-                    placeholder="Rubro"
-                    name="rubro_empresa"
-                  />
+                  <input class="form-control" type="text" placeholder="Rubro" name="rubro_empresa" />
                 </div>
               </div>
             </div>
@@ -117,32 +220,20 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <span class="form-label">DOMICILIO EMPRESA</span>
-                  <input
-                    class="form-control"
-                    type="text"
-                    placeholder="Direccion de la Empresa"
-                    name="domicilio_empresa"
-                  />
+                  <input class="form-control" type="text" placeholder="Direccion de la Empresa"
+                    name="domicilio_empresa" />
                 </div>
               </div>
               <div class="col-md-2">
                 <div class="form-group">
                   <span class="form-label">HORARIO INGRESO</span>
-                  <input
-                    class="form-control"
-                    type="time"
-                    name="horario_inicio"
-                  />
+                  <input class="form-control" type="time" name="horario_inicio" />
                 </div>
               </div>
               <div class="col-md-2">
                 <div class="form-group">
                   <span class="form-label">HORARIO EGRESO</span>
-                  <input
-                    class="form-control"
-                    type="time"
-                    name="horario_fin"
-                  />
+                  <input class="form-control" type="time" name="horario_fin" />
                 </div>
               </div>
               <div class="col-md-2">
@@ -161,13 +252,8 @@
               <div class="col-md-12">
                 <div class="form-group">
                   <span class="form-label">TAREAS DEL DAMNIFICADO</span>
-                  <input
-                    class="form-control"
-                    type="text"
-                    placeholder="Tareas que desemeña el Damnificado en la Empresa"
-                    name="tareas_empresa"
-                    id="tareas_empresa"
-                  />
+                  <input class="form-control" type="text" placeholder="Tareas que desemeña el Damnificado en la Empresa"
+                    name="tareas_empresa" id="tareas_empresa" />
                 </div>
               </div>
             </div>
@@ -177,50 +263,48 @@
                 <div class="form-group">
                   <span class="form-label">ART</span>
                   <select class="form-control" name="nombre_art" id="nombre_art" onchange="actualizar(this.value)">
-                    <option>Seleccione una Opcion</option>                    
-                  </select> 
-                  {{!-- SCRIPTS PARA SELECT DE ART --}}
+                    <option>Seleccione una Opcion</option>
+                  </select>
+                  {{! SCRIPTS PARA SELECT DE ART }}
                   <script>
-                    window.addEventListener('load', function() {
-                    cargar_art();
-                  });
-                  function cargar_art() {
-                  const json0 = {{{data}}};
-                  addOptions("nombre_art", json0);
-                  }
-                  function addOptions(domElement, array) {
-                  var select = document.getElementsByName(domElement)[0];
-                  for (value in array) {
-                    var option = document.createElement("option");
-                    option.text = array[value].nombre_art;
-                    select.add(option);
-                  }
-                  }
-                  function actualizar(valor){
+                    window.addEventListener('load', function () {
+                      cargar_art();
+                    }); 
+                    
+                    function cargar_art() {
+                      const json0 = {{{ data }}}; 
+                      addOptions("nombre_art", json0); 
+                    } 
+                      
+                    function addOptions(domElement, array) {
+                      var select = document.getElementsByName(domElement)[0]; 
+                      for (value in array) {
+                        var option = document.createElement("option");
+                        option.text = array[value].nombre_art; 
+                        select.add(option);
+                    }
+
+                    } function actualizar(valor) {
                       const json = `{{{data}}}`;
-                      const listado_art = JSON.parse(json)
+                      const listado_art = JSON.parse(json) 
                       for (let index = 0; index < listado_art.length; index++) {
-                        if (valor == listado_art[index].nombre_art){
-                          document.formulario1.mail_art.value = listado_art[index].mail_art;
-                          document.formulario1.telefono_art.value = listado_art[index].telefono_art;
-                          document.formulario1.domicilio_art.value = listado_art[index].domicilio_art;
-                        }
+                          if (valor == listado_art[index].nombre_art) {
+                            document.formulario1.mail_art.value = listado_art[index].mail_art;
+                            document.formulario1.telefono_art.value = listado_art[index].telefono_art;
+                            document.formulario1.domicilio_art.value = listado_art[index].domicilio_art;
+                          }
                       }
                     };
                   </script>
-                  {{!-- FIN SCRIPT DE SELECT ART --}}
+
+                  {{! FIN SCRIPT DE SELECT ART }}
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <span class="form-label">PRESTADOR MEDICO</span>
-                  <input
-                    class="form-control"
-                    type="text"
-                    placeholder="Prestador Medico"
-                    name="prestador"
-                    id="prestador"
-                  />
+                  <input class="form-control" type="text" placeholder="Prestador Medico" name="prestador"
+                    id="prestador" />
                 </div>
               </div>
             </div>
@@ -228,35 +312,20 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <span class="form-label">DOMICILIO ART</span>
-                  <input
-                    class="form-control"
-                    type="text"
-                    placeholder="Domicilio de ART"
-                    name="domicilio_art"
-                    id="domicilio_art"
-                  />
+                  <input class="form-control" type="text" placeholder="Domicilio de ART" name="domicilio_art"
+                    id="domicilio_art" />
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <span class="form-label">MAIL ART</span>
-                  <input
-                    class="form-control"
-                    type="text"
-                    placeholder="Mail de ART"
-                    name="mail_art"
-                  />
+                  <input class="form-control" type="text" placeholder="Mail de ART" name="mail_art" />
                 </div>
               </div>
               <div class="col-md-2">
                 <div class="form-group">
                   <span class="form-label">TELEFONO</span>
-                  <input
-                    class="form-control"
-                    type="text"
-                    placeholder="Numero"
-                    name="telefono_art"
-                  />
+                  <input class="form-control" type="text" placeholder="Numero" name="telefono_art" />
                 </div>
               </div>
             </div>
@@ -286,12 +355,8 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <span class="form-label">Lugar Estudios</span>
-                  <input
-                    class="form-control"
-                    type="text"
-                    placeholder="Donde se realizaron los estudios"
-                    name="lugar_estudios"
-                  />
+                  <input class="form-control" type="text" placeholder="Donde se realizaron los estudios"
+                    name="lugar_estudios" />
                 </div>
               </div>
             </div>
@@ -303,14 +368,11 @@
               </div>
               <div class="col-md-3">
                 <div class="form-btn">
-                  <a
-                    class="btn submit-btn"
-                    href="/profile"
-                    role="button"
-                  >CANCELAR</a>
+                  <a class="btn submit-btn" href="/profile" role="button">CANCELAR</a>
                 </div>
               </div>
             </div>
+
           </form>
         </div>
       </div>
@@ -318,9 +380,175 @@
   </div>
 </div>
 
-
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
 <script>
-  flatpickr("input[type=time]",{ enableTime: true, noCalendar: true, dateFormat:
-  "H:i"});
+  flatpickr("input[type=time]", {
+    enableTime: true, noCalendar: true,
+    dateFormat: "H:i"
+  });
+</script>
+
+<script>
+
+  function limpiarcampos(){
+    document.getElementById("conInc").value = null
+    document.getElementById("conIncFechaVD").value = null
+    document.getElementById("conIncFechaPend").value = null
+    document.getElementById("sinInc").value = null
+    document.getElementById("sinIncDDI").value = null
+    document.getElementById("sinIncDDIJud").value = null
+    document.getElementById("sinIncDDICerrar").value = null
+    document.getElementById("sinIncDA").value = null
+    document.getElementById("detInc").value = null
+    document.getElementById("detIncDDI").value = null
+    document.getElementById("detIncDDIJud").value = null
+    document.getElementById("detIncDDICerrar").value = null
+    document.getElementById("jud").value = null
+    document.getElementById("judAbr").value = null
+    document.getElementById("judOrd").value = null
+    document.getElementById("trat").value = null
+    document.getElementById("acord").value = null
+    document.getElementById("cerrarSrt").value = null
+  }
+
+  function accidente(){
+    console.log(document.getElementById("fecha_acc"))
+    console.log(document.getElementById("tipo").value)
+
+    if (document.getElementById("tipo").value === "Enfermedad")
+      document.getElementById("fecha_acc").style.display = "none"
+    else
+      document.getElementById("fecha_acc").style.display = "block"
+  }
+  
+  function constructorEstado(x) {
+
+    limpiarcampos()
+
+    if(document.getElementById("divFechaVD").style.display == "block") {
+      document.getElementById("divFechaVD").style.display = "none"
+      document.getElementById("fechaVD").value = ""
+    } 
+
+    switch (x) {
+      case "conInc": 
+        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="CON INCAPACIDAD" disabled/></div></div>' 
+        document.getElementById("conInc").value="on"
+      break; 
+
+
+
+      case "conIncFechaVD": 
+        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="CON INCAPACIDAD  >>  INGRESE FECHA DE VD  >>" disabled/></div></div>'
+        document.getElementById("divFechaVD").style.display = "block"
+      break; 
+
+
+
+      case "conIncFechaPend": 
+        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="CON INCAPACIDAD  >>  FECHA VD PENDIENTE" disabled/></div></div>' 
+        document.getElementById("conInc").value="on"
+        document.getElementById("conIncFechaPend").value="on"
+      break; 
+      case "sinInc": 
+        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="SIN INCAPACIDAD" disabled/></div></div>'  
+        document.getElementById("sinInc").value="on"
+      break; 
+      case "sinIncDDI": 
+        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="SIN INCAPASIDAD  >>  DDI" disabled/></div></div>' 
+        document.getElementById("sinInc").value="on"
+        document.getElementById("sinIncDDI").value="on"
+      break; 
+      case "sinIncDDIJud":        
+       constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="SIN INCAPASIDAD  >>  DDI  >>  JUDICIAL" disabled/></div></div>' 
+        document.getElementById("sinInc").value="on"
+        document.getElementById("sinIncDDI").value="on"
+        document.getElementById("sinIncDDIJud").value="on"
+      break;
+      case "sinIncDDICerrar": 
+        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="SIN INCAPASIDAD  >>  DDI  >>  CERRAR" disabled/></div></div>' 
+        document.getElementById("sinInc").value="on"
+        document.getElementById("sinIncDDI").value="on"
+        document.getElementById("sinIncDDICerrar").value="on"
+      break; 
+      case "sinIncDA": 
+       constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="SIN INCAPASIDAD  >>  DA" disabled/></div></div>' 
+       document.getElementById("sinInc").value="on"
+       document.getElementById("sinIncDA").value="on"
+      break; 
+      case "detInc": 
+        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="DET INCAPACIDAD" disabled/></div></div>' 
+        document.getElementById("detInc").value="on"
+      break; 
+      case "detIncDDI": 
+        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="DET INCAPACIDAD >> DDI" disabled/></div></div>' 
+        document.getElementById("detInc").value="on"
+        document.getElementById("detIncDDI").value="on"
+      break; 
+      case "detIncDDIJud":
+        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="DET INCAPACIDAD  >>  DDI  >>  JUDICIAL" disabled/></div></div>'
+        document.getElementById("detInc").value="on"
+        document.getElementById("detIncDDI").value="on"
+        document.getElementById("detIncDDIJud").value="on"
+      break;
+      case "detIncDDICerrar": 
+       constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="DET INCAPACIDAD  >>  DDI  >>  CERRAR" disabled/></div></div>'
+        document.getElementById("detInc").value="on"
+        document.getElementById("detIncDDI").value="on"
+        document.getElementById("detIncDDICerrar").value="on"
+      break; 
+      case "trat": 
+       constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="TRATAMIENTO" disabled/></div></div>'
+       document.getElementById("trat").value="on"
+      break; 
+      case "jud": 
+        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="JUDICIAL" disabled/></div></div>'
+        document.getElementById("jud").value="on"
+      break; 
+      case "judAbr": 
+       constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="JUDICIAL  >>  ABREVIADO" disabled/></div></div>'
+       document.getElementById("jud").value="on"
+       document.getElementById("judAbr").value="on"
+      break; 
+      case "judOrd": 
+       constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="JUDICIAL  >>  ORDINARIO" disabled/></div></div>'
+       document.getElementById("jud").value="on"
+       document.getElementById("judOrd").value="on"
+      break; 
+      case "acord": 
+       constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="ACORDADO" disabled/></div></div>'
+      document.getElementById("acord").value="on"
+      break; 
+        case "cerrarSrt": constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="CERRAR (SRT)" disabled/></div></div>'
+      document.getElementById("cerrarSrt").value="on"
+      break; 
+      default: 
+      constructor = 'SELECCIONE UN ESTADO' 
+      break; 
+      }
+        document.getElementById("divEstado").innerHTML = constructor
+      
+console.log(document.getElementById("conInc").value)
+console.log(document.getElementById("conIncFechaVD").value)
+console.log(document.getElementById("conIncFechaPend").value)
+console.log(document.getElementById("sinInc").value)
+console.log(document.getElementById("sinIncDDI").value)
+console.log(document.getElementById("sinIncDDIJud").value)
+console.log(document.getElementById("sinIncDDICerrar").value)
+console.log(document.getElementById("sinIncDA").value)
+console.log(document.getElementById("detInc").value)
+console.log(document.getElementById("detIncDDI").value)
+console.log(document.getElementById("detIncDDIJud").value)
+console.log(document.getElementById("detIncDDICerrar").value)
+console.log(document.getElementById("jud").value)
+console.log(document.getElementById("judAbr").value)
+console.log(document.getElementById("judOrd").value)
+console.log(document.getElementById("trat").value)
+console.log(document.getElementById("acord").value)
+console.log(document.getElementById("cerrarSrt").value)
+console.log(document.getElementById("detalles").value)
+
+
+    }
 </script>

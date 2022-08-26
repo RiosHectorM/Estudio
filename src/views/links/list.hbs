@@ -56,8 +56,8 @@
               <div class="col-md-3">
                 <div class="form-group">
                   <div class="form-check form-switch fs-5 text-light">
-                    <input class="form-check-input" type="checkbox" id="switch_favorito" name="favorito" onchange="cambioelfavorito()">
-                    <label class="form-check-label" for="switch_favorito">FAVORITO</label>
+                    <input class="form-check-input" type="checkbox" id="switch_regHonorarios" name="regHonorarios" onchange="cambioelregHonorarios()">
+                    <label class="form-check-label" for="switch_regHonorarios">REG HONORARIOS</label>
                   </div>
                 </div>
               </div>
@@ -192,22 +192,22 @@ function cambioelimportante(){
   let valorImportante = document.getElementById("switch_importante").checked;
   if (valorImportante == true){
     valorImportante="on"
-    document.getElementById("titulo").textContent = "BUSCAR CLIENTE POR FAVORITO"}
+    document.getElementById("titulo").textContent = "BUSCAR CLIENTE POR REG HONORARIOS"}
   else{
     document.getElementById("titulo").textContent = "BUSCAR CLIENTE"
     valorImportante = null}
   arrayFiltrado(valorImportante, "importante")
 }
   
-function cambioelfavorito(){
-  let valorFavorito = document.getElementById("switch_favorito").checked;
-  if (valorFavorito == true){
-    valorFavorito="on"
-    document.getElementById("titulo").textContent = "BUSCAR CLIENTE POR FAVORITO"}
+function cambioelregHonorarios(){
+  let valorregHonorarios = document.getElementById("switch_regHonorarios").checked;
+  if (valorregHonorarios == true){
+    valorregHonorarios ="on"
+    document.getElementById("titulo").textContent = "BUSCAR CLIENTE POR REG HONORARIOS"}
   else{
     document.getElementById("titulo").textContent = "BUSCAR CLIENTE"
-    valorFavorito = null}
-  arrayFiltrado(valorFavorito, "favorito")
+    valorregHonorarios = null}
+  arrayFiltrado(valorregHonorarios, "regHonorarios")
 }
 
 function cambioelfinalizado(){
@@ -273,9 +273,9 @@ function arrayFiltrado(valor, campo){
           return true
         });
     }
-    if (campo == "favorito"){
+    if (campo == "regHonorarios"){
       const clientesFiltrados = clientesSinFiltro.filter(function(cli_fil){
-          if (cli_fil.favorito == valor){
+          if (cli_fil.regHonorarios == valor){
             constructor += constructorDeHTML(cli_fil)
             }
           return true

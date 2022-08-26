@@ -78,7 +78,7 @@ router.post("/addevento/:id_cliente", isLoggedIn, async (req, res) => {
     nombre_cliente_evt,
     dni_evt,
     importante,  
-    favorito,
+    regHonorarios,
     finalizado,
     baja,
     fecha_prox_legal,
@@ -98,7 +98,7 @@ router.post("/addevento/:id_cliente", isLoggedIn, async (req, res) => {
     tipo,
     estado,
     importante,  
-    favorito,
+    regHonorarios,
     finalizado,
     baja,
   };
@@ -108,7 +108,7 @@ router.post("/addevento/:id_cliente", isLoggedIn, async (req, res) => {
     nombre_cliente_evt,
     dni_evt,
     importante,  
-    favorito,
+    regHonorarios,
     finalizado,
     baja,
     fecha_prox_legal,
@@ -168,6 +168,27 @@ router.post("/add", isLoggedIn, async (req, res) => {
     historia_clinica, 
     estudios_medicos, 
     lugar_estudios, 
+    conInc,
+    conIncFechaVD,
+    conIncFechaPend,
+    sinInc,
+    sinIncDDI,
+    sinIncDDIJud,
+    sinIncDDICerrar,
+    sinIncDA,
+    detInc,
+    detIncDDI,
+    detIncDDIJud,
+    detIncDDICerrar,
+    jud,
+    judAbr,
+    detalles,
+    judOrd,
+    trat,
+    acord,
+    cerrarSrt,
+    fechaVD,
+  
   } = req.body;
 
   const newClient = {
@@ -190,9 +211,68 @@ router.post("/add", isLoggedIn, async (req, res) => {
     historia_clinica, 
     estudios_medicos, 
     lugar_estudios, 
+    conInc,
+    conIncFechaVD,
+    conIncFechaPend,
+    sinInc,
+    sinIncDDI,
+    sinIncDDIJud,
+    sinIncDDICerrar,
+    sinIncDA,
+    detInc,
+    detIncDDI,
+    detIncDDIJud,
+    detIncDDICerrar,
+    jud,
+    judAbr,
+    judOrd,
+    trat,
+    acord,
+    cerrarSrt
   };
+
+  dniUltimoCliente = dni_cuil
+
   await pool.query("INSERT INTO cliente set ?", [newClient]);
-  req.flash("success", "Cliente Grabado correctamente");
+
+  const dniUltimoCliente = newClient.dni_cuil;
+  const ultimoClienteCargado = await pool.query("SELECT * FROM cliente WHERE dni_cuil = ?", [dniUltimoCliente]);
+
+  const eventoInit = {
+    id_cliente_evt: ultimoClienteCargado[0].id_cliente,
+    fechaVD,
+    detalles,
+    fecha_evt: fecha_ingreso,
+    nombre_cliente_evt: damnificado,
+    dni_evt: dni_cuil,
+    importante,  
+    regHonorarios,
+    finalizado,
+    baja,
+    tipo,    
+    conInc,
+    conIncFechaVD,
+    conIncFechaPend,
+    sinInc,
+    sinIncDDI,
+    sinIncDDIJud,
+    sinIncDDICerrar,
+    sinIncDA,
+    detInc,
+    detIncDDI,
+    detIncDDIJud,
+    detIncDDICerrar,
+    jud,
+    judAbr,
+    detalles,
+    judOrd,
+    trat,
+    acord,
+    cerrarSrt
+  }
+
+  await pool.query("INSERT INTO evento set ?", [eventoInit]);
+
   res.redirect("/links");
 });
 
@@ -232,4 +312,3 @@ router.get("/check/:id", isLoggedIn, async (req, res) => {
 });
 
 module.exports = router;
-

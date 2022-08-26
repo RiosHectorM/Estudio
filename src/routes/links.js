@@ -130,6 +130,11 @@ router.post("/addevento/:id_cliente", isLoggedIn, async (req, res) => {
   res.redirect("/links/calendario");
 });
 
+
+
+
+
+
 router.get("/add", isLoggedIn,  function(req, res) {
   if(req.user) {
     pool.query("SELECT * FROM art",function (err,results) {
@@ -144,6 +149,7 @@ router.get("/add", isLoggedIn,  function(req, res) {
 router.get("/evento/:id_cliente", isLoggedIn, async (req, res) => {
   const { id_cliente } = req.params;
   const evento_cliente = await pool.query("SELECT * FROM cliente WHERE id_cliente = ?", [id_cliente]);
+  console.log(evento_cliente.detalles);
   res.render("links/evento.hbs", { eventocli: evento_cliente[0] });
 });
 
@@ -199,7 +205,7 @@ try {
     fecha_pmi,
     notas,
     fecha_prox_contacto,
-    fechaTeams
+    fechaTeams,
   } = req.body;
 
   const newClient = {

@@ -59,7 +59,6 @@
                       <div class="form-group">
                         <span class="form-label">TIPO</span>
                         <select class="form-control" name="tipo" id="tipo" onclick="accidente()">
-                          <option>Seleccione Tipo</option>
                           <option>Accidente</option>
                           <option>Accidente Initinere</option>
                           <option>Enfermedad</option>
@@ -105,9 +104,16 @@
                   <div class="row">
                     
                     <div class="col-md-auto d-flex align-items-center text-center">
-                      <div class="form-group" style="display: none;" id="fecha_acc">
+                      <div class="form-group" style="display: block;" id="fecha_acc">
                         <span class="form-label">Fecha del Accidente</span>
                         <input class="form-control" type="date" name="fecha_accidente" />
+                      </div>
+                    </div>
+                    
+                    <div class="col-md-auto d-flex align-items-center text-center">
+                      <div class="form-group" style="display: none;" id="fecha_pmi">
+                        <span class="form-label">Fecha PMI</span>
+                        <input class="form-control" type="date" name="fecha_pmi" />
                       </div>
                     </div>
 
@@ -117,6 +123,7 @@
                         <span class="form-label">Fecha de VD</span>
                         <input class="form-control" type="date" name="fechaVD" id="fechaVD"/>
                     </div>
+                    
                   </div>
 
                   <div class="" style="height: 150px">
@@ -165,12 +172,28 @@
                
                       </div>
                     </div><!-- menu-desktop -->
-                    <div class="col-md-12">
-                    <div class="form-group">
+                  <div class="row">
+                    <div class="form-group col-md-12" id="divNotas">
                       <span class="form-label">DETALLES DEL HECHO</span>
                       <input class="form-control" type="text" name="detalles" id="detalles" placeholder="Detalles del Hecho" />
                     </div>
+                    <div class="col-md-3" id="divFechaTeams" style="display: none;">
+                        <span class="form-label">Fecha TEAMS</span>
+                        <input class="form-control" type="date" name="fechaTeams" id="fechaTeams"/>
+                    </div>
                   </div>
+
+                  <div class="row">
+                    <div class="form-group col-md-9">
+                      <span class="form-label">NOTAS / OBSERVACIONES</span>
+                      <input class="form-control" type="text" name="notas" id="notas" placeholder="..." />
+                    </div>
+                    <div class="col-md-3">
+                        <span class="form-label">PROXIMO CONTACTO</span>
+                        <input class="form-control" type="date" name="fecha_prox_contacto" id="fecha_prox_contacto"/>
+                    </div>
+                  </div>
+
                   </div><!-- fixed bar -->
                 </div>
               </div>
@@ -416,10 +439,12 @@
     console.log(document.getElementById("fecha_acc"))
     console.log(document.getElementById("tipo").value)
 
-    if (document.getElementById("tipo").value === "Enfermedad")
+    if (document.getElementById("tipo").value === "Enfermedad"){
       document.getElementById("fecha_acc").style.display = "none"
-    else
+      document.getElementById("fecha_pmi").style.display = "block"}
+    else{
       document.getElementById("fecha_acc").style.display = "block"
+      document.getElementById("fecha_pmi").style.display = "none"}
   }
   
   function constructorEstado(x) {
@@ -430,26 +455,37 @@
       document.getElementById("divFechaVD").style.display = "none"
       document.getElementById("fechaVD").value = ""
     } 
+    if(document.getElementById("divFechaTeams").style.display == "block") {
+      document.getElementById("divFechaTeams").style.display = "none"
+      document.getElementById("fechaTeams").value = ""
+    } 
+
+    document.getElementById("divNotas").classList.add("col-md-12")
 
     switch (x) {
       case "conInc": 
         constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="CON INCAPACIDAD" disabled/></div></div>' 
         document.getElementById("conInc").value="on"
+        document.getElementById("divNotas").classList.remove("col-md-12")
+        document.getElementById("divNotas").classList.add("col-md-9")
+        document.getElementById("divFechaTeams").style.display = "block"
       break; 
-
-
-
       case "conIncFechaVD": 
         constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="CON INCAPACIDAD  >>  INGRESE FECHA DE VD  >>" disabled/></div></div>'
         document.getElementById("divFechaVD").style.display = "block"
+        document.getElementById("conInc").value="on"
+        document.getElementById("conIncFechaVD").value="on"
+        document.getElementById("divNotas").classList.remove("col-md-12")
+        document.getElementById("divNotas").classList.add("col-md-9")
+        document.getElementById("divFechaTeams").style.display = "block"
       break; 
-
-
-
       case "conIncFechaPend": 
         constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="CON INCAPACIDAD  >>  FECHA VD PENDIENTE" disabled/></div></div>' 
         document.getElementById("conInc").value="on"
         document.getElementById("conIncFechaPend").value="on"
+        document.getElementById("divNotas").classList.remove("col-md-12")
+        document.getElementById("divNotas").classList.add("col-md-9")
+        document.getElementById("divFechaTeams").style.display = "block"
       break; 
       case "sinInc": 
         constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="SIN INCAPACIDAD" disabled/></div></div>'  
@@ -480,23 +516,36 @@
       case "detInc": 
         constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="DET INCAPACIDAD" disabled/></div></div>' 
         document.getElementById("detInc").value="on"
+        document.getElementById("divNotas").classList.remove("col-md-12")
+        document.getElementById("divNotas").classList.add("col-md-9")
+        document.getElementById("divFechaTeams").style.display = "block"
       break; 
       case "detIncDDI": 
         constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="DET INCAPACIDAD >> DDI" disabled/></div></div>' 
         document.getElementById("detInc").value="on"
         document.getElementById("detIncDDI").value="on"
+        document.getElementById("divNotas").classList.remove("col-md-12")
+        document.getElementById("divNotas").classList.add("col-md-9")
+        document.getElementById("divFechaTeams").style.display = "block"
+
       break; 
       case "detIncDDIJud":
         constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="DET INCAPACIDAD  >>  DDI  >>  JUDICIAL" disabled/></div></div>'
         document.getElementById("detInc").value="on"
         document.getElementById("detIncDDI").value="on"
         document.getElementById("detIncDDIJud").value="on"
+        document.getElementById("divNotas").classList.remove("col-md-12")
+        document.getElementById("divNotas").classList.add("col-md-9")
+        document.getElementById("divFechaTeams").style.display = "block"
       break;
       case "detIncDDICerrar": 
        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="DET INCAPACIDAD  >>  DDI  >>  CERRAR" disabled/></div></div>'
         document.getElementById("detInc").value="on"
         document.getElementById("detIncDDI").value="on"
         document.getElementById("detIncDDICerrar").value="on"
+        document.getElementById("divNotas").classList.remove("col-md-12")
+        document.getElementById("divNotas").classList.add("col-md-9")
+        document.getElementById("divFechaTeams").style.display = "block"
       break; 
       case "trat": 
        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="TRATAMIENTO" disabled/></div></div>'

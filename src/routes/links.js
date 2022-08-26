@@ -168,6 +168,11 @@ router.post("/add", isLoggedIn, async (req, res) => {
     historia_clinica, 
     estudios_medicos, 
     lugar_estudios, 
+    importante,
+    regHonorarios,
+    finalizado,
+    baja,
+    tipo,
     conInc,
     conIncFechaVD,
     conIncFechaPend,
@@ -188,7 +193,11 @@ router.post("/add", isLoggedIn, async (req, res) => {
     acord,
     cerrarSrt,
     fechaVD,
-  
+    fecha_accidente,
+    fecha_pmi,
+    notas,
+    fecha_prox_contacto,
+    fechaTeams
   } = req.body;
 
   const newClient = {
@@ -231,15 +240,14 @@ router.post("/add", isLoggedIn, async (req, res) => {
     cerrarSrt
   };
 
-  dniUltimoCliente = dni_cuil
-
   await pool.query("INSERT INTO cliente set ?", [newClient]);
 
-  const dniUltimoCliente = newClient.dni_cuil;
-  const ultimoClienteCargado = await pool.query("SELECT * FROM cliente WHERE dni_cuil = ?", [dniUltimoCliente]);
+  const ultID = await pool.query("SELECT * FROM cliente");
+  const indice = ultID.length
+  const id = ultID[indice-1].id_cliente
 
   const eventoInit = {
-    id_cliente_evt: ultimoClienteCargado[0].id_cliente,
+    id_cliente_evt: id,
     fechaVD,
     detalles,
     fecha_evt: fecha_ingreso,
@@ -268,10 +276,15 @@ router.post("/add", isLoggedIn, async (req, res) => {
     judOrd,
     trat,
     acord,
-    cerrarSrt
+    cerrarSrt,
+    fecha_accidente,
+    fecha_pmi,
+    notas,
+    fecha_prox_contacto,
+    fechaTeams
   }
 
-  await pool.query("INSERT INTO evento set ?", [eventoInit]);
+  await pool.query("INSERT INTO eventos set ?", [eventoInit]);
 
   res.redirect("/links");
 });

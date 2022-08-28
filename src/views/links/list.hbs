@@ -1,3 +1,4 @@
+<h1>AGREGAR FILTROS CONSTRUCTORES</h1>
 <div id="booking" class="section">
   <div class="section-center">
     <div class="container">
@@ -9,25 +10,11 @@
           <button class="btn btn-primary mt-3" onclick="mostrarFlitros()">BUSCAR POR FILTROS</button>
 
           <div class="gradientefondo align-" id="divFiltros" style="display: none">
-            <div class="row justify-content-around align-items-center">
-              <div class="col-md-4">
-                <div class="form-group">
-                  <span class="form-label">ESTADO</span>
-                  <select class="form-control" name="estado" id="estado" onchange="cambioelestado()">
-                    <option>Seleccione una opcion</option>
-                    <option>Alta</option>
-                    <option>Alta con Discapacidad</option>
-                    <option>Judiciales</option>
-                    <option>Acordado</option>
-                  </select>
-                  <span class="select-arrow"></span>
-                </div>
-              </div>
-              <div class="col-md-4">
+            <div class="row">
+              <div class="col-md-auto d-flex align-items-center text-cente">
                 <div class="form-group">
                   <span class="form-label">TIPO</span>
                   <select class="form-control" name="tipo" id="tipo" onchange="cambioeltipo()">
-                    <option>Seleccione una Opcion</option>
                     <option>Accidente</option>
                     <option>Accidente Initinere</option>
                     <option>Enfermedad</option>
@@ -35,52 +22,110 @@
                   <span class="select-arrow"></span>
                 </div>
               </div>
-
+              <div class="col-md-auto d-flex align-items-center text-center">
+                <div class="form-group">
+                  <div class="form-check form-switch fs-5 text-light">
+                    <input class="form-check-input" type="checkbox" id="switch_importante" name="importante"
+                      onchange="cambioelimportante()">
+                    <label class="form-check-label" for="switch_importante">IMPORTANTE</label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-auto d-flex align-items-center text-center">
+                <div class="form-group">
+                  <div class="form-check form-switch fs-5 text-light">
+                    <input class="form-check-input" type="checkbox" id="switch_regHonorarios" name="regHonorarios"
+                      onchange="cambioelregHonorarios()">
+                    <label class="form-check-label" for="switch_regHonorarios">REG HONORARIOS</label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-auto d-flex align-items-center text-center">
+                <div class="form-group">
+                  <div class="form-check form-switch fs-5 text-light">
+                    <input class="form-check-input" type="checkbox" id="switch_finalizado" name="finalizado"
+                      onchange="cambioelfinalizado()">
+                    <label class="form-check-label" for="switch_finalizado">FINALIZADO</label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-auto d-flex align-items-center text-center">
+                <div class="form-group">
+                  <div class="form-check form-switch fs-5 text-light">
+                    <input class="form-check-input" type="checkbox" id="switch_baja" name="baja"
+                      onchange="cambioelBaja()">
+                    <label class="form-check-label" for="switch_baja">BAJA</label>
+                  </div>
+                </div>
+              </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <span class="form-label">Reset</span>
                   <button class="submit-btn" role="button" onclick="location.reload()">QUITAR FILTROS</button>
                 </div>
               </div>
-
             </div>
+
             <div class="row">
-              <div class="col-md-3">
-                <div class="form-group">
-                  <div class="form-check form-switch fs-5 text-light">
-                    <input class="form-check-input" type="checkbox" id="switch_importante" name="importante" onchange="cambioelimportante()">
-                    <label class="form-check-label" for="switch_importante">IMPORTANTE</label>
+              <div id="divEstado" class="col-md-6">
+                <div>
+                  <div class="form-group">
+                    <span class="form-label">ESTADO</span>
+                    <input class="form-control" type="text" placeholder="Seleccione un Estado" disabled name="estado" id="estado"/>
                   </div>
                 </div>
               </div>
-              <div class="col-md-3">
-                <div class="form-group">
-                  <div class="form-check form-switch fs-5 text-light">
-                    <input class="form-check-input" type="checkbox" id="switch_regHonorarios" name="regHonorarios" onchange="cambioelregHonorarios()">
-                    <label class="form-check-label" for="switch_regHonorarios">REG HONORARIOS</label>
-                  </div>
-                </div>
+            </div>
+
+
+            <div class="" style="height: 150px">
+              <div class="menu-desktop" id="menu">
+                <ul>
+                  <li><a onclick='constructorEstado("conInc")'>CON INCAPACIDAD</a>
+                    <ul>
+                      <li><a onclick='constructorEstado("conIncFechaVD")'>INGRESAR FECHA VD</a></li>
+                      <li><a onclick='constructorEstado("conIncFechaPend")'>DEJAR FECHA PENDIENTE</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><a onclick='constructorEstado("sinInc")'>SIN INCAPACIDAD </a>
+                    <ul>
+                      <li><a onclick='constructorEstado("sinIncDDI")'>DDI</a>
+                        <ul>
+                          <li><a onclick='constructorEstado("sinIncDDIJud")'>JUDICIAL</a>
+                          </li>
+                          <li><a onclick='constructorEstado("sinIncDDICerrar")'>CERRAR</a></li>
+                        </ul>
+                      </li>
+                      <li><a onclick='constructorEstado("sinIncDA")'>DA</a></li>
+                    </ul>
+                  </li>
+                  <li><a onclick='constructorEstado("detInc")'>DET INCAPACIDAD</a>
+                    <ul>
+                      <li><a onclick='constructorEstado("detIncDDI")'>DDI</a>
+                        <ul>
+                          <li><a onclick='constructorEstado("detIncDDIJud")'>JUDICIAL</a>
+                          </li>
+                          <li><a onclick='constructorEstado("detIncDDICerrar")'>CERRAR</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><a onclick='constructorEstado("jud")'>JUDICIAL</a>
+                    <ul>
+                      <li><a onclick='constructorEstado("judAbr")'>ABREVIADO</a></li>
+                      <li><a onclick='constructorEstado("judOrd")'>ORDINARIO</a></li>
+                    </ul>
+                  </li>
+                  <li><a onclick='constructorEstado("trat")'>TRATAMIENTO</a></li>
+                  <li><a onclick='constructorEstado("acord")'>ACORDADO (VD)</a></li>
+                  <li><a onclick='constructorEstado("cerrarSrt")'>CERRAR (SRT)</a></li>
+                </ul>
               </div>
-              <div class="col-md-3 d-flex align-items-center text-center">
-                <div class="form-group">
-                  <div class="form-check form-switch fs-5 text-light">
-                    <input class="form-check-input" type="checkbox" id="switch_finalizado" name="finalizado" onchange="cambioelfinalizado()">
-                    <label class="form-check-label" for="switch_finalizado">FINALIZADO</label>
-                  </div>
-                </div>
-              </div>         
-              <div class="col-md-3 d-flex align-items-center text-center">
-                <div class="form-group">
-                  <div class="form-check form-switch fs-5 text-light">
-                    <input class="form-check-input" type="checkbox" id="switch_baja" name="baja" onchange="cambioelBaja()">
-                    <label class="form-check-label" for="switch_baja">BAJA</label>
-                  </div>
-                </div>
-              </div>   
             </div>
           </div>
 
-            <div class="table-responsive mt-3">
+          <div class="table-responsive mt-3">
 
             <div id="constructorArrays">
               <table class="table table-hover">
@@ -100,47 +145,36 @@
                     <td class="fs-5 text-light text-center">{{dni_cuil}}</td>
                     <td>
                       <div>
-                          <a class="btn submit-btn" href="/links/evento/{{id_cliente}}" role="button"
-                            >Asignar Evento
-                          </a>
+                        <a class="btn submit-btn" href="/links/evento/{{id_cliente}}" role="button">Asignar Evento
+                        </a>
                       </div>
                     </td>
-                    <td> 
-                      <div>
-                          <a class="btn submit-btn" href="/links/edit/{{id_cliente}}" role="button"
-                            >Editar Cliente
-                          </a>
-                      </div>
-                    </td> 
                     <td>
                       <div>
-                          <a class="btn submit-btn" href="/links/perfil/{{id_cliente}}" role="button"
-                            >Ver Perfil
-                          </a>
+                        <a class="btn submit-btn" href="/links/edit/{{id_cliente}}" role="button">Editar Cliente
+                        </a>
+                      </div>
+                    </td>
+                    <td>
+                      <div>
+                        <a class="btn submit-btn" href="/links/perfil/{{id_cliente}}" role="button">Ver Perfil
+                        </a>
                       </div>
                     </td>
                   </tr>
                   {{/each}}
                 </tbody>
               </table>
-        </div>
-              <div class="row d-flex justify-content-around">
+            </div>
+            <div class="row d-flex justify-content-around">
               <div class="col-md-3">
                 <div class="form-btn">
-                  <a
-                    class="btn submit-btn"
-                    href="/links/add"
-                    role="button"
-                  >AGREGAR CLIENTE</a>
+                  <a class="btn submit-btn" href="/links/add" role="button">AGREGAR CLIENTE</a>
                 </div>
               </div>
               <div class="col-md-3">
                 <div class="form-btn">
-                  <a
-                    class="btn submit-btn"
-                    href="/profile"
-                    role="button"
-                  >CANCELAR</a>
+                  <a class="btn submit-btn" href="/profile" role="button">CANCELAR</a>
                 </div>
               </div>
             </div>
@@ -150,163 +184,311 @@
     </div>
   </div>
 </div>
-    
+<div id="invisible" style="display: none;">
+              <input type="text" id="conInc" name="conInc" value="">
+              <input type="text" id="conIncFechaVD" name="conIncFechaVD" value="">
+              <input type="text" id="conIncFechaPend" name="conIncFechaPend" value="">
+              <input type="text" id="sinInc" name="sinInc" value="">
+              <input type="text" id="sinIncDDI" name="cosinIncDDInInc" value="">
+              <input type="text" id="sinIncDDIJud" name="sinIncDDIJud" value="">
+              <input type="text" id="sinIncDDICerrar" name="sinIncDDICerrar" value="">
+              <input type="text" id="sinIncDA" name="sinIncDA" value="">
+              <input type="text" id="detInc" name="detInc" value="">
+              <input type="text" id="detIncDDI" name="detIncDDI" value="">
+              <input type="text" id="detIncDDIJud" name="detIncDDIJud" value="">
+              <input type="text" id="detIncDDICerrar" name="detIncDDICerrar" value="">
+              <input type="text" id="jud" name="jud" value="">
+              <input type="text" id="judAbr" name="judAbr" value="">
+              <input type="text" id="judOrd" name="judOrd" value="">
+              <input type="text" id="trat" name="trat" value="">
+              <input type="text" id="acord" name="acord" value="">
+              <input type="text" id="cerrarSrt" name="cerrarSrt" value="">
+</div>
+
 <script>
-  function cambioeltexto(){
-  const searchInput = document.getElementById("search");
-  const rows = document.querySelectorAll("tbody tr");
-  searchInput.addEventListener("keyup", function (event) {
-    const q = event.target.value.toLowerCase();
-    rows.forEach((row) => {
-      row.querySelector("td").textContent.toLowerCase().includes(q)
-        ? (row.style.display = "table-row")
-        : (row.style.display = "none");
+  function cambioeltexto() {
+    const searchInput = document.getElementById("search");
+    const rows = document.querySelectorAll("tbody tr");
+    searchInput.addEventListener("keyup", function (event) {
+      const q = event.target.value.toLowerCase();
+      rows.forEach((row) => {
+        row.querySelector("td").textContent.toLowerCase().includes(q)
+          ? (row.style.display = "table-row")
+          : (row.style.display = "none");
+      });
     });
-  });}
-
-function resetFiltros(){
-
-}
-
-
-function mostrarFlitros() {
-  var x = document.getElementById("divFiltros");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
   }
-}
 
-function cambioelestado(){
-const valorEstado = document.getElementById("estado").value;
-  arrayFiltrado(valorEstado, "estado");
-}
+  function mostrarFlitros() {
+    var x = document.getElementById("divFiltros");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
 
-function cambioeltipo(){
-const valorTipo = document.getElementById("tipo").value;
-  arrayFiltrado(valorTipo, "tipo")
-}
+  //FILTROS GENERALES (TIPO, IMPORTANTE, REG HONORARIOS, FINALIZADO, BAJA)
 
-function cambioelimportante(){
-  let valorImportante = document.getElementById("switch_importante").checked;
-  if (valorImportante == true){
-    valorImportante="on"
-    document.getElementById("titulo").textContent = "BUSCAR CLIENTE POR REG HONORARIOS"}
-  else{
-    document.getElementById("titulo").textContent = "BUSCAR CLIENTE"
-    valorImportante = null}
-  arrayFiltrado(valorImportante, "importante")
-}
-  
-function cambioelregHonorarios(){
-  let valorregHonorarios = document.getElementById("switch_regHonorarios").checked;
-  if (valorregHonorarios == true){
-    valorregHonorarios ="on"
-    document.getElementById("titulo").textContent = "BUSCAR CLIENTE POR REG HONORARIOS"}
-  else{
-    document.getElementById("titulo").textContent = "BUSCAR CLIENTE"
-    valorregHonorarios = null}
-  arrayFiltrado(valorregHonorarios, "regHonorarios")
-}
+  //function cambioelestado() {
+  //  const valorEstado = document.getElementById("estado").value;
+  //  arrayFiltrado(valorEstado, "estado");
+  // }
 
-function cambioelfinalizado(){
-  let valorFinalizado = document.getElementById("switch_finalizado").checked;
-  if (valorFinalizado == true){
-    valorFinalizado="on"
-    document.getElementById("titulo").textContent = "BUSCAR CLIENTE POR FINALIZADOS"}
-  else{
-    document.getElementById("titulo").textContent = "BUSCAR CLIENTE"
-    valorFinalizado = null}
-  arrayFiltrado(valorFinalizado, "finalizado")
-}
+  function cambioeltipo() {
+    const valorTipo = document.getElementById("tipo").value;
+    arrayFiltrado(valorTipo, "tipo", arrayOK)
+  }
 
-function cambioelBaja(){
-  let valorBaja = document.getElementById("switch_baja").checked;
-  if (valorBaja == true){
-    valorBaja="on"
-    document.getElementById("titulo").textContent = "BUSCAR CLIENTE POR BAJA"}
-  else{
-    document.getElementById("titulo").textContent = "BUSCAR CLIENTE"
-    valorBaja = null}
-  arrayFiltrado(valorBaja, "baja")
-}
+  function cambioelimportante() {
+    let valorImportante = document.getElementById("switch_importante").checked;
+    if (valorImportante == true) {
+      valorImportante = "on"
+      document.getElementById("titulo").textContent = "BUSCAR CLIENTE POR REG HONORARIOS"
+    }
+    else {
+      document.getElementById("titulo").textContent = "BUSCAR CLIENTE"
+      valorImportante = null
+    }
+    arrayFiltrado(valorImportante, "importante")
+  }
+
+  function cambioelregHonorarios() {
+    let valorregHonorarios = document.getElementById("switch_regHonorarios").checked;
+    if (valorregHonorarios == true) {
+      valorregHonorarios = "on"
+      document.getElementById("titulo").textContent = "BUSCAR CLIENTE POR REG HONORARIOS"
+    }
+    else {
+      document.getElementById("titulo").textContent = "BUSCAR CLIENTE"
+      valorregHonorarios = null
+    }
+    arrayFiltrado(valorregHonorarios, "regHonorarios")
+  }
+
+  function cambioelfinalizado() {
+    let valorFinalizado = document.getElementById("switch_finalizado").checked;
+    if (valorFinalizado == true) {
+      valorFinalizado = "on"
+      document.getElementById("titulo").textContent = "BUSCAR CLIENTE POR FINALIZADOS"
+    }
+    else {
+      document.getElementById("titulo").textContent = "BUSCAR CLIENTE"
+      valorFinalizado = null
+    }
+    arrayFiltrado(valorFinalizado, "finalizado")
+  }
+
+  function cambioelBaja() {
+    let valorBaja = document.getElementById("switch_baja").checked;
+    if (valorBaja == true) {
+      valorBaja = "on"
+      document.getElementById("titulo").textContent = "BUSCAR CLIENTE POR BAJA"
+    }
+    else {
+      document.getElementById("titulo").textContent = "BUSCAR CLIENTE"
+      valorBaja = null
+    }
+    arrayFiltrado(valorBaja, "baja")
+  }
 
 
 
-function constructorDeHTML(cli_fil){
-  let constructor = '<tr><td class="fs-4 text-light">'+cli_fil.damnificado+'</td><td class="fs-5 text-light text-center">'+cli_fil.dni_cuil+'</td><td><div><a class="btn submit-btn" href="/links/evento/'+cli_fil.id_cliente+'" role="button">Asignar Evento</a></div></td><td> <div><a class="btn submit-btn" href="/links/edit/'+cli_fil.id_cliente+'" role="button">Editar Cliente</a></div></td><td><div><a class="btn submit-btn" href="/links/perfil/'+cli_fil.id_cliente+'" role="button">Ver Perfil</a></div></td></tr>'
-  return constructor
-}
+  function constructorDeHTML(cli_fil) {
+    let constructor = '<tr><td class="fs-4 text-light">' + cli_fil.damnificado + '</td><td class="fs-5 text-light text-center">' + cli_fil.dni_cuil + '</td><td><div><a class="btn submit-btn" href="/links/evento/' + cli_fil.id_cliente + '" role="button">Asignar Evento</a></div></td><td> <div><a class="btn submit-btn" href="/links/edit/' + cli_fil.id_cliente + '" role="button">Editar Cliente</a></div></td><td><div><a class="btn submit-btn" href="/links/perfil/' + cli_fil.id_cliente + '" role="button">Ver Perfil</a></div></td></tr>'
+    return constructor
+  }
 
-function arrayFiltrado(valor, campo){
+  function arrayFiltrado(valor, campo) {
 
-    const clientesSinFiltro = {{{dataCliArray}}};
+    const clientesSinFiltro = {{{ dataCliArray }}};
 
     constructor = "";
     document.getElementById("constructorArrays").innerHTML = constructor;
 
-    constructorPre ='<table class="table table-hover"><thead><tr><th class="bg-primary fs-5 text-center">DAMNIFICADO</th><th class="bg-primary fs-5 text-center">DNI</th><th class="bg-primary fs-5 text-center">EVENTO</th><th class="bg-primary fs-5 text-center">EDITAR</th><th class="bg-primary fs-5 text-center">PERFIL</th></tr></thead><tbody>'
+    constructorPre = '<table class="table table-hover"><thead><tr><th class="bg-primary fs-5 text-center">DAMNIFICADO</th><th class="bg-primary fs-5 text-center">DNI</th><th class="bg-primary fs-5 text-center">EVENTO</th><th class="bg-primary fs-5 text-center">EDITAR</th><th class="bg-primary fs-5 text-center">PERFIL</th></tr></thead><tbody>'
 
     sinClientes = constructor
 
-    if (campo == "estado"){
-        const clientesFiltrados = clientesSinFiltro.filter(function(cli_fil){
-          if (cli_fil.estado == valor){
-            constructor += constructorDeHTML(cli_fil)
-            }
-          return true
-        });}
-    if (campo == "tipo"){
-      const clientesFiltrados = clientesSinFiltro.filter(function(cli_fil){
-          if (cli_fil.tipo == valor){
-            constructor += constructorDeHTML(cli_fil)
-            }
-          return true
-        });
+    if (campo == "estado") {
+      const clientesFiltrados = clientesSinFiltro.filter(function (cli_fil) {
+        if (cli_fil.estado == valor) {
+          constructor += constructorDeHTML(cli_fil)
+        }
+        return true
+      });
     }
-    if (campo == "importante"){
-      const clientesFiltrados = clientesSinFiltro.filter(function(cli_fil){
-          if (cli_fil.importante == valor){
-            constructor += constructorDeHTML(cli_fil)
-            }
-          return true
-        });
+    if (campo == "tipo") {
+      const clientesFiltrados = clientesSinFiltro.filter(function (cli_fil) {
+        if (cli_fil.tipo == valor) {
+          constructor += constructorDeHTML(cli_fil)
+        }
+        return true
+      });
     }
-    if (campo == "regHonorarios"){
-      const clientesFiltrados = clientesSinFiltro.filter(function(cli_fil){
-          if (cli_fil.regHonorarios == valor){
-            constructor += constructorDeHTML(cli_fil)
-            }
-          return true
-        });
+    if (campo == "importante") {
+      const clientesFiltrados = clientesSinFiltro.filter(function (cli_fil) {
+        if (cli_fil.importante == valor) {
+          constructor += constructorDeHTML(cli_fil)
+        }
+        return true
+      });
     }
-    if (campo == "finalizado"){
-      const clientesFiltrados = clientesSinFiltro.filter(function(cli_fil){
-          if (cli_fil.finalizado == valor){
-            constructor += constructorDeHTML(cli_fil)
-            }
-          return true
-        });
+    if (campo == "regHonorarios") {
+      const clientesFiltrados = clientesSinFiltro.filter(function (cli_fil) {
+        if (cli_fil.regHonorarios == valor) {
+          constructor += constructorDeHTML(cli_fil)
+        }
+        return true
+      });
     }
-    if (campo == "baja"){
-      const clientesFiltrados = clientesSinFiltro.filter(function(cli_fil){
-          if (cli_fil.baja == valor){
-            constructor += constructorDeHTML(cli_fil)
-            }
-          return true
-        });
+    if (campo == "finalizado") {
+      const clientesFiltrados = clientesSinFiltro.filter(function (cli_fil) {
+        if (cli_fil.finalizado == valor) {
+          constructor += constructorDeHTML(cli_fil)
+        }
+        return true
+      });
+    }
+    if (campo == "baja") {
+      const clientesFiltrados = clientesSinFiltro.filter(function (cli_fil) {
+        if (cli_fil.baja == valor) {
+          constructor += constructorDeHTML(cli_fil)
+        }
+        return true
+      });
     }
 
-  if (sinClientes == constructor){
-    document.getElementById("constructorArrays").innerHTML = '<div class="bg-primary col-12 justify-content-center"><h3 class="text-white text-center ">No hay ningun cliente que cumpla con este Filtro</h3></div>'}
-  else{
-    constructor += "</tbody></table>";
-    document.getElementById("constructorArrays").innerHTML = constructorPre+constructor;}
+    if (sinClientes == constructor) {
+      document.getElementById("constructorArrays").innerHTML = '<div class="bg-primary col-12 justify-content-center"><h3 class="text-white text-center ">No hay ningun cliente que cumpla con este Filtro</h3></div>'
+    }
+    else {
+      constructor += "</tbody></table>";
+      document.getElementById("constructorArrays").innerHTML = constructorPre + constructor;
+    }
 }
 
 </script>
+<script>
 
+  function limpiarcampos(){
+    document.getElementById("conInc").value = null
+    document.getElementById("conIncFechaVD").value = null
+    document.getElementById("conIncFechaPend").value = null
+    document.getElementById("sinInc").value = null
+    document.getElementById("sinIncDDI").value = null
+    document.getElementById("sinIncDDIJud").value = null
+    document.getElementById("sinIncDDICerrar").value = null
+    document.getElementById("sinIncDA").value = null
+    document.getElementById("detInc").value = null
+    document.getElementById("detIncDDI").value = null
+    document.getElementById("detIncDDIJud").value = null
+    document.getElementById("detIncDDICerrar").value = null
+    document.getElementById("jud").value = null
+    document.getElementById("judAbr").value = null
+    document.getElementById("judOrd").value = null
+    document.getElementById("trat").value = null
+    document.getElementById("acord").value = null
+    document.getElementById("cerrarSrt").value = null
+  }
 
+  
+  
+  function constructorEstado(x) {
 
+    limpiarcampos()
 
+    switch (x) {
+      case "conInc": 
+        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="CON INCAPACIDAD" disabled name="estado" id="estado"/></div></div>' 
+        document.getElementById("conInc").value="on"
+      break; 
+      case "conIncFechaVD": 
+        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="CON INCAPACIDAD  >>  INGRESE FECHA DE VD  >>" disabled name="estado" id="estado"/></div></div>'
+        document.getElementById("conInc").value="on"
+        document.getElementById("conIncFechaVD").value="on"
+      break; 
+      case "conIncFechaPend": 
+        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="CON INCAPACIDAD  >>  FECHA VD PENDIENTE" disabled name="estado" id="estado"/></div></div>' 
+        document.getElementById("conInc").value="on"
+        document.getElementById("conIncFechaPend").value="on"
+      break; 
+      case "sinInc": 
+        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="SIN INCAPACIDAD" disabled name="estado" id="estado"/></div></div>'  
+        document.getElementById("sinInc").value="on"
+      break; 
+      case "sinIncDDI": 
+        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="SIN INCAPACIDAD  >>  DDI" disabled name="estado" id="estado"/></div></div>' 
+        document.getElementById("sinInc").value="on"
+        document.getElementById("sinIncDDI").value="on"
+      break; 
+      case "sinIncDDIJud":        
+       constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="SIN INCAPACIDAD  >>  DDI  >>  JUDICIAL" disabled name="estado" id="estado"/></div></div>' 
+        document.getElementById("sinInc").value="on"
+        document.getElementById("sinIncDDI").value="on"
+        document.getElementById("sinIncDDIJud").value="on"
+      break;
+      case "sinIncDDICerrar": 
+        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="SIN INCAPACIDAD  >>  DDI  >>  CERRAR" disabled name="estado" id="estado"/></div></div>' 
+        document.getElementById("sinInc").value="on"
+        document.getElementById("sinIncDDI").value="on"
+        document.getElementById("sinIncDDICerrar").value="on"
+      break; 
+      case "sinIncDA": 
+       constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="SIN INCAPACIDAD  >>  DA" disabled name="estado" id="estado"/></div></div>' 
+       document.getElementById("sinInc").value="on"
+       document.getElementById("sinIncDA").value="on"
+      break; 
+      case "detInc": 
+        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="DET INCAPACIDAD" disabled name="estado" id="estado"/></div></div>' 
+        document.getElementById("detInc").value="on"
+      break; 
+      case "detIncDDI": 
+        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="DET INCAPACIDAD >> DDI" disabled name="estado" id="estado"/></div></div>' 
+        document.getElementById("detInc").value="on"
+        document.getElementById("detIncDDI").value="on"
+      break; 
+      case "detIncDDIJud":
+        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="DET INCAPACIDAD  >>  DDI  >>  JUDICIAL" disabled name="estado" id="estado"/></div></div>'
+        document.getElementById("detInc").value="on"
+        document.getElementById("detIncDDI").value="on"
+        document.getElementById("detIncDDIJud").value="on"
+      break;
+      case "detIncDDICerrar": 
+       constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="DET INCAPACIDAD  >>  DDI  >>  CERRAR" disabled name="estado" id="estado"/></div></div>'
+        document.getElementById("detInc").value="on"
+        document.getElementById("detIncDDI").value="on"
+        document.getElementById("detIncDDICerrar").value="on"
+      break; 
+      case "trat": 
+       constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="TRATAMIENTO" disabled name="estado" id="estado"/></div></div>'
+       document.getElementById("trat").value="on"
+      break; 
+      case "jud": 
+        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="JUDICIAL" disabled name="estado" id="estado"/></div></div>'
+        document.getElementById("jud").value="on"
+      break; 
+      case "judAbr": 
+       constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="JUDICIAL  >>  ABREVIADO" disabled name="estado" id="estado"/></div></div>'
+       document.getElementById("jud").value="on"
+       document.getElementById("judAbr").value="on"
+      break; 
+      case "judOrd": 
+       constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="JUDICIAL  >>  ORDINARIO" disabled name="estado" id="estado"/></div></div>'
+       document.getElementById("jud").value="on"
+       document.getElementById("judOrd").value="on"
+      break; 
+      case "acord": 
+       constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="ACORDADO" disabled name="estado" id="estado"/></div></div>'
+      document.getElementById("acord").value="on"
+      break; 
+        case "cerrarSrt": constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="CERRAR (SRT)" disabled name="estado" id="estado"/></div></div>'
+      document.getElementById("cerrarSrt").value="on"
+      break; 
+      default: 
+      constructor = 'SELECCIONE UN ESTADO' 
+      break; 
+      }
+        document.getElementById("divEstado").innerHTML = constructor
+  }
+</script>

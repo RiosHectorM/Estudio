@@ -12,9 +12,350 @@ router.get("/perfil/:id_cliente_evt", isLoggedIn, async (req, res) => {
   const { id_cliente_evt } = req.params;
   const clienteSelected = await pool.query("SELECT * FROM cliente WHERE id_cliente = ?", [id_cliente_evt]);
   const eventocli = await pool.query("SELECT * FROM eventos WHERE id_cliente_evt = ?", [id_cliente_evt]);
-  console.log(eventocli)
-  console.log(clienteSelected)
   res.render("links/perfil.hbs", { clienteSel: JSON.stringify(clienteSelected), eventocli, dataeventos: JSON.stringify(eventocli) });
+});
+
+router.post("/addevento/:id_cliente", isLoggedIn, async (req, res) => {
+  const { id_cliente } = req.params;
+  const {
+    id_cliente_evt = id_cliente,
+    nombre_cliente_evt,
+    dni_evt,
+    fecha_evt,
+    fecha_prox_contacto,
+    importante,  
+    regHonorarios,
+    finalizado,
+    baja,
+    fecha_prox_legal,
+    diag_leg,
+    fecha_prox_med,
+    diag_med,
+    fecha_prox_psico,    
+    diag_psico,
+    tipo,
+    estado,
+    valor_inc_prop,
+    valor_inc_art,
+    telefono,
+    conInc,
+    conIncFechaVD,
+    conIncFechaPend,
+    sinInc,
+    sinIncDDI,
+    sinIncDDIJud,
+    sinIncDDICerrar,
+    sinIncDA,
+    detInc,
+    detIncDDI,
+    detIncDDIJud,
+    detIncDDICerrar,
+    jud,
+    judAbr,
+    detalles,
+    judOrd,
+    trat,
+    acord,
+    cerrarSrt,
+    fechaVD,
+    fecha_accidente,
+    fecha_pmi,
+    notas,
+    fechaTeams
+        
+  } = req.body;
+
+  const newClienteEstado = {
+    tipo,
+    estado,
+    importante,  
+    regHonorarios,
+    finalizado,
+    baja,
+    conInc,
+    conIncFechaVD,
+    conIncFechaPend,
+    sinInc,
+    sinIncDDI,
+    sinIncDDIJud,
+    sinIncDDICerrar,
+    sinIncDA,
+    detInc,
+    detIncDDI,
+    detIncDDIJud,
+    detIncDDICerrar,
+    jud,
+    judAbr,
+    judOrd,
+    trat,
+    acord,
+    cerrarSrt,
+  };
+
+  const newEvento = {
+    id_cliente_evt,
+    nombre_cliente_evt,
+    dni_evt,
+    importante,  
+    regHonorarios,
+    finalizado,
+    baja,
+    fecha_prox_legal,
+    diag_leg,
+    fecha_prox_med,
+    diag_med,
+    fecha_prox_psico,
+    diag_psico,
+    notas,
+    fecha_prox_contacto,
+    tipo,
+    estado,
+    fecha_evt,
+    valor_inc_prop,
+    valor_inc_art,
+    telefono,
+    conInc,
+    conIncFechaVD,
+    conIncFechaPend,
+    sinInc,
+    sinIncDDI,
+    sinIncDDIJud,
+    sinIncDDICerrar,
+    sinIncDA,
+    detInc,
+    detIncDDI,
+    detIncDDIJud,
+    detIncDDICerrar,
+    jud,
+    judAbr,
+    detalles,
+    judOrd,
+    trat,
+    acord,
+    cerrarSrt,
+    fechaVD,
+    fecha_accidente,
+    fecha_pmi,
+    notas,
+    fechaTeams,
+  };
+  console.log("elemento  ",newEvento )
+  console.log("cliente  ",newClienteEstado )
+
+  await pool.query("INSERT INTO eventos set ?", [newEvento]);
+  await pool.query("UPDATE cliente set ? WHERE id_cliente = ?", [newClienteEstado, id_cliente]);
+  res.redirect("/links/calendario");
+});
+
+
+
+
+
+
+router.get("/add", isLoggedIn,  function(req, res) {
+  if(req.user) {
+    pool.query("SELECT * FROM art",function (err,results) {
+    if (err) throw err;
+    res.render("links/add.hbs", {data: JSON.stringify(results)});
+});
+} else {
+  res.redirect('../../login');
+}
+});
+
+router.get("/evento/:id_cliente", isLoggedIn, async (req, res) => {
+  const { id_cliente } = req.params;
+  const evento_cliente = await pool.query("SELECT * FROM eventos WHERE id_cliente_evt = ?", [id_cliente]);
+  const indice = evento_cliente.length
+  console.log(evento_cliente[indice-1])
+  res.render("links/evento.hbs", { eventocli: evento_cliente[indice-1] });
+});
+
+router.post("/add", isLoggedIn, async (req, res) => {
+
+try {
+  const {
+    fecha_ingreso,
+    damnificado,
+    domicilio,  
+    dni_cuil,  
+    edad, 
+    telefono, 
+    empresa, 
+    domicilio_empresa, 
+    cuit_empresa,  
+    rubro_empresa, 
+    tareas_empresa,
+    turno_empresa, 
+    horario_inicio,
+    horario_fin, 
+    art, 
+    prestador,  
+    historia_clinica, 
+    estudios_medicos, 
+    lugar_estudios, 
+    importante,
+    regHonorarios,
+    finalizado,
+    baja,
+    tipo,
+    estado,
+    conInc,
+    conIncFechaVD,
+    conIncFechaPend,
+    sinInc,
+    sinIncDDI,
+    sinIncDDIJud,
+    sinIncDDICerrar,
+    sinIncDA,
+    detInc,
+    detIncDDI,
+    detIncDDIJud,
+    detIncDDICerrar,
+    jud,
+    judAbr,
+    detalles,
+    judOrd,
+    trat,
+    acord,
+    cerrarSrt,
+    fechaVD,
+    fecha_accidente,
+    fecha_pmi,
+    notas,
+    fecha_prox_contacto,
+    fechaTeams,
+  } = req.body;
+
+  const newClient = {
+    fecha_ingreso,
+    damnificado,
+    domicilio,  
+    dni_cuil,  
+    edad, 
+    telefono, 
+    empresa, 
+    domicilio_empresa, 
+    cuit_empresa,  
+    rubro_empresa, 
+    tareas_empresa,
+    turno_empresa, 
+    horario_inicio,
+    horario_fin, 
+    art, 
+    prestador,  
+    historia_clinica, 
+    estudios_medicos, 
+    lugar_estudios, 
+    estado,
+    conInc,
+    conIncFechaVD,
+    conIncFechaPend,
+    sinInc,
+    sinIncDDI,
+    sinIncDDIJud,
+    sinIncDDICerrar,
+    sinIncDA,
+    detInc,
+    detIncDDI,
+    detIncDDIJud,
+    detIncDDICerrar,
+    jud,
+    judAbr,
+    judOrd,
+    trat,
+    acord,
+    cerrarSrt
+  };
+
+  await pool.query("INSERT INTO cliente set ?", [newClient]);
+
+  const ultID = await pool.query("SELECT * FROM cliente");
+  const indice = ultID.length
+  const id = ultID[indice-1].id_cliente
+
+  const eventoInit = {
+    id_cliente_evt: id,
+    fechaVD,
+    detalles,
+    fecha_evt: fecha_ingreso,
+    nombre_cliente_evt: damnificado,
+    dni_evt: dni_cuil,
+    importante,  
+    regHonorarios,
+    finalizado,
+    baja,
+    tipo,
+    estado,
+    conInc,
+    conIncFechaVD,
+    conIncFechaPend,
+    sinInc,
+    sinIncDDI,
+    sinIncDDIJud,
+    sinIncDDICerrar,
+    sinIncDA,
+    detInc,
+    detIncDDI,
+    detIncDDIJud,
+    detIncDDICerrar,
+    jud,
+    judAbr,
+    detalles,
+    judOrd,
+    trat,
+    acord,
+    cerrarSrt,
+    fecha_accidente,
+    fecha_pmi,
+    notas,
+    fecha_prox_contacto,
+    fechaTeams
+  }
+
+  await pool.query("INSERT INTO eventos set ?", [eventoInit]);
+  console.log(eventoInit)
+  res.redirect("/links");
+} catch (error) {
+  console.log(error)
+  res.redirect("/links");
+}
+  
+});
+
+router.get("/", isLoggedIn, async (req, res) => {
+  const links = await pool.query("SELECT * FROM cliente");
+  res.render("links/list.hbs", { links, dataCliArray: JSON.stringify(links)});
+});
+
+router.get("/edit/:id", isLoggedIn, async (req, res) => {
+  const { id } = req.params;
+  const links = await pool.query("SELECT * FROM cliente WHERE id_cliente = ?", [id]);
+  res.render("links/edit.hbs", { link: links[0] });
+});
+
+router.post("/edit/:id", isLoggedIn, async (req, res) => {
+  const { id } = req.params;
+  const { damnificado, domicilio, telefono } = req.body;
+  const newLink = {
+    damnificado,
+    domicilio,
+    telefono,
+  };
+  await pool.query("UPDATE links set ? WHERE id = ?", [newLink, id]);
+  req.flash("success", "Link Editado correctamente");
+  res.redirect("/links");
+});
+
+router.get("/check/:id", isLoggedIn, async (req, res) => {
+  console.log("entro");
+  const { id } = 2;
+  const { check } = true;
+  const newCheck = {
+    check,
+  };
+  await pool.query("UPDATE eventos set ? WHERE id_cliente_evt = ?", [newCheck, id]);
+  req.flash("success", "Link Editado correctamente");
 });
 
 router.get("/addart", isLoggedIn, (req, res) => {
@@ -71,270 +412,5 @@ router.post("/editart/:id", isLoggedIn, async (req, res) => {
   res.redirect("/links/art");
 });
 
-router.post("/addevento/:id_cliente", isLoggedIn, async (req, res) => {
-  const { id_cliente } = req.params;
-  const {
-    id_cliente_evt = id_cliente,
-    nombre_cliente_evt,
-    dni_evt,
-    importante,  
-    regHonorarios,
-    finalizado,
-    baja,
-    fecha_prox_legal,
-    diag_leg,
-    fecha_prox_med,
-    diag_med,
-    fecha_prox_psico,    
-    diag_psico,
-    notas,
-    fecha_prox_contacto,
-    tipo,
-    estado,
-    fecha_evt,
-  } = req.body;
-
-  const newClienteEstado = {
-    tipo,
-    estado,
-    importante,  
-    regHonorarios,
-    finalizado,
-    baja,
-  };
-
-  const newEvento = {
-    id_cliente_evt,
-    nombre_cliente_evt,
-    dni_evt,
-    importante,  
-    regHonorarios,
-    finalizado,
-    baja,
-    fecha_prox_legal,
-    diag_leg,
-    fecha_prox_med,
-    diag_med,
-    fecha_prox_psico,
-    diag_psico,
-    notas,
-    fecha_prox_contacto,
-    tipo,
-    estado,
-    fecha_evt,
-  };
-  await pool.query("INSERT INTO eventos set ?", [newEvento]);
-  console.log("nuevo estado", newClienteEstado)
-  console.log(id_cliente);
-  await pool.query("UPDATE cliente set ? WHERE id_cliente = ?", [newClienteEstado, id_cliente]);
-  res.redirect("/links/calendario");
-});
-
-
-
-
-
-
-router.get("/add", isLoggedIn,  function(req, res) {
-  if(req.user) {
-    pool.query("SELECT * FROM art",function (err,results) {
-    if (err) throw err;
-    res.render("links/add.hbs", {data: JSON.stringify(results)});
-});
-} else {
-  res.redirect('../../login');
-}
-});
-
-router.get("/evento/:id_cliente", isLoggedIn, async (req, res) => {
-  const { id_cliente } = req.params;
-  const evento_cliente = await pool.query("SELECT * FROM cliente WHERE id_cliente = ?", [id_cliente]);
-  console.log(evento_cliente.detalles);
-  res.render("links/evento.hbs", { eventocli: evento_cliente[0] });
-});
-
-router.post("/add", isLoggedIn, async (req, res) => {
-
-try {
-  const {
-    fecha_ingreso,
-    damnificado,
-    domicilio,  
-    dni_cuil,  
-    edad, 
-    telefono, 
-    empresa, 
-    domicilio_empresa, 
-    cuit_empresa,  
-    rubro_empresa, 
-    tareas_empresa,
-    turno_empresa, 
-    horario_inicio,
-    horario_fin, 
-    art, 
-    prestador,  
-    historia_clinica, 
-    estudios_medicos, 
-    lugar_estudios, 
-    importante,
-    regHonorarios,
-    finalizado,
-    baja,
-    tipo,
-    conInc,
-    conIncFechaVD,
-    conIncFechaPend,
-    sinInc,
-    sinIncDDI,
-    sinIncDDIJud,
-    sinIncDDICerrar,
-    sinIncDA,
-    detInc,
-    detIncDDI,
-    detIncDDIJud,
-    detIncDDICerrar,
-    jud,
-    judAbr,
-    detalles,
-    judOrd,
-    trat,
-    acord,
-    cerrarSrt,
-    fechaVD,
-    fecha_accidente,
-    fecha_pmi,
-    notas,
-    fecha_prox_contacto,
-    fechaTeams,
-  } = req.body;
-
-  const newClient = {
-    fecha_ingreso,
-    damnificado,
-    domicilio,  
-    dni_cuil,  
-    edad, 
-    telefono, 
-    empresa, 
-    domicilio_empresa, 
-    cuit_empresa,  
-    rubro_empresa, 
-    tareas_empresa,
-    turno_empresa, 
-    horario_inicio,
-    horario_fin, 
-    art, 
-    prestador,  
-    historia_clinica, 
-    estudios_medicos, 
-    lugar_estudios, 
-    conInc,
-    conIncFechaVD,
-    conIncFechaPend,
-    sinInc,
-    sinIncDDI,
-    sinIncDDIJud,
-    sinIncDDICerrar,
-    sinIncDA,
-    detInc,
-    detIncDDI,
-    detIncDDIJud,
-    detIncDDICerrar,
-    jud,
-    judAbr,
-    judOrd,
-    trat,
-    acord,
-    cerrarSrt
-  };
-
-  await pool.query("INSERT INTO cliente set ?", [newClient]);
-
-  const ultID = await pool.query("SELECT * FROM cliente");
-  const indice = ultID.length
-  const id = ultID[indice-1].id_cliente
-
-  const eventoInit = {
-    id_cliente_evt: id,
-    fechaVD,
-    detalles,
-    fecha_evt: fecha_ingreso,
-    nombre_cliente_evt: damnificado,
-    dni_evt: dni_cuil,
-    importante,  
-    regHonorarios,
-    finalizado,
-    baja,
-    tipo,    
-    conInc,
-    conIncFechaVD,
-    conIncFechaPend,
-    sinInc,
-    sinIncDDI,
-    sinIncDDIJud,
-    sinIncDDICerrar,
-    sinIncDA,
-    detInc,
-    detIncDDI,
-    detIncDDIJud,
-    detIncDDICerrar,
-    jud,
-    judAbr,
-    detalles,
-    judOrd,
-    trat,
-    acord,
-    cerrarSrt,
-    fecha_accidente,
-    fecha_pmi,
-    notas,
-    fecha_prox_contacto,
-    fechaTeams
-  }
-
-  await pool.query("INSERT INTO eventos set ?", [eventoInit]);
-
-  res.redirect("/links");
-} catch (error) {
-  console.log(error)
-  res.redirect("/links");
-}
-  
-});
-
-router.get("/", isLoggedIn, async (req, res) => {
-  const links = await pool.query("SELECT * FROM cliente");
-  res.render("links/list.hbs", { links, dataCliArray: JSON.stringify(links)});
-});
-
-router.get("/edit/:id", isLoggedIn, async (req, res) => {
-  const { id } = req.params;
-  const links = await pool.query("SELECT * FROM cliente WHERE id_cliente = ?", [id]);
-  res.render("links/edit.hbs", { link: links[0] });
-});
-
-router.post("/edit/:id", isLoggedIn, async (req, res) => {
-  const { id } = req.params;
-  const { damnificado, domicilio, telefono } = req.body;
-  const newLink = {
-    damnificado,
-    domicilio,
-    telefono,
-  };
-  await pool.query("UPDATE links set ? WHERE id = ?", [newLink, id]);
-  req.flash("success", "Link Editado correctamente");
-  res.redirect("/links");
-});
-
-router.get("/check/:id", isLoggedIn, async (req, res) => {
-  console.log("entro");
-  const { id } = 2;
-  const { check } = true;
-  const newCheck = {
-    check,
-  };
-  await pool.query("UPDATE eventos set ? WHERE id_cliente_evt = ?", [newCheck, id]);
-  req.flash("success", "Link Editado correctamente");
-});
 
 module.exports = router;

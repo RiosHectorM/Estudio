@@ -103,16 +103,23 @@
                     <div class="col-md-auto d-flex align-items-center text-center">
                       <div class="form-group" style="display: block;" id="fecha_acc">
                         <span class="form-label">Fecha del Accidente</span>
-                        <input class="form-control" type="date" name="fecha_accidente" />
+                        <input class="form-control" type="date" name="fecha_accidente" id="fecha_accidente"/>
                       </div>
                     </div>
                     <div class="col-md-auto d-flex align-items-center text-center">
                       <div class="form-group" style="display: none;" id="fecha_pmi">
                         <span class="form-label">Fecha PMI</span>
-                        <input class="form-control" type="date" name="fecha_pmi" />
+                        <input class="form-control" type="date" name="fecha_pmi" id="fecha_pminput" />
                       </div>
                     </div>
-                    <div id="divEstado" class="col-md-6"></div>
+                    <div id="divEstado" class="col-md-6">
+                      <div>
+                        <div class="form-group">
+                          <span class="form-label">ESTADO</span>
+                          <input class="form-control" type="text" placeholder="Seleccione un Estado" disabled name="estado" id="estado"/>
+                        </div>
+                      </div>
+                    </div>
                     <div class="col-md-3" id="divFechaVD" style="display: none;">
                         <span class="form-label">Fecha de VD</span>
                         <input class="form-control" type="date" name="fechaVD" id="fechaVD"/>
@@ -193,7 +200,7 @@
               <input type="text" id="conIncFechaVD" name="conIncFechaVD" value="">
               <input type="text" id="conIncFechaPend" name="conIncFechaPend" value="">
               <input type="text" id="sinInc" name="sinInc" value="">
-              <input type="text" id="sinIncDDI" name="cosinIncDDInInc" value="">
+              <input type="text" id="sinIncDDI" name="sinIncDDI" value="">
               <input type="text" id="sinIncDDIJud" name="sinIncDDIJud" value="">
               <input type="text" id="sinIncDDICerrar" name="sinIncDDICerrar" value="">
               <input type="text" id="sinIncDA" name="sinIncDA" value="">
@@ -405,6 +412,7 @@
 
 <script>
 
+
   function limpiarcampos(){
     document.getElementById("conInc").value = null
     document.getElementById("conIncFechaVD").value = null
@@ -427,15 +435,16 @@
   }
 
   function accidente(){
-    console.log(document.getElementById("fecha_acc"))
-    console.log(document.getElementById("tipo").value)
 
     if (document.getElementById("tipo").value === "Enfermedad"){
       document.getElementById("fecha_acc").style.display = "none"
+      document.getElementById("fecha_accidente").value = null
       document.getElementById("fecha_pmi").style.display = "block"}
     else{
       document.getElementById("fecha_acc").style.display = "block"
-      document.getElementById("fecha_pmi").style.display = "none"}
+      document.getElementById("fecha_pmi").style.display = "none"
+      document.getElementById("fecha_pminput").value= null}
+
   }
   
   function constructorEstado(x) {
@@ -455,14 +464,14 @@
 
     switch (x) {
       case "conInc": 
-        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="CON INCAPACIDAD" disabled/></div></div>' 
+        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="CON INCAPACIDAD" disabled name="estado" id="estado"/></div></div>' 
         document.getElementById("conInc").value="on"
         document.getElementById("divNotas").classList.remove("col-md-12")
         document.getElementById("divNotas").classList.add("col-md-9")
         document.getElementById("divFechaTeams").style.display = "block"
       break; 
       case "conIncFechaVD": 
-        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="CON INCAPACIDAD  >>  INGRESE FECHA DE VD  >>" disabled/></div></div>'
+        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="CON INCAPACIDAD  >>  INGRESE FECHA DE VD  >>" disabled name="estado" id="estado"/></div></div>'
         document.getElementById("divFechaVD").style.display = "block"
         document.getElementById("conInc").value="on"
         document.getElementById("conIncFechaVD").value="on"
@@ -471,7 +480,7 @@
         document.getElementById("divFechaTeams").style.display = "block"
       break; 
       case "conIncFechaPend": 
-        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="CON INCAPACIDAD  >>  FECHA VD PENDIENTE" disabled/></div></div>' 
+        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="CON INCAPACIDAD  >>  FECHA VD PENDIENTE" disabled name="estado" id="estado" name="estado" id="estado"/></div></div>' 
         document.getElementById("conInc").value="on"
         document.getElementById("conIncFechaPend").value="on"
         document.getElementById("divNotas").classList.remove("col-md-12")
@@ -479,49 +488,48 @@
         document.getElementById("divFechaTeams").style.display = "block"
       break; 
       case "sinInc": 
-        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="SIN INCAPACIDAD" disabled/></div></div>'  
+        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="SIN INCAPACIDAD" disabled name="estado" id="estado"/></div></div>'  
         document.getElementById("sinInc").value="on"
       break; 
       case "sinIncDDI": 
-        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="SIN INCAPASIDAD  >>  DDI" disabled/></div></div>' 
+        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="SIN INCAPACIDAD  >>  DDI" disabled name="estado" id="estado"/></div></div>' 
         document.getElementById("sinInc").value="on"
         document.getElementById("sinIncDDI").value="on"
       break; 
       case "sinIncDDIJud":        
-       constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="SIN INCAPASIDAD  >>  DDI  >>  JUDICIAL" disabled/></div></div>' 
+       constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="SIN INCAPACIDAD  >>  DDI  >>  JUDICIAL" disabled name="estado" id="estado"/></div></div>' 
         document.getElementById("sinInc").value="on"
         document.getElementById("sinIncDDI").value="on"
         document.getElementById("sinIncDDIJud").value="on"
       break;
       case "sinIncDDICerrar": 
-        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="SIN INCAPASIDAD  >>  DDI  >>  CERRAR" disabled/></div></div>' 
+        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="SIN INCAPACIDAD  >>  DDI  >>  CERRAR" disabled name="estado" id="estado"/></div></div>' 
         document.getElementById("sinInc").value="on"
         document.getElementById("sinIncDDI").value="on"
         document.getElementById("sinIncDDICerrar").value="on"
       break; 
       case "sinIncDA": 
-       constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="SIN INCAPASIDAD  >>  DA" disabled/></div></div>' 
+       constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="SIN INCAPACIDAD  >>  DA" disabled name="estado" id="estado"/></div></div>' 
        document.getElementById("sinInc").value="on"
        document.getElementById("sinIncDA").value="on"
       break; 
       case "detInc": 
-        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="DET INCAPACIDAD" disabled/></div></div>' 
+        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="DET INCAPACIDAD" disabled name="estado" id="estado"/></div></div>' 
         document.getElementById("detInc").value="on"
         document.getElementById("divNotas").classList.remove("col-md-12")
         document.getElementById("divNotas").classList.add("col-md-9")
         document.getElementById("divFechaTeams").style.display = "block"
       break; 
       case "detIncDDI": 
-        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="DET INCAPACIDAD >> DDI" disabled/></div></div>' 
+        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="DET INCAPACIDAD >> DDI" disabled name="estado" id="estado"/></div></div>' 
         document.getElementById("detInc").value="on"
         document.getElementById("detIncDDI").value="on"
         document.getElementById("divNotas").classList.remove("col-md-12")
         document.getElementById("divNotas").classList.add("col-md-9")
         document.getElementById("divFechaTeams").style.display = "block"
-
       break; 
       case "detIncDDIJud":
-        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="DET INCAPACIDAD  >>  DDI  >>  JUDICIAL" disabled/></div></div>'
+        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="DET INCAPACIDAD  >>  DDI  >>  JUDICIAL" disabled name="estado" id="estado"/></div></div>'
         document.getElementById("detInc").value="on"
         document.getElementById("detIncDDI").value="on"
         document.getElementById("detIncDDIJud").value="on"
@@ -530,7 +538,7 @@
         document.getElementById("divFechaTeams").style.display = "block"
       break;
       case "detIncDDICerrar": 
-       constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="DET INCAPACIDAD  >>  DDI  >>  CERRAR" disabled/></div></div>'
+       constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="DET INCAPACIDAD  >>  DDI  >>  CERRAR" disabled name="estado" id="estado"/></div></div>'
         document.getElementById("detInc").value="on"
         document.getElementById("detIncDDI").value="on"
         document.getElementById("detIncDDICerrar").value="on"
@@ -539,34 +547,35 @@
         document.getElementById("divFechaTeams").style.display = "block"
       break; 
       case "trat": 
-       constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="TRATAMIENTO" disabled/></div></div>'
+       constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="TRATAMIENTO" disabled name="estado" id="estado"/></div></div>'
        document.getElementById("trat").value="on"
       break; 
       case "jud": 
-        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="JUDICIAL" disabled/></div></div>'
+        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="JUDICIAL" disabled name="estado" id="estado"/></div></div>'
         document.getElementById("jud").value="on"
       break; 
       case "judAbr": 
-       constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="JUDICIAL  >>  ABREVIADO" disabled/></div></div>'
+       constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="JUDICIAL  >>  ABREVIADO" disabled name="estado" id="estado"/></div></div>'
        document.getElementById("jud").value="on"
        document.getElementById("judAbr").value="on"
       break; 
       case "judOrd": 
-       constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="JUDICIAL  >>  ORDINARIO" disabled/></div></div>'
+       constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="JUDICIAL  >>  ORDINARIO" disabled name="estado" id="estado"/></div></div>'
        document.getElementById("jud").value="on"
        document.getElementById("judOrd").value="on"
       break; 
       case "acord": 
-       constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="ACORDADO" disabled/></div></div>'
+       constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="ACORDADO" disabled name="estado" id="estado"/></div></div>'
       document.getElementById("acord").value="on"
       break; 
-        case "cerrarSrt": constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="CERRAR (SRT)" disabled/></div></div>'
+        case "cerrarSrt": constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="CERRAR (SRT)" disabled name="estado" id="estado"/></div></div>'
       document.getElementById("cerrarSrt").value="on"
       break; 
       default: 
       constructor = 'SELECCIONE UN ESTADO' 
       break; 
       }
-        document.getElementById("divEstado").innerHTML = constructor
+      
+      document.getElementById("divEstado").innerHTML = constructor
   }
 </script>

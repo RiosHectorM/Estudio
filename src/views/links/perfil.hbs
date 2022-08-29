@@ -1,6 +1,6 @@
 <body onload="cargarDatosDeCliente()">
   
-  <div class="container" onload="cargarDatosDeCliente()">
+  <div class="container">
      <div class="row">
         <div class="col-md-12">
            <div id="content" class="content content-full-width">
@@ -12,15 +12,11 @@
                           <img src="/img/logop.png" alt="">
                        </div>
                        <div class="profile-header-info" id="botonActu">
-                          <h4 id="idnombrehtml" class="m-t-10 m-b-5"></h4>
-                          <p class="m-b-10" id="dninombrehtml"></p>
+                          
                        </div>
                     </div>
                     <ul class="profile-header-tab nav nav-tabs" id="barradelinks">
-                       <li class="nav-item"><a href="#" class="nav-link" onclick="cargarDatosDeCliente()">VER TODOS</a></li>
-                       <li class="nav-item"><a href="#" class="nav-link" onclick="cargarDatosLegales()">EVENTOS LEGALES</a></li>
-                       <li class="nav-item"><a href="#" class="nav-link" onclick="cargarDatosMedicos()">EVENTOS MEDICOS</a></li>
-                       <li class="nav-item"><a href="#" class="nav-link "onclick="cargarDatosPsicologicos()">EVENTOS PSICOLOGICOS</a></li>
+                       
                     </ul>
                  </div>
               </div>
@@ -28,7 +24,242 @@
               <div class="profile-content">
                  <div class="tab-content p-0">
                     <div class="tab-pane fade active show" id="eventosPost">
+                    {{#each eventocli}}
+                      <ul class="timeline">
+                        <li>
+                          <div class="timeline-time">
+                            <span class="date">Fecha: {{fecha_evt}}</span> 
+                          </div>
+                          <div class="timeline-icon">
+                            <a href="">&nbsp;</a>
+                          </div>
+                          <div class="timeline-body">
+                            <div class="row">
+                              <div class="col-md-3 d-flex align-items-center text-cente">
+                                <div class="form-group">
+                                    <span class="form-label">TIPO</span>
+                                    <input class="form-control" type="text" disabled name="tipo" id="tipo" value="{{tipo}}"/>
+                                </div>
+                              </div>
+                            
+                              <div id="divEstado" class="col-md-9">
+                                  <div class="form-group">
+                                    {{#if conInc}}
+                                      {{#if conIncFechaVD}}
+                                        <div class="form-group">
+                                          <span class="form-label">ESTADO</span>
+                                          <input class="form-control" type="text" value="CON INCAPACIDAD  >>  INGRESE FECHA DE VD  >>" disabled name="estado" id="estado"/>
+                                        </div>
+                                      {{else}}
+                                        {{#if conIncFechaPend}}
+                                        <div class="form-group">
+                                          <span class="form-label">ESTADO</span>
+                                          <input class="form-control" type="text" value="CON INCAPACIDAD  >>  FECHA VD PENDIENTE" disabled name="estado" id="estado"/>
+                                        </div>
+                                        {{else}}
+                                          <div class="form-group">
+                                            <span class="form-label">ESTADO</span>
+                                          <input class="form-control" type="text" value="CON INCAPACIDAD" disabled name="estado" id="estado"/>
+                                          </div>
+                                        {{/if}}
+                                      {{/if}}                                        
+                                    {{/if}}
+                                    
+                                    
+                                    {{#if sinInc}}
+                                      {{#if sinIncDDI}}
+                                        {{#if sinIncDDIJud}}
+                                          <div class="form-group">
+                                            <span class="form-label">ESTADO</span>
+                                            <input class="form-control" type="text" value="SIN INCAPACIDAD  >>  DDI  >>  JUDICIAL" disabled name="estado" id="estado"/>
+                                          </div>
+                                        {{else}}
+                                          {{#if sinIncDDICerrar}}
+                                            <div class="form-group">
+                                              <span class="form-label">ESTADO</span>
+                                              <input class="form-control" type="text" value="SIN INCAPACIDAD  >>  DDI  >>  CERRAR" disabled name="estado" id="estado"/>
+                                            </div>
+                                          {{else}}
+                                            <div class="form-group">
+                                              <span class="form-label">ESTADO</span>
+                                              <input class="form-control" type="text" value="SIN INCAPACIDAD  >>  DDI" disabled name="estado" id="estado"/>
+                                            </div>
+                                          {{/if}}
+                                        {{/if}}
+                                      {{else}}
+                                        {{#if sinIncDA}}
+                                          <div class="form-group">
+                                            <span class="form-label">ESTADO</span>
+                                            <input class="form-control" type="text" value="SIN INCAPACIDAD  >>  DA" disabled name="estado" id="estado"/>
+                                          </div>
+                                        {{else}}
+                                          <div class="form-group">
+                                            <span class="form-label">ESTADO</span>
+                                            <input class="form-control" type="text" value="SIN INCAPACIDAD" disabled name="estado" id="estado"/>
+                                          </div>
+                                        {{/if}}
+                                      {{/if}}
+                                    {{/if}}
+                                    
+                                    
+                                    {{#if detInc}}
+                                      {{#if detIncDDI}}
+                                        {{#if detIncDDIJud}}
+                                          <div class="form-group">
+                                            <span class="form-label">ESTADO</span>
+                                            <input class="form-control" type="text" value="DET INCAPACIDAD  >>  DDI  >>  JUDICIAL" disabled name="estado" id="estado"/>
+                                          </div>
+                                        {{else}}
+                                          {{#if detIncDDICerrar}}
+                                            <div class="form-group">
+                                              <span class="form-label">ESTADO</span>
+                                              <input class="form-control" type="text" value="DET INCAPACIDAD  >>  DDI  >>  CERRAR" disabled name="estado" id="estado"/>
+                                            </div>
+                                          {{else}}
+                                            <div class="form-group">
+                                              <span class="form-label">ESTADO</span>
+                                              <input class="form-control" type="text" value="DET INCAPACIDAD  >>  DDI" disabled name="estado" id="estado"/>
+                                            </div>
+                                          {{/if}}
+                                        {{/if}}
+                                      {{else}}
+                                      <div class="form-group">
+                                        <span class="form-label">ESTADO</span>
+                                        <input class="form-control" type="text" value="DET INCAPACIDAD" disabled name="estado" id="estado"/>
+                                      </div>
+                                    {{/if}}
+                                    {{/if}}
+                                    {{#if trat}}
+                                      <div class="form-group">
+                                        <span class="form-label">ESTADO</span>
+                                        <input class="form-control" type="text" value="TRATAMIENTO" disabled name="estado" id="estado"/>
+                                    </div>
+                                    {{/if}}
+                                    {{#if jud}}
+                                      {{#if judAbr}}
+                                        <div class="form-group">
+                                          <span class="form-label">ESTADO</span>
+                                          <input class="form-control" type="text" value="JUDICIAL  >>  ABREVIADO" disabled name="estado" id="estado"/>
+                                        </div>
+                                      {{else}}
+                                        {{#if judOrd}}
+                                        <div class="form-group">
+                                          <span class="form-label">ESTADO</span>
+                                          <input class="form-control" type="text" value="JUDICIAL  >>  ORDINARIO" disabled name="estado" id="estado"/>
+                                        </div>
+                                        {{else}}
+                                          <div class="form-group">
+                                            <span class="form-label">ESTADO</span>
+                                            <input class="form-control" type="text" value="JUDICIAL" disabled name="estado" id="estado"/>
+                                          </div>
+                                        {{/if}}
+                                      {{/if}}
+                                    {{/if}}
+                                    {{#if acord}}
+                                      <div class="form-group">
+                                        <span class="form-label">ESTADO</span>
+                                        <input class="form-control" type="text" value="ACORDADO" disabled name="estado" id="estado"/>
+                                      </div>
+                                    {{/if}}
+                                    {{#if cerrarSrt}}
+                                      <div class="form-group">
+                                        <span class="form-label">ESTADO</span>
+                                        <input class="form-control" type="text" value="CERRAR (SRT)" disabled name="estado" id="estado"/>
+                                      </div>
+                                    {{/if}}
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-auto d-flex align-items-center text-center">
+                                <div class="form-group">
+                                  <div class="form-check form-switch fs-5 text-light">
+                                    {{#if importante}}
+                                      <input class="form-check-input"type="checkbox" id="switch_importante" name="importante" checked disabled><label class="form-check-label" for="switch_importante" >IMPORTANTE</label>
+                                    {{else}}
+                                      <input class="form-check-input"type="checkbox" id="switch_importante" name="importante" disabled><label class="form-check-label" for="switch_importante">IMPORTANTE</label>
+                                    {{/if}}
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-auto d-flex align-items-center text-center">
+                                <div class="form-group">
+                                  <div class="form-check form-switch fs-5 text-light">
+                                    {{#if regHonorarios}}
+                                      <input class="form-check-input" type="checkbox" id="switch_regHonorarios" name="regHonorarios" checked disabled><label class="form-check-label" for="switch_regHonorarios">REG HONORARIOS</label>
+                                    {{else}}
+                                      <input class="form-check-input" type="checkbox" id="switch_regHonorarios" name="regHonorarios" disabled><label class="form-check-label" for="switch_regHonorarios">REG HONORARIOS</label>
+                                    {{/if}}
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-auto d-flex align-items-center text-center">
+                                <div class="form-group">
+                                  <div class="form-check form-switch fs-5 text-light">
+                                    {{#if finalizado}}
+                                      <input class="form-check-input" type="checkbox" id="switch_finalizado" name="finalizado" checked disabled><label class="form-check-label" for="switch_finalizado">FINALIZADO</label>
+                                    {{else}}
+                                      <input class="form-check-input" type="checkbox" id="switch_finalizado" name="finalizado" disabled><label class="form-check-label" for="switch_finalizado">FINALIZADO</label>
+                                    {{/if}}
+                                  </div>
+                                </div>
+                              </div>         
+                              <div class="col-md-auto d-flex align-items-center text-center">
+                                <div class="form-group">
+                                  <div class="form-check form-switch fs-5 text-light">
+                                    {{#if baja}}
+                                      <input class="form-check-input" type="checkbox" id="switch_baja" name="baja" checked disabled><label class="form-check-label" for="switch_baja">BAJA</label>
+                                    {{else}}
+                                       <input class="form-check-input" type="checkbox" id="switch_baja" disabled name="baja"><label class="form-check-label" for="switch_baja">BAJA</label>
+                                    {{/if}}
+                                  </div>
+                                </div>
+                              </div>   
+                            </div>
 
+                            <div class="row">
+                              <div class="col-md-3 d-flex align-items-center text-center">
+                                <div class="form-group" id="fecha_acc">
+                                  <span class="form-label">Fecha del Accidente</span>
+                                  <input class="form-control" type="date" name="fecha_accidente" id="fecha_accidente" disabled value="{{fecha_accidente}}"/>
+                                </div>
+                              </div>
+                              <div class="col-md-3 d-flex align-items-center text-center">
+                                <div class="form-group" id="fecha_pmi">
+                                  <span class="form-label">Fecha PMI</span>
+                                  <input class="form-control" type="date" name="fecha_pmi" id="fecha_pminput" disabled value="{{fecha_pmi}}"/>
+                                </div>
+                              </div>
+                              <div class="col-md-3" id="divFechaVD">
+                                  <span class="form-label">Fecha de VD</span>
+                                  <input class="form-control" type="date" name="fechaVD" id="fechaVD" disabled value="{{fechaVD}}"/>
+                              </div>
+                              <div class="col-md-3" id="divFechaTeams">
+                                  <span class="form-label">Fecha TEAMS</span>
+                                  <input class="form-control" type="date" name="fechaTeams" disabled id="fechaTeams" value="{{fechaTeams}}"/>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="form-group col-md-12" id="divNotas">
+                                <span class="form-label">DETALLES DEL HECHO</span>
+                                <input class="form-control" type="text" name="detalles" id="detalles" disabled value="{{detalles}}" />
+                              </div>
+                            </div>
+
+                            <div class="row">
+                              <div class="form-group col-md-9">
+                                <span class="form-label">NOTAS / OBSERVACIONES</span>
+                                <input class="form-control" type="text" name="notas" disabled id="notas" value="{{notas}}" />
+                              </div>
+                              <div class="col-md-3">
+                                  <span class="form-label">PROXIMO CONTACTO</span>
+                                  <input class="form-control" type="date" name="fecha_prox_contacto" disabled id="fecha_prox_contacto" value="{{fecha_prox_contacto}}"/>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    {{/each}}
                     </div>
                  </div>
               </div>
@@ -40,13 +271,18 @@
         </div>
      </div>
   </div>
+
+
 </body>
+
 
 <script>
   function cargarDatosLegales(){
     const allEvents = {{{dataeventos}}};
     const arrayLegales = allEvents.filter(function(evtL){
-      if (evtL.diag_leg != "")
+      if (evtL.diag_leg == ""|| evtL.diag_leg == null)
+      console.log(evtL.diag_med)
+      else
       return true
     })
     generadoraHtml(arrayLegales, "legal")
@@ -55,7 +291,9 @@
   function cargarDatosMedicos(){
     const allEvents = {{{dataeventos}}};
     const arrayMedicos = allEvents.filter(function(evtM){
-      if (evtM.diag_med != "")
+      if (evtM.diag_med == ""|| evtM.diag_med == null)
+        console.log(evtM.diag_med)
+      else
       return true
     })
     generadoraHtml(arrayMedicos, "medico")
@@ -64,7 +302,9 @@
   function cargarDatosPsicologicos(){
     const allEvents = {{{dataeventos}}};
     const arrayPsico = allEvents.filter(function(evtP){
-      if (evtP.diag_psico != "")
+      if (evtP.diag_psico == ""|| evtP.diag_psico == null)
+        console.log(evtP.diag_psico)
+      else
       return true
     })
     generadoraHtml(arrayPsico, "psico")
@@ -76,36 +316,28 @@
     constructor = '<ul class="timeline">'
 
     for (let index = 0; index < arrayEvt.length; index++) {
-      constructor += '<li><div class="timeline-time"><span class="date"></span>Fecha: <span class="time">'+arrayEvt[index].fecha_evt+'</span></div><div class="timeline-icon"><a href="">&nbsp;</a></div><div class="timeline-body">';
-      if (flag == "legal" || flag == "todos"){
+      constructor += '<li><div class="timeline-time"><span class="date">Fecha: </span><span class="time">'+arrayEvt[index].fecha_evt+'</span></div><div class="timeline-icon"><a href="">&nbsp;</a></div><div class="timeline-body">';
+      if (flag == "legal" ){
         constructor += '<div class="timeline-header"><span class="username"><a href="">DIAGNOSTICO LEGAL</a></span></div><div class="timeline-content"><p>'+arrayEvt[index].diag_leg+'</p><br><p>PROXIMA VISITA LEGAL: '+arrayEvt[index].fecha_prox_legal+'</p></div>'};
-      if (flag == "medico" || flag == "todos"){
+      if (flag == "medico"){
         constructor += '<div class="timeline-header"><span class="username"><a href="">DIAGNOSTICO MEDICO</a></span></div><div class="timeline-content"><p>'+arrayEvt[index].diag_med+'</p><br><p>PROXIMA VISITA MEDICA: '+arrayEvt[index].fecha_prox_med+'</p></div>'};
-      if (flag == "psico" || flag == "todos"){
+      if (flag == "psico"){
         constructor += '<div class="timeline-header"><span class="username"><a href="">DIAGNOSTICO PSICOLOGICO</a></span></div>      <div class="timeline-content"><p>'+arrayEvt[index].diag_psico+'</p><br><p>PROXIMA VISITA PSICOLOGICA: '+arrayEvt[index].fecha_prox_psico+'</p></div>'};
       constructor += '<div class="timeline-comment-box"><div class="input"><div class="input-group"><span class="input-group-btn p-l-10"><button class="btn btn-primary f-s-12 rounded-corner" type="button">EDITAR</button> Fecha de Contacto: '+arrayEvt[index].fecha_prox_contacto+'</span></div></div></div></div></li>';
     }
     constructor += '</ul>'
     
     if (arrayEvt.length == 0){
-      console.log("entro al IF)")
       document.getElementById("eventosPost").innerHTML = '<div class="booking-form text-center"><h2>NO HAY EVENTOS PARA EL CLIENTE SELECCIONADO</h2></div>'}
       else{document.getElementById("eventosPost").innerHTML = constructor}
   }
 
   function cargarDatosDeCliente(){ 
     const allEvents = {{{dataeventos}}};
-    console.log(allEvents)
     const clienteSeleccionado = {{{clienteSel}}};
 
-    document.getElementById("idnombrehtml").innerHTML = clienteSeleccionado[0].damnificado;
-    document.getElementById("dninombrehtml").innerHTML = 'DNI: '+clienteSeleccionado[0].dni_cuil+' Telefono: '+clienteSeleccionado[0].telefono;
+    document.getElementById("botonActu").innerHTML = '<h4 class="m-t-10 m-b-5">'+clienteSeleccionado[0].damnificado+'</h4><p class="m-b-10">DNI: '+clienteSeleccionado[0].dni_cuil+' Telefono: '+clienteSeleccionado[0].telefono+'</p><a class="btn btn-primary" href="/links/edit/'+clienteSeleccionado[0].id_cliente+'" class="btn btn-primary">EDITAR DATOS</a><a class="btn btn-primary" href="/links/evento/'+clienteSeleccionado[0].id_cliente+'" role="button">AGREGAR EVENTO</a>'
     
-    document.getElementById("botonActu").innerHTML += '<a href="/links/edit/'+clienteSeleccionado[0].id_cliente+'" class="btn btn-primary mb-2">EDITAR DATOS</a>'
-    
-    document.getElementById("barradelinks").innerHTML += '<li class="nav-item"><a class="btn btn-primary" href="/links/evento/'+clienteSeleccionado[0].id_cliente+'" role="button">AGREGAR EVENTO</a></li>'
-
-    generadoraHtml(allEvents,"todos")
+    document.getElementById("barradelinks").innerHTML = '<li class="nav-item"><a href="#" class="nav-link" onclick="cargarDatosDeCliente()">ESTADOS</a></li><li class="nav-item"><a href="#" class="nav-link" onclick="cargarDatosLegales()">EVENTOS LEGALES</a></li><li class="nav-item"><a href="#" class="nav-link" onclick="cargarDatosMedicos()">EVENTOS MEDICOS</a></li><li class="nav-item"><a href="#" class="nav-link "onclick="cargarDatosPsicologicos()">EVENTOS PSICOLOGICOS</a></li>'
   };
-
 </script>

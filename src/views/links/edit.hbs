@@ -149,14 +149,8 @@
                 </div>
               </div>
               <div class="col-md-2">
-                <div class="form-group">
-                  <span class="form-label">TURNO</span>
-                  <select class="form-control" name="turno_empresa">
-                    <option>Mañana</option>
-                    <option>Tarde</option>
-                    <option>Noche</option>
-                  </select>
-                  <span class="select-arrow"></span>
+                <div class="form-group" id="divTurno">
+                  
                 </div>
               </div>
             </div>
@@ -182,36 +176,40 @@
                   <select class="form-control" name="nombre_art" id="nombre_art" onchange="actualizar(this.value)">
                     <option>Seleccione una Opcion</option>                    
                   </select> 
-                  {{!-- SCRIPTS PARA SELECT DE ART --}}
                   <script>
-                    window.addEventListener('load', function() {
-                    cargar_art();
-                  });
-                  function cargar_art() {
-                  const json0 = {{{data}}};
-                  addOptions("nombre_art", json0);
-                  }
-                  function addOptions(domElement, array) {
-                  var select = document.getElementsByName(domElement)[0];
-                  for (value in array) {
-                    var option = document.createElement("option");
-                    option.text = array[value].nombre_art;
-                    select.add(option);
-                  }
-                  }
-                  function actualizar(valor){
-                      const json = `{{{data}}}`;
-                      const listado_art = JSON.parse(json)
-                      for (let index = 0; index < listado_art.length; index++) {
-                        if (valor == listado_art[index].nombre_art){
-                          document.formulario1.mail_art.value = listado_art[index].mail_art;
-                          document.formulario1.telefono_art.value = listado_art[index].telefono_art;
-                          document.formulario1.domicilio_art.value = listado_art[index].domicilio_art;
+                    window.addEventListener('load', function () {
+                      cargar_art();
+                    }); 
+                    
+                    function cargar_art() {
+                      const json0 = {{{ data }}}; 
+                      addOptions("nombre_art", json0); 
+                    } 
+                      
+                    function addOptions(domElement, array) {
+                      var select = document.getElementsByName(domElement)[0]; 
+                      for (value in array) {
+                        var option = document.createElement("option");
+                        option.text = array[value].nombre_art;
+                        if(array[value].nombre_art == "{{link.art}}"){
+                          option.selected = "selected"
+                          console.log("entronombre")
                         }
+                        select.add(option);
+                    }
+
+                    } function actualizar(valor) {
+                      const json = `{{{data}}}`;
+                      const listado_art = JSON.parse(json) 
+                      for (let index = 0; index < listado_art.length; index++) {
+                          if (valor == listado_art[index].nombre_art) {
+                            document.formulario1.mail_art.value = listado_art[index].mail_art;
+                            document.formulario1.telefono_art.value = listado_art[index].telefono_art;
+                            document.formulario1.domicilio_art.value = listado_art[index].domicilio_art;
+                          }
                       }
                     };
                   </script>
-                  {{!-- FIN SCRIPT DE SELECT ART --}}
                 </div>
               </div>
               <div class="col-md-6">
@@ -248,6 +246,7 @@
                     type="text"
                     placeholder="Mail de ART"
                     name="mail_art"
+                    id="mail_art"
                   />
                 </div>
               </div>
@@ -259,31 +258,20 @@
                     type="text"
                     placeholder="Numero"
                     name="telefono_art"
+                    id="telefono_art"
                   />
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col-md-3">
-                <div class="form-group">
-                  <span class="form-label">Historia Clinica</span>
-                  <select class="form-control" name="historia_clinica">
-                    <option>Presentada</option>
-                    <option>Solicitar</option>
-                    <option>NoRequiere</option>
-                  </select>
-                  <span class="select-arrow"></span>
+                <div class="form-group" id="divHistoria">
+                 
                 </div>
               </div>
               <div class="col-md-3">
-                <div class="form-group">
-                  <span class="form-label">Estudios Medicos</span>
-                  <select class="form-control" name="estudios_medicos">
-                    <option>Presentados</option>
-                    <option>Solicitar</option>
-                    <option>No Requiere</option>
-                  </select>
-                  <span class="select-arrow"></span>
+                <div class="form-group" id="divEstudios">
+                  
                 </div>
               </div>
               <div class="col-md-6">
@@ -321,9 +309,62 @@
   </div>
 </div>
 
+<div id="invisible" style="display: none;">
+  <input type="text" id="conInc" name="conInc" value="">
+  <input type="text" id="conIncFechaVD" name="conIncFechaVD" value="">
+  <input type="text" id="conIncFechaPend" name="conIncFechaPend" value="">
+  <input type="text" id="sinInc" name="sinInc" value="">
+  <input type="text" id="sinIncDDI" name="sinIncDDI" value="">
+  <input type="text" id="sinIncDDIJud" name="sinIncDDIJud" value="">
+  <input type="text" id="sinIncDDICerrar" name="sinIncDDICerrar" value="">
+  <input type="text" id="sinIncDA" name="sinIncDA" value="">
+  <input type="text" id="detInc" name="detInc" value="">
+  <input type="text" id="detIncDDI" name="detIncDDI" value="">
+  <input type="text" id="detIncDDIJud" name="detIncDDIJud" value="">
+  <input type="text" id="detIncDDICerrar" name="detIncDDICerrar" value="">
+  <input type="text" id="jud" name="jud" value="">
+  <input type="text" id="judAbr" name="judAbr" value="">
+  <input type="text" id="judOrd" name="judOrd" value="">
+  <input type="text" id="trat" name="trat" value="">
+  <input type="text" id="acord" name="acord" value="">
+  <input type="text" id="cerrarSrt" name="cerrarSrt" value="">
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
   flatpickr("input[type=time]",{ enableTime: true, noCalendar: true, dateFormat:
   "H:i"});
+</script>
+<script>
+  arrayARTS={{{data}}}
+  artSelected = arrayARTS.filter(function (arts) {
+      if (arts.nombre_art == "{{link.art}}") {
+        document.getElementById("domicilio_art").value = arts.domicilio_art
+        document.getElementById("mail_art").value = arts.mail_art
+        document.getElementById("telefono_art").value = arts.telefono_art
+        return true;
+      }
+    }); 
+
+  if ("{{link.turno_empresa}}" == "Mañana"){
+    document.getElementById("divTurno").innerHTML='<span class="form-label">TURNO</span><select class="form-control" name="turno_empresa"><option selected>Mañana</option><option>Tarde</option><option>Noche</option></select><span class="select-arrow"></span>'}
+  if ("{{link.turno_empresa}}" == "Tarde"){
+    document.getElementById("divTurno").innerHTML='<span class="form-label">TURNO</span><select class="form-control" name="turno_empresa"><option>Mañana</option><option selected>Tarde</option><option>Noche</option></select><span class="select-arrow"></span>'}
+  if ("{{link.turno_empresa}}" == "Noche"){
+    document.getElementById("divTurno").innerHTML='<span class="form-label">TURNO</span><select class="form-control" name="turno_empresa"><option>Mañana</option><option>Tarde</option><option selected>Noche</option></select><span class="select-arrow"></span>'}
+
+  if ("{{link.historia_clinica}}"=="Presentada"){
+   document.getElementById("divHistoria").innerHTML=' <span class="form-label">Historia Clinica</span><select class="form-control" name="historia_clinica"><option selected>Presentada</option><option>Solicitar</option><option>No Requiere</option></select><span class="select-arrow"></span>'}
+  if ("{{link.historia_clinica}}"=="Solicitar"){
+   document.getElementById("divHistoria").innerHTML=' <span class="form-label">Historia Clinica</span><select class="form-control" name="historia_clinica"><option>Presentada</option><option selected>Solicitar</option><option>No Requiere</option></select><span class="select-arrow"></span>'}
+   if ("{{link.historia_clinica}}"=="No Requiere"){
+   document.getElementById("divHistoria").innerHTML=' <span class="form-label">Historia Clinica</span><select class="form-control" name="historia_clinica"><option>Presentada</option><option>Solicitar</option><option selected>No Requiere</option></select><span class="select-arrow"></span>'}
+
+if ("{{link.estudios_medicos}}"=="Presentados"){
+   document.getElementById("divEstudios").innerHTML=' <span class="form-label">Historia Clinica</span><select class="form-control" name="estudios_medicos"><option selected>Presentados</option><option>Solicitar</option><option>No Requiere</option></select><span class="select-arrow"></span>'}
+  if ("{{link.estudios_medicos}}"=="Solicitar"){
+   document.getElementById("divEstudios").innerHTML=' <span class="form-label">Historia Clinica</span><select class="form-control" name="estudios_medicos"><option>Presentados</option><option selected>Solicitar</option><option>No Requiere</option></select><span class="select-arrow"></span>'}
+   if ("{{link.estudios_medicos}}"=="No Requiere"){
+   document.getElementById("divEstudios").innerHTML=' <span class="form-label">Historia Clinica</span><select class="form-control" name="estudios_medicos"><option>Presentados</option><option>Solicitar</option><option selected>No Requiere</option></select><span class="select-arrow"></span>'}
+
 </script>

@@ -1,12 +1,17 @@
-<h1>AGREGAR FILTROS CONSTRUCTORES</h1>
 <div id="booking" class="section">
   <div class="section-center">
     <div class="container">
       <div class="row">
         <div class="booking-form row">
           <h5 id="titulo" class="badge bg-primary fs-5">BUSCAR CLIENTE</h5>
-          <input class="form-control mt-2" type="text" name="search" id="search" placeholder="Ingrese nombre de Cliente" onkeyup="cambioeltexto()" />
-
+          <div class="col-md-8">
+            <span class="form-label">Nombre</span>
+            <input class="form-control mt-2" type="text" name="search" id="search" placeholder="Ingrese nombre de Cliente" onkeyup="cambioeltexto()" />
+          </div>
+          <div class="col-md-4">
+              <span class="form-label">Reset</span>
+              <button class="submit-btn" role="button" onclick="location.reload()">QUITAR FILTROS</button>
+          </div>
           <button class="btn btn-primary mt-3" onclick="mostrarFlitros()">BUSCAR POR FILTROS</button>
 
           <div class="gradientefondo align-" id="divFiltros" style="display: none">
@@ -15,6 +20,7 @@
                 <div class="form-group">
                   <span class="form-label">TIPO</span>
                   <select class="form-control" name="tipo" id="tipo" onchange="cambioeltipo()">
+                    <option>Seleccionar</option>
                     <option>Accidente</option>
                     <option>Accidente Initinere</option>
                     <option>Enfermedad</option>
@@ -56,12 +62,6 @@
                       onchange="cambioelBaja()">
                     <label class="form-check-label" for="switch_baja">BAJA</label>
                   </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <span class="form-label">Reset</span>
-                  <button class="submit-btn" role="button" onclick="location.reload()">QUITAR FILTROS</button>
                 </div>
               </div>
             </div>
@@ -185,24 +185,24 @@
   </div>
 </div>
 <div id="invisible" style="display: none;">
-              <input type="text" id="conInc" name="conInc" value="">
-              <input type="text" id="conIncFechaVD" name="conIncFechaVD" value="">
-              <input type="text" id="conIncFechaPend" name="conIncFechaPend" value="">
-              <input type="text" id="sinInc" name="sinInc" value="">
-              <input type="text" id="sinIncDDI" name="cosinIncDDInInc" value="">
-              <input type="text" id="sinIncDDIJud" name="sinIncDDIJud" value="">
-              <input type="text" id="sinIncDDICerrar" name="sinIncDDICerrar" value="">
-              <input type="text" id="sinIncDA" name="sinIncDA" value="">
-              <input type="text" id="detInc" name="detInc" value="">
-              <input type="text" id="detIncDDI" name="detIncDDI" value="">
-              <input type="text" id="detIncDDIJud" name="detIncDDIJud" value="">
-              <input type="text" id="detIncDDICerrar" name="detIncDDICerrar" value="">
-              <input type="text" id="jud" name="jud" value="">
-              <input type="text" id="judAbr" name="judAbr" value="">
-              <input type="text" id="judOrd" name="judOrd" value="">
-              <input type="text" id="trat" name="trat" value="">
-              <input type="text" id="acord" name="acord" value="">
-              <input type="text" id="cerrarSrt" name="cerrarSrt" value="">
+  <input type="text" id="conInc" name="conInc" value="">
+  <input type="text" id="conIncFechaVD" name="conIncFechaVD" value="">
+  <input type="text" id="conIncFechaPend" name="conIncFechaPend" value="">
+  <input type="text" id="sinInc" name="sinInc" value="">
+  <input type="text" id="sinIncDDI" name="sinIncDDI" value="">
+  <input type="text" id="sinIncDDIJud" name="sinIncDDIJud" value="">
+  <input type="text" id="sinIncDDICerrar" name="sinIncDDICerrar" value="">
+  <input type="text" id="sinIncDA" name="sinIncDA" value="">
+  <input type="text" id="detInc" name="detInc" value="">
+  <input type="text" id="detIncDDI" name="detIncDDI" value="">
+  <input type="text" id="detIncDDIJud" name="detIncDDIJud" value="">
+  <input type="text" id="detIncDDICerrar" name="detIncDDICerrar" value="">
+  <input type="text" id="jud" name="jud" value="">
+  <input type="text" id="judAbr" name="judAbr" value="">
+  <input type="text" id="judOrd" name="judOrd" value="">
+  <input type="text" id="trat" name="trat" value="">
+  <input type="text" id="acord" name="acord" value="">
+  <input type="text" id="cerrarSrt" name="cerrarSrt" value="">
 </div>
 
 <script>
@@ -219,7 +219,18 @@
     });
   }
 
+  function limpiarFiltros(){
+
+    
+    console.log("entro")
+  }
+
   function mostrarFlitros() {
+    document.getElementById("switch_importante").checked=false
+    document.getElementById("switch_regHonorarios").checked=false
+    document.getElementById("switch_finalizado").checked=false
+    document.getElementById("switch_baja").checked=false
+    document.getElementById("estado").value = ""
     var x = document.getElementById("divFiltros");
     if (x.style.display === "none") {
       x.style.display = "block";
@@ -230,27 +241,26 @@
 
   //FILTROS GENERALES (TIPO, IMPORTANTE, REG HONORARIOS, FINALIZADO, BAJA)
 
-  //function cambioelestado() {
-  //  const valorEstado = document.getElementById("estado").value;
-  //  arrayFiltrado(valorEstado, "estado");
-  // }
+// ARRAY INICIAL CON TODOS LOS CLIENTES
+var arrayOK = {{{ dataCliArray }}};
 
   function cambioeltipo() {
     const valorTipo = document.getElementById("tipo").value;
     arrayFiltrado(valorTipo, "tipo", arrayOK)
+    document.getElementById("tipo").innerHTML='<option>Seleccionar</option><option>Accidente</option><option>Accidente Initinere</option><option>Enfermedad</option>'
   }
 
   function cambioelimportante() {
     let valorImportante = document.getElementById("switch_importante").checked;
     if (valorImportante == true) {
       valorImportante = "on"
-      document.getElementById("titulo").textContent = "BUSCAR CLIENTE POR REG HONORARIOS"
+      document.getElementById("titulo").textContent = "BUSCAR CLIENTE POR IMPORTANTE"
     }
     else {
       document.getElementById("titulo").textContent = "BUSCAR CLIENTE"
       valorImportante = null
     }
-    arrayFiltrado(valorImportante, "importante")
+    arrayResultado = arrayFiltrado(valorImportante, "importante", arrayOK)
   }
 
   function cambioelregHonorarios() {
@@ -263,7 +273,7 @@
       document.getElementById("titulo").textContent = "BUSCAR CLIENTE"
       valorregHonorarios = null
     }
-    arrayFiltrado(valorregHonorarios, "regHonorarios")
+    arrayResultado = arrayFiltrado(valorregHonorarios, "regHonorarios", arrayOK)
   }
 
   function cambioelfinalizado() {
@@ -276,7 +286,7 @@
       document.getElementById("titulo").textContent = "BUSCAR CLIENTE"
       valorFinalizado = null
     }
-    arrayFiltrado(valorFinalizado, "finalizado")
+    arrayResultado = arrayFiltrado(valorFinalizado, "finalizado", arrayOK)
   }
 
   function cambioelBaja() {
@@ -289,7 +299,7 @@
       document.getElementById("titulo").textContent = "BUSCAR CLIENTE"
       valorBaja = null
     }
-    arrayFiltrado(valorBaja, "baja")
+    arrayResultado = arrayFiltrado(valorBaja, "baja", arrayOK)
   }
 
 
@@ -299,9 +309,7 @@
     return constructor
   }
 
-  function arrayFiltrado(valor, campo) {
-
-    const clientesSinFiltro = {{{ dataCliArray }}};
+  function arrayFiltrado(valor, campo, arrayFil) {
 
     constructor = "";
     document.getElementById("constructorArrays").innerHTML = constructor;
@@ -310,55 +318,64 @@
 
     sinClientes = constructor
 
+  if (arrayFil!=undefined){
     if (campo == "estado") {
-      const clientesFiltrados = clientesSinFiltro.filter(function (cli_fil) {
+      const clientesFiltrados = arrayFil.filter(function (cli_fil) {
         if (cli_fil.estado == valor) {
           constructor += constructorDeHTML(cli_fil)
         }
-        return true
+        return true;
       });
+      mostrarFlitros()
+      return clientesFiltrados;
     }
     if (campo == "tipo") {
-      const clientesFiltrados = clientesSinFiltro.filter(function (cli_fil) {
+      const clientesFiltrados = arrayFil.filter(function (cli_fil) {
         if (cli_fil.tipo == valor) {
           constructor += constructorDeHTML(cli_fil)
+          return true
         }
-        return true
       });
+      mostrarFlitros()
     }
     if (campo == "importante") {
-      const clientesFiltrados = clientesSinFiltro.filter(function (cli_fil) {
+      const clientesFiltrados = arrayFil.filter(function (cli_fil) {
         if (cli_fil.importante == valor) {
           constructor += constructorDeHTML(cli_fil)
+          return true
         }
-        return true
       });
+      mostrarFlitros()
     }
     if (campo == "regHonorarios") {
-      const clientesFiltrados = clientesSinFiltro.filter(function (cli_fil) {
+      const clientesFiltrados = arrayFil.filter(function (cli_fil) {
         if (cli_fil.regHonorarios == valor) {
           constructor += constructorDeHTML(cli_fil)
+          return true
         }
-        return true
       });
+      mostrarFlitros()
     }
     if (campo == "finalizado") {
-      const clientesFiltrados = clientesSinFiltro.filter(function (cli_fil) {
+      const clientesFiltrados = arrayFil.filter(function (cli_fil) {
         if (cli_fil.finalizado == valor) {
           constructor += constructorDeHTML(cli_fil)
+          return true
         }
-        return true
       });
+      mostrarFlitros()
     }
     if (campo == "baja") {
-      const clientesFiltrados = clientesSinFiltro.filter(function (cli_fil) {
+      const clientesFiltrados = arrayFil.filter(function (cli_fil) {
         if (cli_fil.baja == valor) {
           constructor += constructorDeHTML(cli_fil)
+          return true
         }
-        return true
       });
+      mostrarFlitros()
     }
-
+  }
+  
     if (sinClientes == constructor) {
       document.getElementById("constructorArrays").innerHTML = '<div class="bg-primary col-12 justify-content-center"><h3 class="text-white text-center ">No hay ningun cliente que cumpla con este Filtro</h3></div>'
     }
@@ -392,103 +409,208 @@
     document.getElementById("cerrarSrt").value = null
   }
 
-  
-  
   function constructorEstado(x) {
 
     limpiarcampos()
+    
+    constructorSelector = "";
+    document.getElementById("constructorArrays").innerHTML = constructorSelector;
+
+    constructorPreSelector = '<table class="table table-hover"><thead><tr><th class="bg-primary fs-5 text-center">DAMNIFICADO</th><th class="bg-primary fs-5 text-center">DNI</th><th class="bg-primary fs-5 text-center">EVENTO</th><th class="bg-primary fs-5 text-center">EDITAR</th><th class="bg-primary fs-5 text-center">PERFIL</th></tr></thead><tbody>'
+
+    sinClientesSelector = constructorSelector
+
 
     switch (x) {
       case "conInc": 
         constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="CON INCAPACIDAD" disabled name="estado" id="estado"/></div></div>' 
-        document.getElementById("conInc").value="on"
+        mostrarFlitros()
+        arrayOK.filter(function (cli_fil) {
+        if (cli_fil.conInc == "on") {
+          constructorSelector += constructorDeHTML(cli_fil)
+          return true
+        }
+        })    
       break; 
       case "conIncFechaVD": 
         constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="CON INCAPACIDAD  >>  INGRESE FECHA DE VD  >>" disabled name="estado" id="estado"/></div></div>'
-        document.getElementById("conInc").value="on"
-        document.getElementById("conIncFechaVD").value="on"
+        mostrarFlitros()
+        arrayOK.filter(function (cli_fil) {
+        if ((cli_fil.conInc == "on" && cli_fil.conIncFechaVD == "on")) {
+          constructorSelector += constructorDeHTML(cli_fil)
+          return true
+        }
+        })
       break; 
       case "conIncFechaPend": 
         constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="CON INCAPACIDAD  >>  FECHA VD PENDIENTE" disabled name="estado" id="estado"/></div></div>' 
-        document.getElementById("conInc").value="on"
-        document.getElementById("conIncFechaPend").value="on"
+        mostrarFlitros()
+        arrayOK.filter(function (cli_fil) {
+        if ((cli_fil.conInc == "on" && cli_fil.conIncFechaPend == "on")) {
+          constructorSelector += constructorDeHTML(cli_fil)
+          return true
+        }
+        })
       break; 
       case "sinInc": 
-        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="SIN INCAPACIDAD" disabled name="estado" id="estado"/></div></div>'  
-        document.getElementById("sinInc").value="on"
+        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="SIN INCAPACIDAD" disabled name="estado" id="estado"/></div></div>' 
+        mostrarFlitros()
+        arrayOK.filter(function (cli_fil) {
+        if (cli_fil.sinInc == "on") {
+          constructorSelector += constructorDeHTML(cli_fil)
+          return true
+        }
+        })
       break; 
       case "sinIncDDI": 
         constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="SIN INCAPACIDAD  >>  DDI" disabled name="estado" id="estado"/></div></div>' 
-        document.getElementById("sinInc").value="on"
-        document.getElementById("sinIncDDI").value="on"
+        mostrarFlitros()
+        arrayOK.filter(function (cli_fil) {
+        if ((cli_fil.sinInc == "on" && cli_fil.sinIncDDI == "on")) {
+          constructorSelector += constructorDeHTML(cli_fil)
+          return true
+        }
+        })
       break; 
       case "sinIncDDIJud":        
-       constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="SIN INCAPACIDAD  >>  DDI  >>  JUDICIAL" disabled name="estado" id="estado"/></div></div>' 
-        document.getElementById("sinInc").value="on"
-        document.getElementById("sinIncDDI").value="on"
-        document.getElementById("sinIncDDIJud").value="on"
+         constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="SIN INCAPACIDAD  >>  DDI  >>  JUDICIAL" disabled name="estado" id="estado"/></div></div>' 
+        mostrarFlitros()
+        arrayOK.filter(function (cli_fil) {
+        if ((cli_fil.sinInc == "on" && cli_fil.sinIncDDI == "on" && cli_fil.sinIncDDIJud == "on")) {
+          constructorSelector += constructorDeHTML(cli_fil)
+          return true
+        }
+        })
       break;
       case "sinIncDDICerrar": 
         constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="SIN INCAPACIDAD  >>  DDI  >>  CERRAR" disabled name="estado" id="estado"/></div></div>' 
-        document.getElementById("sinInc").value="on"
-        document.getElementById("sinIncDDI").value="on"
-        document.getElementById("sinIncDDICerrar").value="on"
+        mostrarFlitros()
+        arrayOK.filter(function (cli_fil) {
+        if ((cli_fil.sinInc == "on" && cli_fil.sinIncDDI == "on" && cli_fil.sinIncDDICerrar == "on")) {
+          constructorSelector += constructorDeHTML(cli_fil)
+          return true
+        }
+        })
       break; 
       case "sinIncDA": 
        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="SIN INCAPACIDAD  >>  DA" disabled name="estado" id="estado"/></div></div>' 
-       document.getElementById("sinInc").value="on"
-       document.getElementById("sinIncDA").value="on"
+       mostrarFlitros()
+       arrayOK.filter(function (cli_fil) {
+        if ((cli_fil.sinInc == "on" && cli_fil.sinIncDA == "on")) {
+          constructorSelector += constructorDeHTML(cli_fil)
+          return true
+        }
+        })
       break; 
       case "detInc": 
         constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="DET INCAPACIDAD" disabled name="estado" id="estado"/></div></div>' 
-        document.getElementById("detInc").value="on"
+        mostrarFlitros()
+        arrayOK.filter(function (cli_fil) {
+        if (cli_fil.detInc == "on") {
+          constructorSelector += constructorDeHTML(cli_fil)
+          return true
+        }
+        })
       break; 
       case "detIncDDI": 
         constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="DET INCAPACIDAD >> DDI" disabled name="estado" id="estado"/></div></div>' 
-        document.getElementById("detInc").value="on"
-        document.getElementById("detIncDDI").value="on"
+        mostrarFlitros()
+        arrayOK.filter(function (cli_fil) {
+        if ((cli_fil.detInc == "on" && cli_fil.detIncDDI == "on")) {
+          constructorSelector += constructorDeHTML(cli_fil)
+          return true
+        }
+        })
       break; 
       case "detIncDDIJud":
         constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="DET INCAPACIDAD  >>  DDI  >>  JUDICIAL" disabled name="estado" id="estado"/></div></div>'
-        document.getElementById("detInc").value="on"
-        document.getElementById("detIncDDI").value="on"
-        document.getElementById("detIncDDIJud").value="on"
+        mostrarFlitros()
+        arrayOK.filter(function (cli_fil) {
+        if ((cli_fil.detInc == "on" && cli_fil.detIncDDI == "on"&& cli_fil.detIncDDIJud == "on")) {
+          constructorSelector += constructorDeHTML(cli_fil)
+          return true
+        }
+        })
       break;
       case "detIncDDICerrar": 
        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="DET INCAPACIDAD  >>  DDI  >>  CERRAR" disabled name="estado" id="estado"/></div></div>'
-        document.getElementById("detInc").value="on"
-        document.getElementById("detIncDDI").value="on"
-        document.getElementById("detIncDDICerrar").value="on"
+       mostrarFlitros()
+       arrayOK.filter(function (cli_fil) {
+        if ((cli_fil.detInc == "on" && cli_fil.detIncDDI == "on"&& cli_fil.detIncDDICerrar == "on")) {
+          constructorSelector += constructorDeHTML(cli_fil)
+          return true
+        }
+        })
       break; 
       case "trat": 
        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="TRATAMIENTO" disabled name="estado" id="estado"/></div></div>'
-       document.getElementById("trat").value="on"
+       mostrarFlitros()
+       arrayOK.filter(function (cli_fil) {
+        if (cli_fil.trat == "on" ) {
+          constructorSelector += constructorDeHTML(cli_fil)
+          return true
+        }
+        })
       break; 
       case "jud": 
         constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="JUDICIAL" disabled name="estado" id="estado"/></div></div>'
-        document.getElementById("jud").value="on"
+        mostrarFlitros()
+        arrayOK.filter(function (cli_fil) {
+        if (cli_fil.jud == "on" ) {
+          constructorSelector += constructorDeHTML(cli_fil)
+          return true
+        }
+        })
       break; 
       case "judAbr": 
        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="JUDICIAL  >>  ABREVIADO" disabled name="estado" id="estado"/></div></div>'
-       document.getElementById("jud").value="on"
-       document.getElementById("judAbr").value="on"
+       mostrarFlitros()
+       arrayOK.filter(function (cli_fil) {
+        if (cli_fil.jud == "on" && cli_fil.judAbr == "on") {
+          constructorSelector += constructorDeHTML(cli_fil)
+          return true
+        }
+        })
       break; 
       case "judOrd": 
        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="JUDICIAL  >>  ORDINARIO" disabled name="estado" id="estado"/></div></div>'
-       document.getElementById("jud").value="on"
-       document.getElementById("judOrd").value="on"
+       mostrarFlitros()
+       arrayOK.filter(function (cli_fil) {
+        if (cli_fil.jud == "on" && cli_fil.judOrd == "on") {
+          constructorSelector += constructorDeHTML(cli_fil)
+          return true
+        }
+        })
       break; 
       case "acord": 
        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="ACORDADO" disabled name="estado" id="estado"/></div></div>'
-      document.getElementById("acord").value="on"
+       mostrarFlitros()
+       arrayOK.filter(function (cli_fil) {
+        if (cli_fil.acord == "on" ) {
+          constructorSelector += constructorDeHTML(cli_fil)
+          return true
+        }
+        })
       break; 
         case "cerrarSrt": constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="CERRAR (SRT)" disabled name="estado" id="estado"/></div></div>'
-      document.getElementById("cerrarSrt").value="on"
+        mostrarFlitros()
+       arrayOK.filter(function (cli_fil) {
+        if (cli_fil.cerrarSrt == "on" ) {
+          constructorSelector += constructorDeHTML(cli_fil)
+          return true
+        }
+        })
       break; 
-      default: 
-      constructor = 'SELECCIONE UN ESTADO' 
-      break; 
+
       }
         document.getElementById("divEstado").innerHTML = constructor
+    
+    if (sinClientesSelector == constructorSelector) {
+      document.getElementById("constructorArrays").innerHTML = '<div class="bg-primary col-12 justify-content-center"><h3 class="text-white text-center ">No hay ningun cliente que cumpla con este Filtro</h3></div>'
+    }
+    else {
+      constructorSelector += "</tbody></table>";
+      document.getElementById("constructorArrays").innerHTML = constructorPreSelector + constructorSelector;
+    }
   }
 </script>

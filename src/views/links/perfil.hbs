@@ -22,8 +22,132 @@
               </div>
   
               <div class="profile-content">
-                 <div class="tab-content p-0">
-                    <div class="tab-pane fade active show" id="eventosPost">
+                <div class="tab-content p-0">
+                  <div>
+                    <div class="container-fluid">
+                    {{#each clienteSelected}}    
+                    <div class="booking-form" style="background: white; display: block" id="ultimoEstado">
+                      
+                        <div class="row">
+                          <h5 class="badge bg-primary fs-5">DATOS PERSONALES</h5>
+                          <div class="col-md-5">
+                            <div class="form-group">
+                              <p>Nombre: {{damnificado}}</p>
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="form-group">
+                              <p>Documento: {{dni_cuil}}</p>
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="form-group">
+                              <p>Edad: {{edad}}</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-5">
+                            <div class="form-group">
+                              <p>Domicilio: {{domicilio}}</p>
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="form-group">
+                              <p>Telefono: {{telefono}}</p>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <p>Fecha de Ingreso: {{fecha_ingreso}}</p>
+                            </div>
+                          </div>              
+                        </div>
+
+                        {{!-- ESTADOOOOOOOOOOOOOOOOOOOO --}}
+                      
+
+                        <div class="row">
+                          <h5 class="badge bg-primary fs-5">DATOS LABORALES</h5>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <p>Empresa: {{empresa}}</p>
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="form-group">
+                            <p>Cuit: {{cuit_empresa}}</p>
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="form-group">
+                              <p>Rubro: {{rubro_empresa}}</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <p>Direccion: {{domicilio_empresa}}</p>
+                            </div>
+                          </div>
+                          <div class="col-md-2">
+                            <div class="form-group">
+                              <p>Ingreso: {{horario_inicio}}</p>
+                            </div>
+                          </div>
+                          <div class="col-md-2">
+                            <div class="form-group">
+                              <p>Egreso: {{horario_fin}}</p>
+                            </div>
+                          </div>
+                          <div class="col-md-2">
+                            <div class="form-group">
+                              <p>Turno: {{turno_empresa}}</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <p>Tareas del Damnificado: {{tareas_empresa}}</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <h5 class="badge bg-primary fs-5">INFORMACION MEDICA</h5>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <p>ART: {{art}}</p>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <p>Prestador Medico: {{prestador}}</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-3">
+                            <div class="form-group">
+                              <p>Historia Clinica: {{historia_clinica}}</p>
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="form-group">
+                              <p>Estudios Medicos: {{estudios_medicos}}</p>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <p>Estudios en: {{lugar_estudios}}</p>
+                            </div>
+                          </div>
+                        </div>          
+                    </div>
+                    {{/each}}
+
+                    <div class="tab-pane fade active show" style="display: none;" id="eventosPost">
                     {{#each eventocli}}
                       <ul class="timeline">
                         <li>
@@ -323,7 +447,7 @@
         constructor += '<div class="timeline-header"><span class="username"><a href="">DIAGNOSTICO MEDICO</a></span></div><div class="timeline-content"><p>'+arrayEvt[index].diag_med+'</p><br><p>PROXIMA VISITA MEDICA: '+arrayEvt[index].fecha_prox_med+'</p></div>'};
       if (flag == "psico"){
         constructor += '<div class="timeline-header"><span class="username"><a href="">DIAGNOSTICO PSICOLOGICO</a></span></div>      <div class="timeline-content"><p>'+arrayEvt[index].diag_psico+'</p><br><p>PROXIMA VISITA PSICOLOGICA: '+arrayEvt[index].fecha_prox_psico+'</p></div>'};
-      constructor += '<div class="timeline-comment-box"><div class="input"><div class="input-group"><span class="input-group-btn p-l-10"><button class="btn btn-primary f-s-12 rounded-corner" type="button">EDITAR</button> Fecha de Contacto: '+arrayEvt[index].fecha_prox_contacto+'</span></div></div></div></div></li>';
+      constructor += '<div class="timeline-comment-box"><div class="input"><div class="input-group"><span class="input-group-btn p-l-10">Fecha de Contacto: '+arrayEvt[index].fecha_prox_contacto+'</span></div></div></div></div></li>';
     }
     constructor += '</ul>'
     
@@ -338,6 +462,20 @@
 
     document.getElementById("botonActu").innerHTML = '<h4 class="m-t-10 m-b-5">'+clienteSeleccionado[0].damnificado+'</h4><p class="m-b-10">DNI: '+clienteSeleccionado[0].dni_cuil+' Telefono: '+clienteSeleccionado[0].telefono+'</p><a class="btn btn-primary" href="/links/edit/'+clienteSeleccionado[0].id_cliente+'" class="btn btn-primary">EDITAR DATOS</a><a class="btn btn-primary" href="/links/evento/'+clienteSeleccionado[0].id_cliente+'" role="button">AGREGAR EVENTO</a>'
     
-    document.getElementById("barradelinks").innerHTML = '<li class="nav-item"><a href="#" class="nav-link" onclick="cargarDatosDeCliente()">ESTADOS</a></li><li class="nav-item"><a href="#" class="nav-link" onclick="cargarDatosLegales()">EVENTOS LEGALES</a></li><li class="nav-item"><a href="#" class="nav-link" onclick="cargarDatosMedicos()">EVENTOS MEDICOS</a></li><li class="nav-item"><a href="#" class="nav-link "onclick="cargarDatosPsicologicos()">EVENTOS PSICOLOGICOS</a></li>'
+    document.getElementById("barradelinks").innerHTML = '<li class="nav-item"><a href="#" class="nav-link" onclick="verUltimoEstado()">ULTIMO ESTADO</a></li><li class="nav-item"><a href="#" class="nav-link" onclick="verEstadosHistoricos()">ESTADOS HISTORICOS</a></li><li class="nav-item"><a href="#" class="nav-link" onclick="cargarDatosLegales()">EVENTOS LEGALES</a></li><li class="nav-item"><a href="#" class="nav-link" onclick="cargarDatosMedicos()">EVENTOS MEDICOS</a></li><li class="nav-item"><a href="#" class="nav-link "onclick="cargarDatosPsicologicos()">EVENTOS PSICOLOGICOS</a></li>'
   };
+
+  function refrescar() {
+    location.reload()
+  }
+
+function verUltimoEstado(){
+  document.getElementById("ultimoEstado").style.display = "block"
+  document.getElementById("eventosPost").style.display = "none"
+}
+function verEstadosHistoricos(){
+  document.getElementById("ultimoEstado").style.display = "none"
+  document.getElementById("eventosPost").style.display = "block"
+}
+
 </script>

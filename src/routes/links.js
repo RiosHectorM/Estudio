@@ -15,7 +15,9 @@ router.get("/perfil/:id_cliente_evt", isLoggedIn, async (req, res) => {
   const clienteSelected = await pool.query("SELECT * FROM cliente WHERE id_cliente = ?", [id_cliente_evt]);
   const eventocli = await pool.query("SELECT * FROM eventos WHERE id_cliente_evt = ?", [id_cliente_evt]);
   console.log(eventocli)
-  res.render("links/perfil.hbs", { clienteSel: JSON.stringify(clienteSelected), eventocli, dataeventos: JSON.stringify(eventocli) });
+  console.log(JSON.stringify(clienteSelected))
+
+  res.render("links/perfil.hbs", { clienteSelected, clienteSel: JSON.stringify(clienteSelected), eventocli, dataeventos: JSON.stringify(eventocli) });
 });
 
 //MODULOS RUTAS EVENTOS

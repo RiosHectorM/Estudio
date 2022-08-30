@@ -771,3 +771,9 @@ background: linear-gradient(0deg, rgba(19,7,232,0.5858718487394958) 7%, rgba(24,
 	max-width: 50vw;
 	word-wrap:break-word;
 }
+
+.rrr {
+	padding: 0%;
+	border: 0;
+	display: flex;
+}

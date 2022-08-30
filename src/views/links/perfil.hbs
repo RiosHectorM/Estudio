@@ -65,8 +65,7 @@
                         </div>
 
                         {{!-- ESTADOOOOOOOOOOOOOOOOOOOO --}}
-                      
-
+                    
                         <div class="row">
                           <h5 class="badge bg-primary fs-5">DATOS LABORALES</h5>
                           <div class="col-md-6">
@@ -93,6 +92,12 @@
                           </div>
                           <div class="col-md-2">
                             <div class="form-group">
+                              <p>Turno: {{turno_empresa}}</p>
+                            </div>
+                          </div>
+                          {{#if horario_inicio}}
+                          <div class="col-md-2">
+                            <div class="form-group">
                               <p>Ingreso: {{horario_inicio}}</p>
                             </div>
                           </div>
@@ -101,11 +106,13 @@
                               <p>Egreso: {{horario_fin}}</p>
                             </div>
                           </div>
-                          <div class="col-md-2">
+                          {{else}}
+                          <div class="col-md-4">
                             <div class="form-group">
-                              <p>Turno: {{turno_empresa}}</p>
+                              <p>Horario: {{horario_rota}}</p>
                             </div>
                           </div>
+                          {{/if}}                          
                         </div>
                         <div class="row">
                           <div class="col-md-12">

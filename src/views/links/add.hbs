@@ -248,25 +248,33 @@
               </div>
               <div class="col-md-2">
                 <div class="form-group">
-                  <span class="form-label">HORARIO INGRESO</span>
-                  <input class="form-control" type="time" name="horario_inicio" />
-                </div>
-              </div>
-              <div class="col-md-2">
-                <div class="form-group">
-                  <span class="form-label">HORARIO EGRESO</span>
-                  <input class="form-control" type="time" name="horario_fin" />
-                </div>
-              </div>
-              <div class="col-md-2">
-                <div class="form-group">
                   <span class="form-label">TURNO</span>
-                  <select class="form-control" name="turno_empresa">
+                  <select class="form-control" name="turno_empresa" id="turno_empresa" onchange="horarios()">
                     <option>Mañana</option>
                     <option>Tarde</option>
                     <option>Noche</option>
+                    <option>Rotativos</option>
                   </select>
                   <span class="select-arrow"></span>
+                </div>
+              </div>
+              <div class="col-md-2" id="div_horario_inicio">
+                <div class="form-group">
+                  <span class="form-label">HORARIO INGRESO</span>
+                  <input class="form-control" type="time" name="horario_inicio" id="horario_inicio"/>
+                </div>
+              </div>
+              <div class="col-md-2" id="div_horario_fin">
+                <div class="form-group">
+                  <span class="form-label">HORARIO EGRESO</span>
+                  <input class="form-control" type="time" name="horario_fin" id="horario_fin"/>
+                </div>
+              </div>
+              <div class="col-md-4" id="div_horario_rota" style="display: none;">
+                <div class="form-group">
+                  <span class="form-label">HORARIO ROTATIVO</span>
+                  <input class="form-control" type="text" placeholder="Ingrese Horarios"
+                    name="horario_rota" id="horario_rota"/>
                 </div>
               </div>
             </div>
@@ -413,6 +421,25 @@
 
 <script>
 
+  function horarios() {
+    selTurno= document.getElementById("turno_empresa").value
+
+    if (selTurno=="Rotativos"){
+      document.getElementById("div_horario_inicio").style.display = "none"
+      document.getElementById("div_horario_fin").style.display = "none"
+      document.getElementById("div_horario_rota").style.display = "block"
+      document.getElementById("horario_rota").value = ""
+      document.getElementById("horario_inicio").value = ""
+      document.getElementById("horario_fin").value = ""
+    }else{
+      document.getElementById("div_horario_rota").style.display = "none"
+      document.getElementById("div_horario_inicio").style.display = "block"
+      document.getElementById("div_horario_fin").style.display = "block"
+      document.getElementById("horario_rota").value = ""
+      document.getElementById("horario_inicio").value = ""
+      document.getElementById("horario_fin").value = ""
+    }
+  }
 
   function limpiarcampos(){
     document.getElementById("conInc").value = null

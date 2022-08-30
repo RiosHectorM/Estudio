@@ -229,6 +229,7 @@ try {
     notas,
     fecha_prox_contacto,
     fechaTeams,
+    horario_rota
   } = req.body;
 
   const newClient = {
@@ -269,7 +270,8 @@ try {
     judOrd,
     trat,
     acord,
-    cerrarSrt
+    cerrarSrt,
+    horario_rota
   };
 
   await pool.query("INSERT INTO cliente set ?", [newClient]);
@@ -356,7 +358,8 @@ router.post("/edit/:id", isLoggedIn, async (req, res) => {
     prestador,  
     historia_clinica, 
     estudios_medicos, 
-    lugar_estudios 
+    lugar_estudios,
+    horario_rota
   } = req.body;
   const newLink = {
     fecha_ingreso,
@@ -377,7 +380,8 @@ router.post("/edit/:id", isLoggedIn, async (req, res) => {
     prestador,  
     historia_clinica, 
     estudios_medicos, 
-    lugar_estudios 
+    lugar_estudios,
+    horario_rota
   };
   await pool.query("UPDATE cliente SET ? WHERE id_cliente = ?", [newLink, id]);
   res.redirect("/links");

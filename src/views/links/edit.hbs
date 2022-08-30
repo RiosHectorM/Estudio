@@ -127,30 +127,27 @@
                 </div>
               </div>
               <div class="col-md-2">
-                <div class="form-group">
-                  <span class="form-label">HORARIO INGRESO</span>
-                  <input
-                    class="form-control"
-                    type="time"
-                    value="{{link.horario_inicio}}"
-                    name="horario_inicio"
-                  />
-                </div>
-              </div>
-              <div class="col-md-2">
-                <div class="form-group">
-                  <span class="form-label">HORARIO EGRESO</span>
-                  <input
-                    class="form-control"
-                    type="time"
-                    value="{{link.horario_fin}}"
-                    name="horario_fin"
-                  />
-                </div>
-              </div>
-              <div class="col-md-2">
                 <div class="form-group" id="divTurno">
                   
+                </div>
+              </div>
+              <div class="col-md-2" id="div_horario_inicio">
+                <div class="form-group">
+                  <span class="form-label">HORARIO INGRESO</span>
+                  <input class="form-control" type="time" name="horario_inicio" value="{{link.horario_inicio}}" id="horario_inicio"/>
+                </div>
+              </div>
+              <div class="col-md-2" id="div_horario_fin">
+                <div class="form-group">
+                  <span class="form-label">HORARIO EGRESO</span>
+                  <input class="form-control" type="time" name="horario_fin" value="{{link.horario_fin}}" id="horario_fin"/>
+                </div>
+              </div>
+              <div class="col-md-4" id="div_horario_rota" style="display: none;">
+                <div class="form-group">
+                  <span class="form-label">HORARIO ROTATIVO</span>
+                  <input class="form-control" type="text" placeholder="Ingrese Horarios"
+                    name="horario_rota" value="{{link.horario_rota}}" id="horario_rota"/>
                 </div>
               </div>
             </div>
@@ -193,7 +190,6 @@
                         option.text = array[value].nombre_art;
                         if(array[value].nombre_art == "{{link.art}}"){
                           option.selected = "selected"
-                          console.log("entronombre")
                         }
                         select.add(option);
                     }
@@ -336,6 +332,26 @@
   "H:i"});
 </script>
 <script>
+  function horarios() {
+    selTurno= document.getElementById("turno_empresa").value
+
+    if (selTurno=="Rotativos"){
+      document.getElementById("div_horario_inicio").style.display = "none"
+      document.getElementById("div_horario_fin").style.display = "none"
+      document.getElementById("div_horario_rota").style.display = "block"
+      document.getElementById("horario_rota").value = ""
+      document.getElementById("horario_inicio").value = ""
+      document.getElementById("horario_fin").value = ""
+    }else{
+      document.getElementById("div_horario_rota").style.display = "none"
+      document.getElementById("div_horario_inicio").style.display = "block"
+      document.getElementById("div_horario_fin").style.display = "block"
+      document.getElementById("horario_rota").value = ""
+      document.getElementById("horario_inicio").value = ""
+      document.getElementById("horario_fin").value = ""
+    }
+  }
+
   arrayARTS={{{data}}}
   artSelected = arrayARTS.filter(function (arts) {
       if (arts.nombre_art == "{{link.art}}") {
@@ -347,11 +363,16 @@
     }); 
 
   if ("{{link.turno_empresa}}" == "Mañana"){
-    document.getElementById("divTurno").innerHTML='<span class="form-label">TURNO</span><select class="form-control" name="turno_empresa"><option selected>Mañana</option><option>Tarde</option><option>Noche</option></select><span class="select-arrow"></span>'}
+    document.getElementById("divTurno").innerHTML='<span class="form-label">TURNO</span><select class="form-control" name="turno_empresa" id="turno_empresa" onchange="horarios()"><option selected>Mañana</option><option>Tarde</option><option>Noche</option><option>Rotativos</option></select><span class="select-arrow"></span>'}
   if ("{{link.turno_empresa}}" == "Tarde"){
-    document.getElementById("divTurno").innerHTML='<span class="form-label">TURNO</span><select class="form-control" name="turno_empresa"><option>Mañana</option><option selected>Tarde</option><option>Noche</option></select><span class="select-arrow"></span>'}
+    document.getElementById("divTurno").innerHTML='<span class="form-label">TURNO</span><select class="form-control" name="turno_empresa" id="turno_empresa" onchange="horarios()"><option>Mañana</option><option selected>Tarde</option><option>Noche</option><option>Rotativos</option></select><span class="select-arrow"></span>'}
   if ("{{link.turno_empresa}}" == "Noche"){
-    document.getElementById("divTurno").innerHTML='<span class="form-label">TURNO</span><select class="form-control" name="turno_empresa"><option>Mañana</option><option>Tarde</option><option selected>Noche</option></select><span class="select-arrow"></span>'}
+    document.getElementById("divTurno").innerHTML='<span class="form-label">TURNO</span><select class="form-control" name="turno_empresa" id="turno_empresa" onchange="horarios()"><option>Mañana</option><option>Tarde</option><option selected>Noche</option><option>Rotativos</option></select><span class="select-arrow"></span>'}
+  if ("{{link.turno_empresa}}" == "Rotativos"){
+    document.getElementById("divTurno").innerHTML='<span class="form-label">TURNO</span><select class="form-control" name="turno_empresa" id="turno_empresa" onchange="horarios()"><option>Mañana</option><option>Tarde</option><option >Noche</option><option selected>Rotativos</option></select><span class="select-arrow"></span>'
+    document.getElementById("div_horario_inicio").style.display = "none"
+    document.getElementById("div_horario_fin").style.display = "none"
+    document.getElementById("div_horario_rota").style.display = "block"}
 
   if ("{{link.historia_clinica}}"=="Presentada"){
    document.getElementById("divHistoria").innerHTML=' <span class="form-label">Historia Clinica</span><select class="form-control" name="historia_clinica"><option selected>Presentada</option><option>Solicitar</option><option>No Requiere</option></select><span class="select-arrow"></span>'}

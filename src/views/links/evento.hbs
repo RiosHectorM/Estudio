@@ -284,12 +284,6 @@
 
 <script>  
 
-  console.log("{{eventocli.tipo}}")
-  console.log("{{eventocli.estado}}")
-  console.log("{{eventocli.fecha_pmi}}")
-  console.log("acc"+"{{eventocli.fecha_accidente}}")
-
-
   function constructorInicial(){
 
     if ("{{eventocli.tipo}}"=="Enfermedad"){
@@ -356,8 +350,6 @@
   }
 
   function accidente(){
-    console.log(document.getElementById("fecha_acc"))
-    console.log(document.getElementById("tipo").value)
 
     if (document.getElementById("tipo").value === "Enfermedad"){
       document.getElementById("fecha_acc").style.display = "none"
@@ -485,7 +477,6 @@ if ("{{eventocli.jud}}"=="on"){
 
   
   function constructorEstado(x) {
-console.log(document.getElementById("switch_importante").checked)
 
     limpiarcampos()
 

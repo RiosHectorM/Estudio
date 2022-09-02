@@ -680,7 +680,6 @@
   }
 
   const varTipoFechaVD = document.getElementById("estado").value
-  console.log(varTipoFechaVD)
   if (varTipoFechaVD == "CON INCAPACIDAD  >>  INGRESE FECHA DE VD  >>"){
     document.getElementById("divFechaVD").style.display = "block"
   }else{
@@ -711,7 +710,7 @@
     const allEvents = {{{dataeventos}}};
     const arrayMedicos = allEvents.filter(function(evtM){
       if (evtM.diag_med == ""|| evtM.diag_med == null)
-        console.log(evtM.diag_med)
+      console.log(evtM.diag_med)
       else
       return true
     })

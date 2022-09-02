@@ -9,7 +9,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <span class="form-label">DAMNIFICADO</span>
-                  <input
+                  <input disabled
                     class="form-control"
                     type="text"
                     name="nombre_cliente_evt"
@@ -20,7 +20,7 @@
               <div class="col-md-3">
                 <div class="form-group">
                   <span class="form-label">DOCUMENTO</span>
-                  <input
+                  <input disabled
                     class="form-control"
                     type="text"
                     name="dni_evt"
@@ -104,17 +104,19 @@
                         <input class="form-control" type="date" name="fechaVD" id="fechaVD"/>
                     </div>
                   </div>
-                  <div class="" style="height: 150px">
-                    <div class="menu-desktop" id="menu">
+
+
+                  <div class="p-2">
+                    <div class="menu-desktop col-sm-12" style="width: inherit !important; "id="menu">
                       <ul>
-                        <li><a onclick='constructorEstado("conInc")'>CON INCAPACIDAD</a>
+                        <li class="col-md-auto col-12"><a onclick='constructorEstado("conInc")'>CON INCAPACIDAD</a>
                           <ul>
                             <li><a  onclick='constructorEstado("conIncFechaVD")'>INGRESAR FECHA VD</a></li>
                             <li><a  onclick='constructorEstado("conIncFechaPend")'>DEJAR FECHA PENDIENTE</a>
                             </li>
                           </ul>
                         </li>
-                        <li><a  onclick='constructorEstado("sinInc")'>SIN INCAPACIDAD </a>
+                        <li class="col-md-auto col-12"><a  onclick='constructorEstado("sinInc")'>SIN INCAPACIDAD </a>
                           <ul>
                             <li><a  onclick='constructorEstado("sinIncDDI")'>DDI</a>
                               <ul>
@@ -126,7 +128,7 @@
                             <li><a  onclick='constructorEstado("sinIncDA")'>DA</a></li>
                           </ul>
                         </li>
-                        <li><a  onclick='constructorEstado("detInc")'>DET INCAPACIDAD</a>
+                        <li class="col-md-auto col-12"><a  onclick='constructorEstado("detInc")'>DET INCAPACIDAD</a>
                           <ul>
                             <li><a  onclick='constructorEstado("detIncDDI")'>DDI</a>
                               <ul>
@@ -137,18 +139,20 @@
                             </li>
                           </ul>
                         </li>
-                        <li><a  onclick='constructorEstado("jud")'>JUDICIAL</a>
+                        <li class="col-md-auto col-12"><a  onclick='constructorEstado("jud")'>JUDICIAL</a>
                           <ul>
                             <li><a  onclick='constructorEstado("judAbr")'>ABREVIADO</a></li>
                             <li><a  onclick='constructorEstado("judOrd")'>ORDINARIO</a></li>
                           </ul>
                         </li>
-                        <li><a  onclick='constructorEstado("trat")'>TRATAMIENTO</a></li>
-                        <li><a  onclick='constructorEstado("acord")'>ACORDADO (VD)</a></li>
-                        <li><a  onclick='constructorEstado("cerrarSrt")'>CERRAR (SRT)</a></li>
+                        <li class="col-md-auto col-12"><a  onclick='constructorEstado("trat")'>TRATAMIENTO</a></li>
+                        <li class="col-md-auto col-12"><a  onclick='constructorEstado("acord")'>ACORDADO (VD)</a></li>
+                        <li class="col-md-auto col-12"><a  onclick='constructorEstado("cerrarSrt")'>CERRAR (SRT)</a></li>
                       </ul>
                       </div>
                     </div><!-- menu-desktop -->
+
+
                   <div class="row">
                     <div class="form-group col-md-12" id="divNotas">
                       <span class="form-label">DETALLES DEL HECHO</span>

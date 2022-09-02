@@ -377,6 +377,13 @@ router.post("/edit/:id", isLoggedIn, async (req, res) => {
     horario_rota
   };
   await pool.query("UPDATE cliente SET ? WHERE id_cliente = ?", [newLink, id]);
+
+  const nombre_dni = {
+    nombre_cliente_evt: damnificado,
+    dni_evt: dni_cuil
+  };
+  await pool.query("UPDATE eventos SET ? WHERE id_cliente_evt = ?", [nombre_dni, id]);
+
   res.redirect("/links");
 });
 

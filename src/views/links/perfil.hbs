@@ -345,34 +345,32 @@
                                     </div>
                                     {{!-- Fechas --}}
                                     <div class="row">
-                                      <div class="col-md-3 d-flex align-items-center text-center">
-                                        <div class="form-group" id="fecha_acc">
-                                          <span class="form-label">Fecha del Accidente</span>
-                                          <input class="form-control" type="date" name="fecha_accidente" id="ultimo_fecha_accidente" disabled value=""/>
+                                      
+                                        <div class="col-md-3 " id="fecha_acc">
+                                            <span class="form-label">Fecha del Accidente</span>
+                                            <input class="form-control" type="date" name="fecha_accidente" id="ultimo_fecha_accidente" disabled value=""/>
                                         </div>
-                                      </div>
-                                      <div class="col-md-3 d-flex align-items-center text-center">
-                                        <div class="form-group" id="fecha_pmi">
-                                          <span class="form-label">Fecha PMI</span>
-                                          <input class="form-control" type="date" name="fecha_pmi" id="ultimo_fecha_pminput" disabled/>
+                                        <div class="col-md-3" id="fecha_pmi">
+                                            <span class="form-label">Fecha PMI</span>
+                                            <input class="form-control" type="date" name="fecha_pmi" id="ultimo_fecha_pminput" disabled/>
                                         </div>
-                                      </div>
-                                      <div class="col-md-3" id="divFechaVD">
-                                          <span class="form-label">Fecha de VD</span>
-                                          <input class="form-control" type="date" name="fechaVD" id="ultimo_fechaVD" disabled/>
-                                      </div>
-                                      <div class="col-md-3" id="divFechaTeams">
-                                          <span class="form-label">Fecha TEAMS</span>
-                                          <input class="form-control" type="date" name="fechaTeams" disabled id="ultimo_fechaTeams"/>
-                                      </div>
+                                        <div class="col-md-3" id="divFechaVD">
+                                            <span class="form-label">Fecha de VD</span>
+                                            <input class="form-control" type="date" name="fechaVD" id="ultimo_fechaVD" disabled/>
+                                        </div>
+                                        <div class="col-md-3" id="divFechaTeams">
+                                            <span class="form-label">Fecha TEAMS</span>
+                                            <input class="form-control" type="date" name="fechaTeams" disabled id="ultimo_fechaTeams"/>
+                                        </div>
                                     </div>
+                                    {{!-- Detalles del hecho --}}
                                     <div class="row">
                                       <div class="form-group col-md-12" id="divNotas">
                                         <span class="form-label">DETALLES DEL HECHO</span>
                                         <input class="form-control" type="text" name="detalles" id="ultimo_detalles" disabled/>
                                       </div>
                                     </div>
-
+                                    {{!-- Notas Observaciones --}}
                                     <div class="row">
                                       <div class="form-group col-md-9">
                                         <span class="form-label">NOTAS / OBSERVACIONES</span>
@@ -400,14 +398,16 @@
                             <a href="">&nbsp;</a>
                           </div>
                           <div class="timeline-body">
+                            {{!-- Tipo y Estados --}}
                             <div class="row">
+                              {{!-- div tipo --}}
                               <div class="col-md-3 d-flex align-items-center text-cente">
                                 <div class="form-group">
                                     <span class="form-label">TIPO</span>
                                     <input class="form-control" type="text" disabled name="tipo" id="tipo" value="{{tipo}}"/>
                                 </div>
                               </div>
-
+                              {{!-- div estado --}}
                               <div id="divEstado" class="col-md-9">
                                   <div class="form-group">
                                     {{#if conInc}}
@@ -536,6 +536,7 @@
                                 </div>
                               </div>
                             </div>
+                            {{!-- switch --}}
                             <div class="row">
                               <div class="col-md-auto d-flex align-items-center text-center">
                                 <div class="form-group">
@@ -582,28 +583,36 @@
                                 </div>
                               </div>
                             </div>
-
+                            {{!-- div Fechas --}}
                             <div class="row">
+                              {{#if fecha_accidente}}
                               <div class="col-md-3 d-flex align-items-center text-center">
                                 <div class="form-group" id="fecha_acc">
                                   <span class="form-label">Fecha del Accidente</span>
                                   <input class="form-control" type="date" name="fecha_accidente" id="fecha_accidente" disabled value="{{fecha_accidente}}"/>
                                 </div>
                               </div>
+                              {{/if}}
+                              {{#if fecha_pmi}}
                               <div class="col-md-3 d-flex align-items-center text-center">
                                 <div class="form-group" id="fecha_pmi">
                                   <span class="form-label">Fecha PMI</span>
                                   <input class="form-control" type="date" name="fecha_pmi" id="fecha_pminput" disabled value="{{fecha_pmi}}"/>
                                 </div>
                               </div>
+                              {{/if}}
+                              {{#if fechaVD}}
                               <div class="col-md-3" id="divFechaVD">
                                   <span class="form-label">Fecha de VD</span>
                                   <input class="form-control" type="date" name="fechaVD" id="fechaVD" disabled value="{{fechaVD}}"/>
                               </div>
+                              {{/if}}
+                              {{#if fechaTeams}}
                               <div class="col-md-3" id="divFechaTeams">
                                   <span class="form-label">Fecha TEAMS</span>
                                   <input class="form-control" type="date" name="fechaTeams" disabled id="fechaTeams" value="{{fechaTeams}}"/>
                               </div>
+                              {{/if}}
                             </div>
                             <div class="row">
                               <div class="form-group col-md-12" id="divNotas">
@@ -650,6 +659,7 @@
 
   const allEvents = {{{dataeventos}}};
   const ultimoIndice = allEvents.length-1
+ 
   document.getElementById("fechaUltimoAccidente").innerHTML = allEvents[ultimoIndice].fecha_evt
   document.getElementById("ultimo_fecha_accidente").value = allEvents[ultimoIndice].fecha_accidente
   document.getElementById("ultimo_fecha_pminput").value = allEvents[ultimoIndice].fecha_pmi
@@ -659,6 +669,31 @@
   document.getElementById("ultimo_notas").value =allEvents[ultimoIndice].notas
   document.getElementById("ultimo_fecha_prox_contacto").value =allEvents[ultimoIndice].fecha_prox_contacto
   
+  const varTipo = document.getElementById("tipo").value
+
+  if (varTipo == "Enfermedad"){
+    document.getElementById("fecha_acc").style.display = "none"
+    document.getElementById("fecha_pmi").style.display = "block"
+  }else{
+    document.getElementById("fecha_acc").style.display = "block"
+    document.getElementById("fecha_pmi").style.display = "none"
+  }
+
+  const varTipoFechaVD = document.getElementById("estado").value
+  console.log(varTipoFechaVD)
+  if (varTipoFechaVD == "CON INCAPACIDAD  >>  INGRESE FECHA DE VD  >>"){
+    document.getElementById("divFechaVD").style.display = "block"
+  }else{
+    document.getElementById("divFechaVD").style.display = "none"    
+  }
+
+  if (allEvents[ultimoIndice].conInc == "on" || allEvents[ultimoIndice].detInc == "on"){
+    document.getElementById("divFechaTeams").style.display = "block"
+  }else{
+    document.getElementById("divFechaTeams").style.display = "none"
+  }
+
+
   function cargarDatosLegales(){
     verPanelEventos()
     const allEvents = {{{dataeventos}}};

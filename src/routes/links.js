@@ -457,7 +457,7 @@ router.get("/check/:id", isLoggedIn, async (req, res) => {
 
 // RUTA INICIAL
 router.get("/", isLoggedIn, async (req, res) => {
-  const links = await pool.query("SELECT * FROM cliente");
+  const links = await pool.query("SELECT * FROM cliente ORDER BY damnificado");
   res.render("links/list.hbs", { links, dataCliArray: JSON.stringify(links)});
 });
 

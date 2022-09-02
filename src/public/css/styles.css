@@ -706,6 +706,7 @@ background: linear-gradient(0deg, rgba(19,7,232,0.5858718487394958) 7%, rgba(24,
 	list-style: none;
 	position: relative;
   text-align: left;
+	
 }
 .menu-desktop ul li {
 	display: inline-block;
@@ -713,24 +714,35 @@ background: linear-gradient(0deg, rgba(19,7,232,0.5858718487394958) 7%, rgba(24,
 	border-color: white;
 	border-style: double;
 	color: black;
+	
 }
 .menu-desktop ul ul {
 	display: none;
 	position: absolute;
 }
+
 .menu-desktop ul li:hover>ul {
-	display: inherit;
+	display:inline;
+	z-index: 99;
+	background: rgb(85, 176, 250);
+	border: solid;
+	border-style:dotted ;
+	border-radius: 15%;
 }
 .menu-desktop ul ul li {
 	width: 210px;
-	left: 0;
+	left: 20%;
   float: none;
 	display: block;
 	position: relative;
+	background: rgb(255, 255, 255);
+	border: solid;
+	border-color: #000;
+
 }
 .menu-desktop ul ul ul li {
-	top: -44px;
-	left: 100%;
+	top: -100%;
+	left: 20%;
 }
 /* Links */
 .menu-desktop a {
@@ -742,8 +754,9 @@ background: linear-gradient(0deg, rgba(19,7,232,0.5858718487394958) 7%, rgba(24,
 	word-wrap: break-word;
 }
 .menu-desktop a:hover {
-	background: white;
-	color: black;
+	background: blue;
+	color: white;
+	font-weight: bold;
 }
 
 /* Arrows*/

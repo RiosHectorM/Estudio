@@ -133,9 +133,7 @@
                   <tr>
                     <th class="bg-primary fs-5 text-center">DAMNIFICADO</th>
                     <th class="bg-primary fs-5 text-center">DNI</th>
-                    <th class="bg-primary fs-5 text-center">EVENTO</th>
-                    <th class="bg-primary fs-5 text-center">EDITAR</th>
-                    <th class="bg-primary fs-5 text-center">PERFIL</th>
+                    <th class="bg-primary fs-5 text-center">ELIMINAR</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -145,20 +143,9 @@
                     <td class="fs-5 text-light text-center">{{dni_cuil}}</td>
                     <td>
                       <div>
-                        <a class="btn submit-btn" href="/links/evento/{{id_cliente}}" role="button">Asignar Evento
-                        </a>
-                      </div>
-                    </td>
-                    <td>
-                      <div>
-                        <a class="btn submit-btn" href="/links/edit/{{id_cliente}}" role="button">Editar Cliente
-                        </a>
-                      </div>
-                    </td>
-                    <td>
-                      <div>
-                        <a class="btn submit-btn" href="/links/perfil/{{id_cliente}}" role="button">Ver Perfil
-                        </a>
+                        <a class="btn submit-btn" href="/edit/{{id_cliente}}" role="button"
+                            >Eliminar
+                          </a>
                       </div>
                     </td>
                   </tr>
@@ -329,7 +316,7 @@ var arrayOK = {{{ dataCliArray }}};
     }
     if (campo == "tipo") {
       const clientesFiltrados = arrayFil.filter(function (cli_fil) {
-        if (cli_fil.tipo == valor && cli_fil.baja != "on" && cli_fil.finalizado != "on") {
+        if (cli_fil.tipo == valor) {
           constructor += constructorDeHTML(cli_fil)
           return true
         }
@@ -338,7 +325,7 @@ var arrayOK = {{{ dataCliArray }}};
     }
     if (campo == "importante") {
       const clientesFiltrados = arrayFil.filter(function (cli_fil) {
-        if (cli_fil.importante == valor && cli_fil.baja != "on" && cli_fil.finalizado != "on") {
+        if (cli_fil.importante == valor) {
           constructor += constructorDeHTML(cli_fil)
           return true
         }
@@ -347,7 +334,7 @@ var arrayOK = {{{ dataCliArray }}};
     }
     if (campo == "regHonorarios") {
       const clientesFiltrados = arrayFil.filter(function (cli_fil) {
-        if (cli_fil.regHonorarios == valor && cli_fil.baja != "on" && cli_fil.finalizado != "on") {
+        if (cli_fil.regHonorarios == valor) {
           constructor += constructorDeHTML(cli_fil)
           return true
         }
@@ -424,7 +411,7 @@ var arrayOK = {{{ dataCliArray }}};
         constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="CON INCAPACIDAD" disabled name="estado" id="estado"/></div></div>' 
         mostrarFlitros()
         arrayOK.filter(function (cli_fil) {
-        if (cli_fil.conInc == "on" && cli_fil.baja != "on" && cli_fil.finalizado != "on") {
+        if (cli_fil.conInc == "on") {
           constructorSelector += constructorDeHTML(cli_fil)
           return true
         }
@@ -434,7 +421,7 @@ var arrayOK = {{{ dataCliArray }}};
         constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="CON INCAPACIDAD  >>  INGRESE FECHA DE VD  >>" disabled name="estado" id="estado"/></div></div>'
         mostrarFlitros()
         arrayOK.filter(function (cli_fil) {
-        if (cli_fil.conInc == "on" && cli_fil.conIncFechaVD == "on" && cli_fil.baja != "on" && cli_fil.finalizado != "on") {
+        if ((cli_fil.conInc == "on" && cli_fil.conIncFechaVD == "on")) {
           constructorSelector += constructorDeHTML(cli_fil)
           return true
         }
@@ -444,7 +431,7 @@ var arrayOK = {{{ dataCliArray }}};
         constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="CON INCAPACIDAD  >>  FECHA VD PENDIENTE" disabled name="estado" id="estado"/></div></div>' 
         mostrarFlitros()
         arrayOK.filter(function (cli_fil) {
-        if ((cli_fil.conInc == "on" && cli_fil.conIncFechaPend == "on" && cli_fil.baja != "on" && cli_fil.finalizado != "on")) {
+        if ((cli_fil.conInc == "on" && cli_fil.conIncFechaPend == "on")) {
           constructorSelector += constructorDeHTML(cli_fil)
           return true
         }
@@ -454,7 +441,7 @@ var arrayOK = {{{ dataCliArray }}};
         constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="SIN INCAPACIDAD" disabled name="estado" id="estado"/></div></div>' 
         mostrarFlitros()
         arrayOK.filter(function (cli_fil) {
-        if (cli_fil.sinInc == "on" && cli_fil.baja != "on" && cli_fil.finalizado != "on") {
+        if (cli_fil.sinInc == "on") {
           constructorSelector += constructorDeHTML(cli_fil)
           return true
         }
@@ -464,7 +451,7 @@ var arrayOK = {{{ dataCliArray }}};
         constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="SIN INCAPACIDAD  >>  DDI" disabled name="estado" id="estado"/></div></div>' 
         mostrarFlitros()
         arrayOK.filter(function (cli_fil) {
-        if ((cli_fil.sinInc == "on" && cli_fil.sinIncDDI == "on" && cli_fil.baja != "on" && cli_fil.finalizado != "on")) {
+        if ((cli_fil.sinInc == "on" && cli_fil.sinIncDDI == "on")) {
           constructorSelector += constructorDeHTML(cli_fil)
           return true
         }
@@ -474,7 +461,7 @@ var arrayOK = {{{ dataCliArray }}};
          constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="SIN INCAPACIDAD  >>  DDI  >>  JUDICIAL" disabled name="estado" id="estado"/></div></div>' 
         mostrarFlitros()
         arrayOK.filter(function (cli_fil) {
-        if ((cli_fil.sinInc == "on" && cli_fil.sinIncDDI == "on" && cli_fil.sinIncDDIJud == "on" && cli_fil.baja != "on" && cli_fil.finalizado != "on")) {
+        if ((cli_fil.sinInc == "on" && cli_fil.sinIncDDI == "on" && cli_fil.sinIncDDIJud == "on")) {
           constructorSelector += constructorDeHTML(cli_fil)
           return true
         }
@@ -484,7 +471,7 @@ var arrayOK = {{{ dataCliArray }}};
         constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="SIN INCAPACIDAD  >>  DDI  >>  CERRAR" disabled name="estado" id="estado"/></div></div>' 
         mostrarFlitros()
         arrayOK.filter(function (cli_fil) {
-        if ((cli_fil.sinInc == "on" && cli_fil.sinIncDDI == "on" && cli_fil.sinIncDDICerrar == "on" && cli_fil.baja != "on" && cli_fil.finalizado != "on")) {
+        if ((cli_fil.sinInc == "on" && cli_fil.sinIncDDI == "on" && cli_fil.sinIncDDICerrar == "on")) {
           constructorSelector += constructorDeHTML(cli_fil)
           return true
         }
@@ -494,7 +481,7 @@ var arrayOK = {{{ dataCliArray }}};
        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="SIN INCAPACIDAD  >>  DA" disabled name="estado" id="estado"/></div></div>' 
        mostrarFlitros()
        arrayOK.filter(function (cli_fil) {
-        if ((cli_fil.sinInc == "on" && cli_fil.sinIncDA == "on" && cli_fil.baja != "on" && cli_fil.finalizado != "on")) {
+        if ((cli_fil.sinInc == "on" && cli_fil.sinIncDA == "on")) {
           constructorSelector += constructorDeHTML(cli_fil)
           return true
         }
@@ -504,7 +491,7 @@ var arrayOK = {{{ dataCliArray }}};
         constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="DET INCAPACIDAD" disabled name="estado" id="estado"/></div></div>' 
         mostrarFlitros()
         arrayOK.filter(function (cli_fil) {
-        if (cli_fil.detInc == "on" && cli_fil.baja != "on" && cli_fil.finalizado != "on") {
+        if (cli_fil.detInc == "on") {
           constructorSelector += constructorDeHTML(cli_fil)
           return true
         }
@@ -514,7 +501,7 @@ var arrayOK = {{{ dataCliArray }}};
         constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="DET INCAPACIDAD >> DDI" disabled name="estado" id="estado"/></div></div>' 
         mostrarFlitros()
         arrayOK.filter(function (cli_fil) {
-        if ((cli_fil.detInc == "on" && cli_fil.detIncDDI == "on" && cli_fil.baja != "on" && cli_fil.finalizado != "on")) {
+        if ((cli_fil.detInc == "on" && cli_fil.detIncDDI == "on")) {
           constructorSelector += constructorDeHTML(cli_fil)
           return true
         }
@@ -524,7 +511,7 @@ var arrayOK = {{{ dataCliArray }}};
         constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="DET INCAPACIDAD  >>  DDI  >>  JUDICIAL" disabled name="estado" id="estado"/></div></div>'
         mostrarFlitros()
         arrayOK.filter(function (cli_fil) {
-        if ((cli_fil.detInc == "on" && cli_fil.detIncDDI == "on"&& cli_fil.detIncDDIJud == "on" && cli_fil.baja != "on" && cli_fil.finalizado != "on")) {
+        if ((cli_fil.detInc == "on" && cli_fil.detIncDDI == "on"&& cli_fil.detIncDDIJud == "on")) {
           constructorSelector += constructorDeHTML(cli_fil)
           return true
         }
@@ -534,7 +521,7 @@ var arrayOK = {{{ dataCliArray }}};
        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="DET INCAPACIDAD  >>  DDI  >>  CERRAR" disabled name="estado" id="estado"/></div></div>'
        mostrarFlitros()
        arrayOK.filter(function (cli_fil) {
-        if ((cli_fil.detInc == "on" && cli_fil.detIncDDI == "on"&& cli_fil.detIncDDICerrar == "on" && cli_fil.baja != "on" && cli_fil.finalizado != "on")) {
+        if ((cli_fil.detInc == "on" && cli_fil.detIncDDI == "on"&& cli_fil.detIncDDICerrar == "on")) {
           constructorSelector += constructorDeHTML(cli_fil)
           return true
         }
@@ -544,7 +531,7 @@ var arrayOK = {{{ dataCliArray }}};
        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="TRATAMIENTO" disabled name="estado" id="estado"/></div></div>'
        mostrarFlitros()
        arrayOK.filter(function (cli_fil) {
-        if (cli_fil.trat == "on" && cli_fil.baja != "on" && cli_fil.finalizado != "on") {
+        if (cli_fil.trat == "on" ) {
           constructorSelector += constructorDeHTML(cli_fil)
           return true
         }
@@ -554,7 +541,7 @@ var arrayOK = {{{ dataCliArray }}};
         constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="JUDICIAL" disabled name="estado" id="estado"/></div></div>'
         mostrarFlitros()
         arrayOK.filter(function (cli_fil) {
-        if (cli_fil.jud == "on" && cli_fil.baja != "on" && cli_fil.finalizado != "on") {
+        if (cli_fil.jud == "on" ) {
           constructorSelector += constructorDeHTML(cli_fil)
           return true
         }
@@ -564,7 +551,7 @@ var arrayOK = {{{ dataCliArray }}};
        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="JUDICIAL  >>  ABREVIADO" disabled name="estado" id="estado"/></div></div>'
        mostrarFlitros()
        arrayOK.filter(function (cli_fil) {
-        if (cli_fil.jud == "on" && cli_fil.judAbr == "on" && cli_fil.baja != "on" && cli_fil.finalizado != "on") {
+        if (cli_fil.jud == "on" && cli_fil.judAbr == "on") {
           constructorSelector += constructorDeHTML(cli_fil)
           return true
         }
@@ -574,7 +561,7 @@ var arrayOK = {{{ dataCliArray }}};
        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="JUDICIAL  >>  ORDINARIO" disabled name="estado" id="estado"/></div></div>'
        mostrarFlitros()
        arrayOK.filter(function (cli_fil) {
-        if (cli_fil.jud == "on" && cli_fil.judOrd == "on" && cli_fil.baja != "on" && cli_fil.finalizado != "on") {
+        if (cli_fil.jud == "on" && cli_fil.judOrd == "on") {
           constructorSelector += constructorDeHTML(cli_fil)
           return true
         }
@@ -584,7 +571,7 @@ var arrayOK = {{{ dataCliArray }}};
        constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="ACORDADO" disabled name="estado" id="estado"/></div></div>'
        mostrarFlitros()
        arrayOK.filter(function (cli_fil) {
-        if (cli_fil.acord == "on" && cli_fil.baja != "on" && cli_fil.finalizado != "on") {
+        if (cli_fil.acord == "on" ) {
           constructorSelector += constructorDeHTML(cli_fil)
           return true
         }
@@ -593,7 +580,7 @@ var arrayOK = {{{ dataCliArray }}};
         case "cerrarSrt": constructor = '<div><div class="form-group"><span class="form-label">ESTADO</span><input class="form-control" type="text" value="CERRAR (SRT)" disabled name="estado" id="estado"/></div></div>'
         mostrarFlitros()
        arrayOK.filter(function (cli_fil) {
-        if (cli_fil.cerrarSrt == "on" && cli_fil.baja != "on" && cli_fil.finalizado != "on") {
+        if (cli_fil.cerrarSrt == "on" ) {
           constructorSelector += constructorDeHTML(cli_fil)
           return true
         }

@@ -8,6 +8,11 @@ router.get("/calendario", isLoggedIn, async (req, res) => {
   res.render("links/calendario.hbs", { dataeventos: JSON.stringify(listadeeventos)});
 });
 
+router.get("/judicial", isLoggedIn, async (req, res) => {
+  const links = await pool.query("SELECT * FROM cliente WHERE jud = 'on' ORDER BY damnificado");
+  res.render("links/judicial.hbs", { links, dataCliArray: JSON.stringify(links)});
+});
+
 //MODULO DE PERFIL
 
 router.get("/perfil/:id_cliente_evt", isLoggedIn, async (req, res) => {
@@ -158,6 +163,18 @@ router.get("/evento/:id_cliente", isLoggedIn, async (req, res) => {
 });
 
 //MODULOS RUTAS CLIENTES
+router.get("/delete", isLoggedIn, async (req, res) => {
+  const links = await pool.query("SELECT * FROM cliente ORDER BY damnificado");
+  res.render("links/delete.hbs", { links, dataCliArray: JSON.stringify(links)});
+});
+
+router.get("/deleted/:id", isLoggedIn, async (req, res) => {
+  console.log("llego a")
+  const { id } = req.params;
+  await pool.query("DELETE FROM cliente WHERE id_cliente = ?", [id]);
+  await pool.query("DELETE FROM eventos WHERE id_cliente_evt = ?", [id]);
+  res.render("/");
+});
 
 router.get("/add", isLoggedIn,  function(req, res) {
   if(req.user) {
